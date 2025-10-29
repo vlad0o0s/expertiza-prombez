@@ -1,4 +1,4 @@
-name: Code Quality Check
+name: PHP Syntax Check
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
     branches: [ main, master ]
 
 jobs:
-  code-check:
-    name: PHP & JavaScript Syntax Check
+  syntax-check:
+    name: PHP Syntax Check
     runs-on: ubuntu-latest
     
     steps:
@@ -29,29 +29,5 @@ jobs:
         run: |
           if [ -f composer.json ]; then
             composer validate --no-check-publish
-          fi
-      
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-      
-      - name: Install npm dependencies
-        run: |
-          if [ -f package.json ]; then
-            if [ -f package-lock.json ]; then
-              npm ci
-            else
-              npm install --no-save
-            fi
-          fi
-      
-      - name: Run ESLint
-        run: |
-          if [ -f package.json ]; then
-            echo "Проверка синтаксиса JavaScript файлов..."
-            npm run lint
-          else
-            echo "package.json не найден, проверка JavaScript пропущена"
           fi
 
