@@ -1,23 +1,27 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "node": false
   },
   "extends": "eslint:recommended",
   "parserOptions": {
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "script"
   },
   "rules": {
     "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
     "no-console": "off",
     "indent": ["error", 4],
-    "linebreak-style": ["error", "unix"],
+    "linebreak-style": "off",
     "quotes": ["error", "single"],
     "semi": ["error", "always"]
   },
   "globals": {
-    "Swiper": "readonly"
+    "Swiper": "readonly",
+    "document": "readonly",
+    "window": "readonly",
+    "console": "readonly"
   }
 }
 
