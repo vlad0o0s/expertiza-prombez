@@ -2,8 +2,11 @@
 require_once 'config/config.php';
 require_once 'config/mail.php';
 
+// Указание ключа страницы для SEO (используется конфигурация из config/seo.php)
+$page_key = 'contacts';
+
+// Заголовок страницы для отображения (можно не задавать, тогда возьмется из SEO конфига)
 $page_title = 'Контакты';
-$page_description = 'Свяжитесь с нами для консультации по вопросам промышленной безопасности';
 
 // Обработка формы обратной связи
 $message_sent = false;
