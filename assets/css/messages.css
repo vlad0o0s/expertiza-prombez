@@ -1,0 +1,35 @@
+/* ============================================
+   Сообщения (для JavaScript)
+   ============================================ */
+.message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
+}
+
+.message.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.message-success {
+    background-color: #28a745;
+    color: var(--color-white);
+}
+
+.message-error {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.message-info {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+}
