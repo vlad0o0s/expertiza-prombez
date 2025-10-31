@@ -67,14 +67,80 @@ function initComponents() {
  */
 function initMobileMenu() {
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    
-    if (mobileMenuToggle && mobileMenu) {
+    const modal = document.querySelector('.mobile-modal');
+    const modalClose = document.querySelector('.mobile-modal-close');
+
+    function setModalTop() {
+        const header = document.querySelector('.site-header');
+        if (modal && header) {
+            const headerHeight = header.offsetHeight || 0;
+            modal.style.top = headerHeight + 'px';
+            modal.style.height = `calc(100vh - ${headerHeight}px)`;
+        }
+    }
+
+    if (mobileMenuToggle && modal) {
         mobileMenuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
-            this.classList.toggle('active');
+            const img = this.querySelector('img');
+            const isOpen = modal.classList.toggle('open');
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+            setModalTop();
+            if (img) {
+                img.src = isOpen ? '/assets/images/exit.svg' : '/assets/images/burgermenu.svg';
+            }
+            // Гарантируем, что нужные секции открыты при каждом открытии
+            if (isOpen) {
+                const epb = modal.querySelector('.mm-section[data-section="epb"]');
+                const contacts = modal.querySelector('.mm-section[data-section="contacts"]');
+                [epb, contacts].forEach(function(section) {
+                    if (!section) return;
+                    section.classList.add('is-open');
+                    const toggle = section.querySelector('.mm-section-toggle');
+                    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+                });
+            }
+        });
+        window.addEventListener('resize', setModalTop);
+    }
+
+    if (modalClose && modal) {
+        modalClose.addEventListener('click', function() {
+            const img = mobileMenuToggle ? mobileMenuToggle.querySelector('img') : null;
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+            if (img) img.src = '/assets/images/burgermenu.svg';
         });
     }
+
+    // Закрытие по клику вне контента
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                const img = mobileMenuToggle ? mobileMenuToggle.querySelector('img') : null;
+                modal.classList.remove('open');
+                document.body.style.overflow = '';
+                if (img) img.src = '/assets/images/burgermenu.svg';
+            }
+        });
+        // Закрытие по Esc
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('open')) {
+                const img = mobileMenuToggle ? mobileMenuToggle.querySelector('img') : null;
+                modal.classList.remove('open');
+                document.body.style.overflow = '';
+                if (img) img.src = '/assets/images/burgermenu.svg';
+            }
+        });
+    }
+
+    // Аккордеон разделов
+    document.querySelectorAll('.mm-section-toggle').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            const section = this.closest('.mm-section');
+            const isOpen = section.classList.toggle('is-open');
+            this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+    });
 }
 
 /**
