@@ -127,7 +127,8 @@ $pageDescription = isset($page_description) ? $page_description : $seo['descript
     <!-- Мобильное модальное меню -->
     <div class="mobile-modal" aria-hidden="true">
         <div class="mobile-modal-content">
-            <div class="mm-sections">
+            <div class="mobile-modal-inner">
+                <div class="mm-sections">
                 <div class="mm-section is-open" data-section="epb">
                     <button class="mm-section-toggle" aria-expanded="true">
                         <span class="mm-title">Экспертиза промбезопасности</span>
@@ -209,6 +210,7 @@ $pageDescription = isset($page_description) ? $page_description : $seo['descript
                         <a href="#" class="mm-button">ПОСТРОИТЬ МАРШРУТ</a>
                         <a href="#" class="mm-link mm-link-arrow">Запросить коммерческое предложение</a>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
