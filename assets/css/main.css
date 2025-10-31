@@ -21,13 +21,39 @@
     box-sizing: border-box;
 }
 
+/* Отключение дефолтных состояний фокуса/активации (оформим вручную) */
+*:focus,
+*:focus-visible,
+*:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+button,
+input,
+select,
+textarea {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+a,
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a:focus,
+a:active {
+    text-decoration: none;
+}
+
 html {
     font-size: 16px;
     scroll-behavior: smooth;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
     color: var(--color-black);
     background-color: var(--color-white);
@@ -75,8 +101,16 @@ a:hover {
 }
 
 .container-fluid {
+    width: 1280px;
+    padding: 20px 20px;
+    margin: 0 auto;
+}
+
+/* Полноширинный контейнер без отступов */
+.container-full {
     width: 100%;
-    padding: 0 20px;
+    margin: 0;
+    padding: 0;
 }
 
 /* ============================================
@@ -234,5 +268,12 @@ textarea.form-control {
     
     .section {
         padding: 40px 0;
+    }
+
+    /* Мобильная ширина контейнера */
+    .container-fluid {
+        width: 100%;
+        padding: 0 10px;
+        margin: 0;
     }
 }

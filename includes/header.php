@@ -14,6 +14,18 @@ $pageDescription = isset($page_description) ? $page_description : $seo['descript
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- Fonts: Montserrat, Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+    </noscript>
+    
     <!-- SEO Meta Tags -->
     <title><?php echo htmlspecialchars($pageTitle); ?></title>
     <meta name="description" content="<?php echo htmlspecialchars($pageDescription); ?>">
@@ -73,37 +85,131 @@ $pageDescription = isset($page_description) ? $page_description : $seo['descript
 </head>
 <body>
     <header class="site-header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <a href="/">
-                        <h1><?php echo SITE_NAME; ?></h1>
-                    </a>
+        <div class="container-fluid">
+            <div class="header-box">
+                <div class="header-inner">
+                    <div class="header-row">
+                        <a class="logo" href="/">
+                            <img src="/assets/images/logo.png" alt="<?php echo SITE_NAME; ?>">
+                        </a>
+                        <div class="site-name">ТОП ЭКСПЕРТ</div>
+                        <nav class="main-nav header-menu">
+                            <?php include_once __DIR__ . '/menu.php'; ?>
+                            <ul>
+                                <?php render_menu_items($menuItems); ?>
+                            </ul>
+                        </nav>
+                        <div class="header-contacts">
+                            <a href="tel:+74951270935">+ 7 495 127 09-35</a>
+                            <a href="mailto:info@te-g.ru">info@te-g.ru</a>
+                        </div>
+                        <a class="header-btn" href="/sitemap.php">
+                            <img class="icon-sitemap" src="/assets/images/iconSitemap.svg" alt="">
+                            КАРТА САЙТА
+                        </a>
+                        <button class="mobile-menu-toggle" aria-label="Меню">
+                            <img src="/assets/images/burgermenu.svg" alt="">
+                        </button>
+                    </div>
+                    <div class="header-mobile-secondary">
+                        <div class="header-contacts">
+                            <a href="tel:+74951270935">+ 7 495 127 09-35</a>
+                            <a href="mailto:info@te-g.ru">info@te-g.ru</a>
+                        </div>
+                        <a class="header-btn" href="/sitemap.php">
+                            ЗАКАЗАТЬ УСЛУГУ
+                        </a>
+                    </div>
                 </div>
-                
-                <nav class="main-nav">
-                    <ul>
-                        <li><a href="/">Главная</a></li>
-                        <li><a href="/about.php">О нас</a></li>
-                        <li><a href="/services.php">Услуги</a></li>
-                        <li><a href="/contacts.php">Контакты</a></li>
-                    </ul>
-                </nav>
-                
-                <button class="mobile-menu-toggle" aria-label="Меню">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
             </div>
         </div>
-        
-        <nav class="mobile-menu">
-            <ul>
-                <li><a href="/">Главная</a></li>
-                <li><a href="/about.php">О нас</a></li>
-                <li><a href="/services.php">Услуги</a></li>
-                <li><a href="/contacts.php">Контакты</a></li>
-            </ul>
-        </nav>
     </header>
+    <!-- Мобильное модальное меню -->
+    <div class="mobile-modal" aria-hidden="true">
+        <div class="mobile-modal-content">
+            <div class="mm-sections">
+                <div class="mm-section is-open" data-section="epb">
+                    <button class="mm-section-toggle" aria-expanded="true">
+                        <span class="mm-title">Экспертиза промбезопасности</span>
+                        <span class="mm-arrow"></span>
+                    </button>
+                    <div class="mm-section-body">
+                        <ul class="mm-list">
+                            <li>ЭПБ объектов с опасными веществами</li>
+                            <li>ЭПБ оборудования, работающего под давлением</li>
+                            <li>ЭПБ подъемных сооружений и кранов</li>
+                            <li>ЭПБ газового оборудования и газопроводов</li>
+                            <li>ЭПБ объектов с горючими жидкостями</li>
+                            <li>ЭПБ объектов со взрывчатыми веществами</li>
+                            <li>ЭПБ энергетических установок и котлов</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mm-section">
+                    <button class="mm-section-toggle" aria-expanded="false">
+                        <span class="mm-title">Услуги</span>
+                        <span class="mm-arrow"></span>
+                    </button>
+                    <div class="mm-section-body">
+                        <ul class="mm-list">
+                            <li>Экспертиза промышленной безопасности</li>
+                            <li>Экологическая экспертиза</li>
+                            <li>Техническое обследование зданий</li>
+                            <li>Судебная экспертиза</li>
+                            <li>Лаборатория неразрушающего контроля</li>
+                            <li>Химическая лаборатория</li>
+                            <li>Образование и повышение квалификации</li>
+                            <li>Аудит СУОТ и внедрение</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mm-section">
+                    <button class="mm-section-toggle" aria-expanded="false">
+                        <span class="mm-title">О компании</span>
+                        <span class="mm-arrow"></span>
+                    </button>
+                    <div class="mm-section-body">
+                        <ul class="mm-list">
+                            <li>Презентация</li>
+                            <li>Документы</li>
+                            <li>Реквизиты</li>
+                            <li>Контакты</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mm-section is-open" data-section="contacts">
+                    <button class="mm-section-toggle" aria-expanded="true">
+                        <span class="mm-title">Контакты</span>
+                        <span class="mm-arrow"></span>
+                    </button>
+                    <div class="mm-section-body">
+                        <div class="mm-contact-label">
+                            <img src="/assets/images/phone.svg" alt="">
+                            <span>Телефон</span>
+                        </div>
+                        <div class="mm-contact mm-contact-value">+ 7 495 127 09-35</div>
+
+                        <div class="mm-contact-label">
+                            <img src="/assets/images/mail.svg" alt="">
+                            <span>E-mail</span>
+                        </div>
+                        <div class="mm-contact mm-contact-value">info@te-g.ru</div>
+
+                        <div class="mm-contact-label">
+                            <img src="/assets/images/point.svg" alt="">
+                            <span>Адрес лаборатории</span>
+                        </div>
+                        <div class="mm-contact-text">
+                            125009, Москва, Газетный пер.,<br>
+                            дом 5, метро <a href="#" class="mm-accent">Охотный ряд</a>
+                        </div>
+                        <a href="#" class="mm-button">ПОСТРОИТЬ МАРШРУТ</a>
+                        <a href="#" class="mm-link mm-link-arrow">Запросить коммерческое предложение</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
