@@ -4,8 +4,6 @@
 
 // Инициализация после загрузки DOM
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Сайт загружен');
-    
     // Инициализация Swiper (будет вызвана при наличии слайдеров)
     initSwiper();
     
