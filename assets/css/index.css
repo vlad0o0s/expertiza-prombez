@@ -37,7 +37,7 @@
 .hero-content {
     position: relative;
     z-index: 1;
-    padding: 60px 40px;
+    padding: 60px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -199,6 +199,9 @@
         display: flex;
         align-items: center;
         gap: 5px;
+        width: 100%;
+        max-width: 100%;
+        flex-wrap: wrap;
     }
     
     .btn-order {
@@ -218,6 +221,8 @@
         display: inline-block;
         transition: opacity 0.3s ease;
         cursor: pointer;
+        flex-shrink: 0;
+        white-space: nowrap;
     }
     
     .btn-arrow {
@@ -231,12 +236,496 @@
         justify-content: center;
         margin-left: 0;
         transition: opacity 0.3s ease;
+        flex-shrink: 0;
     }
     
     .btn-arrow img {
         width: 15px;
         height: 15px;
         display: block;
+    }
+}
+
+/* ============================================
+   Информационные карточки
+   ============================================ */
+.info-cards {
+    width: 100%;
+    margin-top: -80px;
+    position: relative;
+    z-index: 10;
+}
+
+.info-cards .container-fluid {
+    width: 1280px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.info-cards-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+}
+
+.info-card {
+    background: #E9F1FC;
+    border-radius: 5px;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card-2 {
+    background: #152333;
+}
+
+.card-3 {
+    background: #E60012;
+}
+
+.card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 120%;
+    color: #152333;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+}
+
+.card-2 .card-title,
+.card-3 .card-title {
+    color: #fff;
+}
+
+.card-description {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 120%;
+    color: #152333;
+    margin: 0 0 20px 0;
+}
+
+.card-2 .card-description,
+.card-3 .card-description {
+    color: #fff;
+}
+
+.card-link {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 120%;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-offset: 0%;
+    text-decoration-thickness: 0%;
+    color: #152333;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: auto;
+}
+
+.card-2 .card-link,
+.card-3 .card-link {
+    color: #fff;
+}
+
+.card-link img {
+    width: 10px;
+    height: 10px;
+    display: block;
+}
+
+.card-2 .card-link img,
+.card-3 .card-link img {
+    filter: brightness(0) invert(1);
+}
+
+.card-link {
+    transition: opacity 0.3s ease, gap 0.3s ease;
+}
+
+.card-link:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .info-cards {
+        margin-top: -60px;
+    }
+    
+    .info-cards .container-fluid {
+        width: 100%;
+        padding: 0 10px;
+        margin: 0;
+    }
+    
+    .info-cards-inner {
+        max-width: 100%;
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .info-card {
+        padding: 20px 15px;
+    }
+}
+
+/* ============================================
+   Наши услуги
+   ============================================ */
+.our-services {
+    width: 100%;
+    padding: 80px 0;
+}
+
+.our-services .container-fluid {
+    width: 1280px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.services-header {
+    max-width: 1280px;
+    padding: 0px 60px;
+    margin: 0 auto 40px;
+}
+
+.services-title-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: nowrap;
+}
+
+.services-icon {
+    width: 21px;
+    height: 22px;
+    display: block;
+    flex-shrink: 0;
+}
+
+.services-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 120%;
+    color: var(--color-dark-blue);
+    margin: 0;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.services-line {
+    flex: 1;
+    height: 1px;
+    border: 1px solid #91A2B8;
+    min-width: 20px;
+}
+
+.services-main-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 30px;
+    line-height: 120%;
+    color: var(--color-dark-blue);
+    margin: 0;
+    text-align: right;
+}
+
+.services-grid {
+    max-width: 1280px;
+    padding: 0px 60px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    justify-content: space-between;
+}
+
+.service-card {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    color: inherit;
+    border-radius: 5px;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+.service-image-wrapper {
+    width: 260px;
+    height: 191px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.service-number-mobile {
+    display: none;
+}
+
+.service-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.service-title-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.service-number {
+    width: 30px;
+    height: 30px;
+    background: #E60012;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 120%;
+    color: #FFFFFF;
+    flex-shrink: 0;
+    border-radius: 5px;
+}
+
+.service-title-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.service-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 120%;
+    color: #152333;
+    margin: 0;
+    text-transform: uppercase;
+    min-height: 45px;
+}
+
+.service-link-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 120%;
+    color: var(--color-primary);
+    text-transform: none;
+    display: inline-block;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration-color: var(--color-primary);
+}
+
+.service-link-text:hover {
+    opacity: 0.7;
+    text-decoration-thickness: 2px;
+}
+
+
+.service-line {
+    width: 100%;
+    height: 1px;
+    border: 1px solid #91A2B8;
+    margin-bottom: 8px;
+    flex-shrink: 0;
+}
+
+.service-description {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 120%;
+    color: #152333;
+    margin: 0 0 30px 0;
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .our-services {
+        padding: 40px 0;
+    }
+    
+    .our-services .container-fluid {
+        width: 100%;
+        padding: 0 10px;
+        margin: 0;
+    }
+    
+    .services-header {
+        max-width: 100%;
+        padding: 0 10px;
+        margin-bottom: 30px;
+    }
+    
+    .services-title-row {
+        display: block;
+    }
+    
+    .services-icon,
+    .services-subtitle,
+    .services-line {
+        display: none;
+    }
+    
+    .services-main-title {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 20px;
+        line-height: 120%;
+        text-align: left;
+        margin: 0;
+    }
+    
+    .services-grid {
+        max-width: 100%;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+        box-sizing: border-box;
+    }
+    
+    .service-card {
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .service-card {
+        position: relative;
+    }
+    
+    .service-image-wrapper {
+        width: 100%;
+        max-width: 175px;
+        height: 130px;
+        position: relative;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        overflow: hidden;
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
+    }
+    
+    .service-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    
+    .service-number {
+        display: none;
+    }
+    
+    .service-number-mobile {
+        display: flex;
+        position: absolute;
+        bottom: 3px;
+        left: 3px;
+        width: 30px;
+        height: 30px;
+        background: #E60012;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 14px;
+        line-height: 120%;
+        color: #FFFFFF;
+        border-radius: 5px;
+        box-shadow: 0 0 0 3px #fff;
+        z-index: 2;
+        margin: 0;
+    }
+    
+    .service-title-row {
+        display: flex;
+        flex-direction: column;
+        position: static;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .service-title-wrapper {
+        display: block;
+        width: 100%;
+        margin-left: 0;
+        box-sizing: border-box;
+    }
+    
+    .service-title {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 10px;
+        line-height: 120%;
+        color: #152333;
+        text-transform: uppercase;
+        min-height: auto;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .service-line {
+        width: 100%;
+        height: 1px;
+        border: 1px solid #91A2B8;
+        margin: 10px 0 5px 0;
+        box-sizing: border-box;
+    }
+    
+    .service-description {
+        width: 100%;
+        max-width: 175px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 8.5px;
+        line-height: 120%;
+        margin-top: 0;
+        box-sizing: border-box;
     }
 }
 
