@@ -11,7 +11,9 @@ $additional_css = ['/assets/css/index.css'];
 $additional_js = [
     'https://cdn.jsdelivr.net/npm/imask@6.4.3/dist/imask.min.js',
     '/assets/js/index-animations.js',
-    '/assets/js/index-forms.js'
+    '/assets/js/index-forms.js',
+    '/assets/js/index-reviews.js',
+    '/assets/js/index-faq.js'
 ];
 
 include 'includes/header.php';
@@ -293,7 +295,7 @@ include 'includes/header.php';
                         <img src="/assets/images/polygon.svg" alt="" class="contacts-icon">
                         <h2 class="contacts-subtitle">КОНТАКТНАЯ ИНФОРМАЦИЯ</h2>
                     </div>
-                    <h3 class="contacts-title">СВЯЖИТЕСЬ С НАМИ<br>ЛЮБЫМ СПОСОБОМ</h3>
+                    <h3 class="contacts-title">СВЯЖИТЕСЬ С НАМИ ЛЮБЫМ<br>СПОСОБОМ</h3>
                     
                     <div class="contacts-details">
                         <div class="contacts-row">
@@ -360,6 +362,244 @@ include 'includes/header.php';
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="about-us-section animate-on-scroll">
+        <div class="container-fluid">
+            <!-- ПК версия -->
+            <div class="about-us-inner about-us-desktop">
+                <div class="about-us-image">
+                    <img src="/assets/images/toch.png" alt="О компании">
+                </div>
+                <div class="about-us-content">
+                    <div class="about-us-header">
+                        <img src="/assets/images/polygon.svg" alt="" class="about-us-icon">
+                        <h2 class="about-us-subtitle">О НАС</h2>
+                    </div>
+                    <h3 class="about-us-title">ТОЧНОСТЬ. ЭФФЕКТИВНОСТЬ. РЕЗУЛЬТАТ.</h3>
+                    <div class="about-us-text">
+                        <p>Наша компания работает в сфере промышленной безопасности с 2014 года и за это время зарекомендовала себя как надежный и высококвалифицированный экспертный центр. Мы сотрудничаем с предприятиями из 25 городов России, охватывая различные отрасли производства.</p>
+                        <p>В штате — эксперты с многолетним опытом работы в нефтегазовой, металлургической, химической, строительной и других сферах. Специалисты активно участвуют в разработке и обсуждении технических регламентов, анализируют российский опыт предупреждения аварий и вопросы сертификации.</p>
+                    </div>
+                    <div class="about-us-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="150">0+</div>
+                            <div class="stat-description">отзывов на различных площадках</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="54">0+</div>
+                            <div class="stat-description">видов судебных экспертиз по каждому направлению</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="3000">0+</div>
+                            <div class="stat-description">проведенных экспертиз для различных судов</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Мобильная версия -->
+            <div class="about-us-inner about-us-mobile">
+                <div class="about-us-mobile-header">
+                    <img src="/assets/images/polygon.svg" alt="" class="about-us-mobile-icon">
+                    <h2 class="about-us-mobile-subtitle">О НАС</h2>
+                </div>
+                <div class="about-us-mobile-top">
+                    <div class="about-us-mobile-image">
+                        <img src="/assets/images/toch.png" alt="О компании">
+                    </div>
+                    <h3 class="about-us-mobile-title">
+                        <span>ТОЧНОСТЬ.</span>
+                        <span>ЭФФЕКТИВНОСТЬ.</span>
+                        <span>РЕЗУЛЬТАТ.</span>
+                    </h3>
+                </div>
+                <div class="about-us-mobile-text">
+                    <p>Наша компания работает в сфере промышленной безопасности с 2014 года и за это время зарекомендовала себя как надежный и высококвалифицированный экспертный центр. Мы сотрудничаем с предприятиями из 25 городов России, охватывая различные отрасли производства.</p>
+                    <p>В штате — эксперты с многолетним опытом работы в нефтегазовой, металлургической, химической, строительной и других сферах. Специалисты активно участвуют в разработке и обсуждении технических регламентов, анализируют российский опыт предупреждения аварий и вопросы сертификации.</p>
+                </div>
+                <div class="about-us-mobile-stats">
+                    <div class="stat-mobile-item">
+                        <div class="stat-mobile-number" data-target="150">0+</div>
+                        <div class="stat-mobile-description">отзывов на различных площадках</div>
+                    </div>
+                    <div class="stat-mobile-item">
+                        <div class="stat-mobile-number" data-target="54">0+</div>
+                        <div class="stat-mobile-description">видов судебных экспертиз по каждому направлению</div>
+                    </div>
+                    <div class="stat-mobile-item">
+                        <div class="stat-mobile-number" data-target="3000">0+</div>
+                        <div class="stat-mobile-description">проведенных экспертиз для различных судов</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="reviews-section animate-on-scroll">
+        <div class="container-fluid">
+            <div class="reviews-header">
+                <h2 class="reviews-title">ОТЗЫВЫ</h2>
+                <div class="reviews-navigation">
+                    <button class="reviews-prev" aria-label="Предыдущий слайд">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button class="reviews-next" aria-label="Следующий слайд">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="swiper reviews-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="review-card">
+                            <div class="review-author">
+                                <div class="review-name">Сергей Кузнецов</div>
+                                <div class="review-role">предприниматель</div>
+                            </div>
+                            <div class="review-text">
+                                Обратились для проведения экспертизы промышленной безопасности на нашем объекте с опасными химическими веществами. Работу выполнили быстро и профессионально, выявили ряд недочетов и дали рекомендации. Благодаря заключению мы смогли безопасно продолжить эксплуатацию оборудования и успешно пройти проверку Ростехнадзора.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="review-card">
+                            <div class="review-author">
+                                <div class="review-name">Сергей Кузнецов</div>
+                                <div class="review-role">предприниматель</div>
+                            </div>
+                            <div class="review-text">
+                                Обратились для проведения экспертизы промышленной безопасности на нашем объекте с опасными химическими веществами. Работу выполнили быстро и профессионально, выявили ряд недочетов и дали рекомендации. Благодаря заключению мы смогли безопасно продолжить эксплуатацию оборудования и успешно пройти проверку Ростехнадзора.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="review-card">
+                            <div class="review-author">
+                                <div class="review-name">Сергей Кузнецов</div>
+                                <div class="review-role">предприниматель</div>
+                            </div>
+                            <div class="review-text">
+                                Обратились для проведения экспертизы промышленной безопасности на нашем объекте с опасными химическими веществами. Работу выполнили быстро и профессионально, выявили ряд недочетов и дали рекомендации. Благодаря заключению мы смогли безопасно продолжить эксплуатацию оборудования и успешно пройти проверку Ростехнадзора.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="review-card">
+                            <div class="review-author">
+                                <div class="review-name">Сергей Кузнецов</div>
+                                <div class="review-role">предприниматель</div>
+                            </div>
+                            <div class="review-text">
+                                Обратились для проведения экспертизы промышленной безопасности на нашем объекте с опасными химическими веществами. Работу выполнили быстро и профессионально, выявили ряд недочетов и дали рекомендации. Благодаря заключению мы смогли безопасно продолжить эксплуатацию оборудования и успешно пройти проверку Ростехнадзора.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="review-card">
+                            <div class="review-author">
+                                <div class="review-name">Сергей Кузнецов</div>
+                                <div class="review-role">предприниматель</div>
+                            </div>
+                            <div class="review-text">
+                                Обратились для проведения экспертизы промышленной безопасности на нашем объекте с опасными химическими веществами. Работу выполнили быстро и профессионально, выявили ряд недочетов и дали рекомендации. Благодаря заключению мы смогли безопасно продолжить эксплуатацию оборудования и успешно пройти проверку Ростехнадзора.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="review-card">
+                            <div class="review-author">
+                                <div class="review-name">Сергей Кузнецов</div>
+                                <div class="review-role">предприниматель</div>
+                            </div>
+                            <div class="review-text">
+                                Обратились для проведения экспертизы промышленной безопасности на нашем объекте с опасными химическими веществами. Работу выполнили быстро и профессионально, выявили ряд недочетов и дали рекомендации. Благодаря заключению мы смогли безопасно продолжить эксплуатацию оборудования и успешно пройти проверку Ростехнадзора.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination reviews-pagination"></div>
+            </div>
+            <div class="reviews-footer">
+                <a href="#" class="reviews-link" target="_blank">
+                    Отзывы на Яндекс Картах
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 3L11 8L6 13M11 8H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="faq-section animate-on-scroll">
+        <div class="container-fluid">
+            <h2 class="faq-title">ОТВЕТЫ НА ЧАСТЫЕ ВОПРОСЫ</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">Зачем нужна экспертиза промышленной безопасности?</span>
+                        <span class="faq-icon">
+                            <img src="/assets/images/Arrow.svg" alt="">
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Она помогает выявить риски аварий и продлить срок безопасной эксплуатации оборудования и объектов.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">Как часто проводится экспертиза?</span>
+                        <span class="faq-icon">
+                            <img src="/assets/images/Arrow.svg" alt="">
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Обычно раз в несколько лет, в зависимости от типа оборудования и требований нормативных документов.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">Что проверяют эксперты?</span>
+                        <span class="faq-icon">
+                            <img src="/assets/images/Arrow.svg" alt="">
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Техническое состояние устройств, документацию, условия эксплуатации и соответствие требованиям безопасности.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">Сколько времени занимает экспертиза?</span>
+                        <span class="faq-icon">
+                            <img src="/assets/images/Arrow.svg" alt="">
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Сроки зависят от объема работ и сложности объекта, в среднем от нескольких дней до нескольких недель.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">Что делать, если объект не прошел экспертизу?</span>
+                        <span class="faq-icon">
+                            <img src="/assets/images/Arrow.svg" alt="">
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Нужно устранить выявленные нарушения, провести ремонт или модернизацию, после чего пройти повторную проверку.</p>
+                    </div>
                 </div>
             </div>
         </div>

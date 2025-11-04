@@ -74,7 +74,8 @@ $pageDescription = isset($page_description) ? $page_description : $seo['descript
     <link rel="stylesheet" href="/assets/css/messages.css">
     
     <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" 
+          onerror="this.onerror=null; this.href='https://unpkg.com/swiper@11/swiper-bundle.min.css';">
     
     <!-- Дополнительные стили страницы (если есть) -->
     <?php if (isset($additional_css)): ?>
@@ -128,90 +129,11 @@ $pageDescription = isset($page_description) ? $page_description : $seo['descript
     <div class="mobile-modal" aria-hidden="true">
         <div class="mobile-modal-content">
             <div class="mobile-modal-inner">
-                <div class="mm-sections">
-                <div class="mm-section is-open" data-section="epb">
-                    <button class="mm-section-toggle" aria-expanded="true">
-                        <span class="mm-title">Экспертиза промбезопасности</span>
-                        <span class="mm-arrow"></span>
-                    </button>
-                    <div class="mm-section-body">
-                        <ul class="mm-list">
-                            <li>ЭПБ объектов с опасными веществами</li>
-                            <li>ЭПБ оборудования, работающего под давлением</li>
-                            <li>ЭПБ подъемных сооружений и кранов</li>
-                            <li>ЭПБ газового оборудования и газопроводов</li>
-                            <li>ЭПБ объектов с горючими жидкостями</li>
-                            <li>ЭПБ объектов со взрывчатыми веществами</li>
-                            <li>ЭПБ энергетических установок и котлов</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="mm-section">
-                    <button class="mm-section-toggle" aria-expanded="false">
-                        <span class="mm-title">Услуги</span>
-                        <span class="mm-arrow"></span>
-                    </button>
-                    <div class="mm-section-body">
-                        <ul class="mm-list">
-                            <li>Экспертиза промышленной безопасности</li>
-                            <li>Экологическая экспертиза</li>
-                            <li>Техническое обследование зданий</li>
-                            <li>Судебная экспертиза</li>
-                            <li>Лаборатория неразрушающего контроля</li>
-                            <li>Химическая лаборатория</li>
-                            <li>Образование и повышение квалификации</li>
-                            <li>Аудит СУОТ и внедрение</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="mm-section">
-                    <button class="mm-section-toggle" aria-expanded="false">
-                        <span class="mm-title">О компании</span>
-                        <span class="mm-arrow"></span>
-                    </button>
-                    <div class="mm-section-body">
-                        <ul class="mm-list">
-                            <li>Презентация</li>
-                            <li>Документы</li>
-                            <li>Реквизиты</li>
-                            <li>Контакты</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="mm-section is-open" data-section="contacts">
-                    <button class="mm-section-toggle" aria-expanded="true">
-                        <span class="mm-title">Контакты</span>
-                        <span class="mm-arrow"></span>
-                    </button>
-                    <div class="mm-section-body">
-                        <div class="mm-contact-label">
-                            <img src="/assets/images/phone.svg" alt="">
-                            <span>Телефон</span>
-                        </div>
-                        <div class="mm-contact mm-contact-value">+ 7 495 127 09-35</div>
-
-                        <div class="mm-contact-label">
-                            <img src="/assets/images/mail.svg" alt="">
-                            <span>E-mail</span>
-                        </div>
-                        <div class="mm-contact mm-contact-value">info@te-g.ru</div>
-
-                        <div class="mm-contact-label">
-                            <img src="/assets/images/point.svg" alt="">
-                            <span>Адрес лаборатории</span>
-                        </div>
-                        <div class="mm-contact-text">
-                            125009, Москва, Газетный пер.,<br>
-                            дом 5, метро <a href="#" class="mm-accent">Охотный ряд</a>
-                        </div>
-                        <a href="#" class="mm-button">ПОСТРОИТЬ МАРШРУТ</a>
-                        <a href="#" class="mm-link mm-link-arrow">Запросить коммерческое предложение</a>
-                    </div>
-                </div>
-                </div>
+                <?php
+                // Подключаем функцию рендеринга модального меню
+                require_once __DIR__ . '/modal-menu-render.php';
+                render_modal_menu();
+                ?>
             </div>
         </div>
     </div>
