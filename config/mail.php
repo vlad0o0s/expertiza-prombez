@@ -20,9 +20,23 @@ class MailSender {
         $this->mail->SMTPAuth = true;
         $this->mail->Username = SMTP_USERNAME;
         $this->mail->Password = SMTP_PASSWORD;
-        $this->mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+        
+        // Для Beget используем SSL на порту 465
+        if (SMTP_PORT == 465) {
+            $this->mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
+        } else {
+            $this->mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+        }
+        
         $this->mail->Port = SMTP_PORT;
         $this->mail->CharSet = 'UTF-8';
+        $this->mail->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
         
         // Отправитель
         $this->mail->setFrom(SMTP_FROM_EMAIL, SMTP_FROM_NAME);

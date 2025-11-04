@@ -7,7 +7,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // Инициализация маски для телефона
     const phoneInput = document.getElementById('callback-phone');
     
-    if (phoneInput && typeof IMask !== 'undefined') {
+    // Ждем загрузки IMask (на случай медленной загрузки CDN)
+    let retryCount = 0;
+    const maxRetries = 50; // Максимум 5 секунд ожидания
+    
+    function initPhoneMask() {
+        if (typeof IMask === 'undefined') {
+            retryCount++;
+            if (retryCount < maxRetries) {
+                setTimeout(initPhoneMask, 100);
+            } else {
+                console.error('IMask library failed to load after multiple attempts');
+            }
+            return;
+        }
+        
+        if (!phoneInput) {
+            return;
+        }
+        
         const phoneMask = IMask(phoneInput, {
             mask: '+{7}(000)000-00-00',
             lazy: false,
@@ -45,5 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
             updatePhoneColor();
         });
     }
+    
+    // Запускаем инициализацию
+    initPhoneMask();
 });
 

@@ -3,13 +3,14 @@
 define('SITE_NAME', 'Экспертиза Промбезопасность');
 define('SITE_URL', 'http://expertiza-prombez.ru');
 
-// Настройки SMTP для отправки писем
-define('SMTP_HOST', 'smtp.example.com');
-define('SMTP_USERNAME', 'your_email@example.com');
-define('SMTP_PASSWORD', 'your_password');
-define('SMTP_PORT', 587);
-define('SMTP_FROM_EMAIL', 'noreply@expertiza-prombez.ru');
+// Настройки SMTP для отправки писем (Beget)
+define('SMTP_HOST', 'smtp.beget.com');
+define('SMTP_USERNAME', 'smtp@realmdigital.ru'); // Ваш email на Beget
+define('SMTP_PASSWORD', 'p!lSW3n6yCf*');
+define('SMTP_PORT', 465);
+define('SMTP_FROM_EMAIL', 'smtp@realmdigital.ru');
 define('SMTP_FROM_NAME', 'Экспертиза Промбезопасность');
+define('SMTP_TO_EMAIL', 'mail.vlad0o0s@gmail.com'); // Email получателя заявок
 
 // Schema.org Organization Data (для структурированных данных)
 define('ORG_NAME', 'Экспертиза Промбезопасность');

@@ -33,5 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
             heroContent.classList.add('animated');
         }, 100);
     }
+
+    // Анимация счетчиков теперь находится в компоненте about-us/component.js
 });
 

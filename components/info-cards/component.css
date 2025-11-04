@@ -1,0 +1,153 @@
+/* ============================================
+   Информационные карточки
+   ============================================ */
+.info-cards {
+    width: 100%;
+    margin-top: -80px;
+    position: relative;
+    z-index: 10;
+}
+
+.info-cards .container-fluid {
+    width: 1280px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.info-cards-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+}
+
+.info-card {
+    background: #E9F1FC;
+    border-radius: 5px;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(233, 241, 252, 0.6), 0 0 40px rgba(233, 241, 252, 0.4), 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card-2:hover {
+    box-shadow: 0 0 20px rgba(21, 35, 51, 0.6), 0 0 40px rgba(21, 35, 51, 0.4), 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card-3:hover {
+    box-shadow: 0 0 20px rgba(230, 0, 18, 0.6), 0 0 40px rgba(230, 0, 18, 0.4), 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card-2 {
+    background: #152333;
+}
+
+.card-3 {
+    background: #E60012;
+}
+
+.card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 120%;
+    color: #152333;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+}
+
+.card-2 .card-title,
+.card-3 .card-title {
+    color: #fff;
+}
+
+.card-description {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 120%;
+    color: #152333;
+    margin: 0 0 20px 0;
+}
+
+.card-2 .card-description,
+.card-3 .card-description {
+    color: #fff;
+}
+
+.card-link {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 120%;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-offset: 0%;
+    text-decoration-thickness: 0%;
+    color: #152333;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: auto;
+}
+
+.card-2 .card-link,
+.card-3 .card-link {
+    color: #fff;
+}
+
+.card-link img {
+    width: 10px;
+    height: 10px;
+    display: block;
+}
+
+.card-2 .card-link img,
+.card-3 .card-link img {
+    filter: brightness(0) invert(1);
+}
+
+.card-link {
+    transition: opacity 0.3s ease, gap 0.3s ease;
+}
+
+.card-link:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .info-cards {
+        margin-top: -60px;
+    }
+    
+    .info-cards .container-fluid {
+        width: 100%;
+        padding: 0 10px;
+        margin: 0;
+    }
+    
+    .info-cards-inner {
+        max-width: 100%;
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .info-card {
+        padding: 20px 15px;
+    }
+}
+
