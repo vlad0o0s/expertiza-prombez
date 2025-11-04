@@ -17,6 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
  * Инициализация Swiper слайдеров
  */
 function initSwiper() {
+    // Проверка наличия Swiper
+    if (typeof Swiper === 'undefined') {
+        console.warn('Swiper library is not loaded');
+        return;
+    }
+    
     // Основной слайдер
     const mainSwiper = document.querySelector('.swiper-main');
     if (mainSwiper) {
@@ -74,6 +80,7 @@ function initMobileMenu() {
         const header = document.querySelector('.site-header');
         if (modal && header) {
             const headerHeight = header.offsetHeight || 0;
+            // Прижимаем модалку к шапке (работает для ПК и мобильной версии)
             modal.style.top = headerHeight + 'px';
             modal.style.height = `calc(100vh - ${headerHeight}px)`;
         }
@@ -101,6 +108,8 @@ function initMobileMenu() {
             }
         });
         window.addEventListener('resize', setModalTop);
+        // Вызываем при загрузке для правильной позиции на ПК
+        setModalTop();
     }
 
     if (modalClose && modal) {

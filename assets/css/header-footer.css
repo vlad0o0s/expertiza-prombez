@@ -388,21 +388,28 @@
 
 /* Десктопная версия модального окна с ограничением ширины */
 @media (min-width: 769px) {
+    .mobile-modal {
+        bottom: auto;
+    }
+    
     .mobile-modal-content {
         left: 50%;
         right: auto;
+        top: 0;
+        bottom: auto;
         width: 1240px;
         max-width: 1240px;
         padding: 20px;
-        transform: translateX(-50%) translateY(-8px);
+        transform: translateX(-50%);
         border-radius: 0 0 10px 10px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         display: flex;
         justify-content: center;
         align-items: flex-start;
+        overflow-y: auto;
     }
     .mobile-modal.open .mobile-modal-content {
-        transform: translateX(-50%) translateY(0);
+        transform: translateX(-50%);
     }
     .mobile-modal-inner {
         max-width: 1120px;
@@ -410,17 +417,188 @@
         margin: 0 auto;
     }
     .mm-sections {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .mm-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 40px;
+        align-items: flex-start;
         width: 100%;
         max-width: 1120px;
     }
-    .mm-button {
-        margin-left: auto;
-        margin-right: auto;
+    
+    .mm-section {
+        width: 100%;
+    }
+    
+    /* Обертка для второй колонки (Услуги + О компании) */
+    .mm-column-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    /* Скрываем секцию "О компании" отдельно, она теперь внутри обертки */
+    .mm-section:not([data-section]):not([data-column]):not([data-section="epb"]):not([data-section="services"]):not([data-section="about"]):not([data-section="contacts"]):not([data-section="articles"]) {
+        display: none;
+    }
+    
+    /* Скрываем epb и articles, если они не внутри обертки */
+    .mm-sections > .mm-section[data-section="epb"],
+    .mm-sections > .mm-section[data-section="articles"] {
+        display: none;
+    }
+    
+    /* Первая колонка: Экспертиза промбезопасности + Статьи */
+    .mm-column-wrapper[data-column="epb-articles"] {
+        grid-column: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .mm-column-wrapper[data-column="epb-articles"] .mm-section[data-section="articles"] {
+        margin-top: 40px;
+    }
+    
+    /* Вторая колонка: Услуги + О компании */
+    .mm-column-wrapper[data-column="services-about"] {
+        grid-column: 2;
+    }
+    
+    .mm-column-wrapper[data-column="services-about"] .mm-section[data-section="about"] {
+        margin-top: 40px;
+    }
+    
+    /* Третья колонка: Контакты - уменьшенный блок */
+    .mm-section[data-section="contacts"] {
+        grid-column: 3;
+        max-width: 240px;
+    }
+    
+    /* Скрываем все toggle на ПК и показываем секции открытыми */
+    .mm-section .mm-section-toggle {
+        display: block;
+        padding: 0;
+        margin-bottom: 20px;
+        cursor: default;
+        pointer-events: none;
+        border: none;
+        background: transparent;
+    }
+    
+    .mm-section .mm-section-toggle .mm-arrow {
+        display: none;
+    }
+    
+    .mm-section .mm-section-body {
+        display: block !important;
+        max-height: none !important;
+        opacity: 1 !important;
+    }
+    
+    /* Стили заголовков для всех секций на ПК */
+    .mm-section .mm-title {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 22px;
+        line-height: 120%;
+        color: #152333;
+        margin: 0 0 40px 0;
+    }
+    
+    /* Отступ между секциями внутри обертки */
+    .mm-column-wrapper .mm-section {
+        margin-bottom: 0;
+    }
+    
+    
+    /* Стили для списков на ПК */
+    .mm-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .mm-list li {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 14px;
+        line-height: 140%;
+        color: #152333;
+        padding: 8px 0;
+        transition: color 0.2s ease;
+    }
+    
+    .mm-list li:hover {
+        color: #E60012;
+    }
+    
+    .mm-list li a {
+        color: #E60012;
+        text-decoration: underline;
+        transition: color 0.3s ease;
+    }
+    
+    .mm-list li a:hover {
+        color: #152333;
+        text-decoration: underline;
+    }
+    
+    /* Стили для секции контактов на ПК */
+    
+    .mm-section[data-section="contacts"] .mm-contact-label {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 120%;
+        color: #152333;
+        padding: 0;
+        margin-bottom: 8px;
+    }
+    
+    .mm-section[data-section="contacts"] .mm-contact-label img {
+        width: 20px;
+        height: 20px;
+        filter: brightness(0) saturate(100%) invert(13%) sepia(94%) saturate(7158%) hue-rotate(353deg) brightness(92%) contrast(91%);
+    }
+    
+    .mm-section[data-section="contacts"] .mm-contact-value {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 120%;
+        color: #152333;
+        padding: 0;
+        margin-bottom: 20px;
+        display: block;
+    }
+    
+    .mm-section[data-section="contacts"] .mm-contact-text {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 140%;
+        color: #152333;
+        padding: 0;
+        margin-bottom: 15px;
+    }
+    
+    .mm-section[data-section="contacts"] .mm-button {
+        width: auto;
+        padding: 12px 24px;
+        margin: 0 0 20px 0;
+        font-size: 12px;
+        background: #FFFFFF;
+        border: 1px solid #91A2B8;
+        color: #152333;
+    }
+    
+    .mm-section[data-section="contacts"] .mm-link {
+        font-size: 14px;
+        margin-top: 0;
     }
 }
 .mobile-modal-close { display: none; }
