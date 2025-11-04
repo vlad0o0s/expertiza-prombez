@@ -198,6 +198,84 @@ include 'includes/header.php';
             </div>
         </div>
     </section>
+    
+    <section class="company-banner">
+        <div class="container-fluid">
+            <div class="company-banner-inner">
+                <!-- ПК версия -->
+                <div class="company-desktop">
+                    <img src="/assets/images/small_icon.png" alt="" class="company-icon">
+                    <p class="company-text">Компания «ТОП ЭКСПЕРТ» – это команда опытных специалистов в сфере промбезопасности, обучения и аттестации экспертов,<br>а также лицензирования бизнеса</p>
+                    <div class="company-buttons">
+                        <a href="#" class="btn-order-company">ЗАКАЗАТЬ УСЛУГУ</a>
+                        <button class="btn-arrow-company" aria-label="Перейти">
+                            <img src="/assets/images/Arrow.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Мобильная версия -->
+                <div class="company-mobile">
+                    <p class="company-text">Компания «ТОП ЭКСПЕРТ» – это команда опытных специалистов в сфере промбезопасности, обучения и аттестации экспертов,<br>а также лицензирования бизнеса</p>
+                    <div class="company-bottom-row">
+                        <img src="/assets/images/small_icon.png" alt="" class="company-icon">
+                        <div class="company-buttons">
+                            <a href="#" class="btn-order-company">ЗАКАЗАТЬ УСЛУГУ</a>
+                            <button class="btn-arrow-company" aria-label="Перейти">
+                                <img src="/assets/images/Arrow.svg" alt="">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="why-choose-us">
+        <div class="container-fluid">
+            <div class="why-choose-us-inner">
+                <div class="why-choose-header">
+                    <h2 class="why-choose-title">ПОЧЕМУ НАС ВЫБИРАЮТ</h2>
+                    <div class="why-choose-line"></div>
+                    <h3 class="why-choose-subtitle">ПРЕИМУЩЕСТВА</h3>
+                </div>
+                
+                <div class="advantages-grid">
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <img src="/assets/images/our1.svg" alt="">
+                        </div>
+                        <h4 class="advantage-title">БОЛЕЕ 10 ЛЕТ РАБОТЫ</h4>
+                        <p class="advantage-description">на рынке с 2014 года и имеем огромный опыт в работе</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <img src="/assets/images/our2.svg" alt="">
+                        </div>
+                        <h4 class="advantage-title">БОЛЕЕ 20 ОПЫТНЫХ ЭКСПЕРТОВ</h4>
+                        <p class="advantage-description">АНО «ТОП ЭКСПЕРТ» гордится своей командой</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <img src="/assets/images/our3.svg" alt="">
+                        </div>
+                        <h4 class="advantage-title">НАЛИЧИЕ ЛИЦЕНЗИЙ И ДОПУСК К СРО</h4>
+                        <p class="advantage-description">дает право на выполнение экспертных работ</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <img src="/assets/images/our4.svg" alt="">
+                        </div>
+                        <h4 class="advantage-title">БОЛЕЕ 2000 КЛИЕНТОВ</h4>
+                        <p class="advantage-description">и реализованных проектов различной сложности</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
 
 <?php include 'includes/footer.php'; ?>
