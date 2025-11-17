@@ -3,27 +3,28 @@
    ============================================ */
 .reviews-section {
     width: 100%;
-    max-width: 1240px;
-    margin: 80px auto 0;
-    padding: 0 20px;
-    border-radius: 5px;
+    max-width: 96.875%; /* 1240px / 1280px */
+    margin: 5rem auto 0; /* 80px */
+    padding: 0 1.25rem; /* 20px */
+    border-radius: 0.3125rem; /* 5px */
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .reviews-section .container-fluid {
     width: 100%;
-    max-width: 1200px;
+    max-width: 75rem; /* 1200px */
     margin: 0 auto;
-    padding: 0;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow-x: hidden;
+    padding: 0;
 }
 
 .reviews-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 2.5rem; /* 40px */
     padding: 0;
 }
 
@@ -31,7 +32,7 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-style: normal;
-    font-size: 35px;
+    font-size: 2.1875rem; /* 35px */
     line-height: 120%;
     color: #152333;
     margin: 0;
@@ -40,7 +41,7 @@
 
 .reviews-navigation {
     display: flex;
-    gap: 10px;
+    gap: 0.625rem; /* 10px */
     align-items: center;
 }
 
@@ -49,7 +50,7 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    padding: 8px;
+    padding: 0.5rem; /* 8px */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,8 +73,8 @@
     width: 100%;
     max-width: 100%;
     overflow: hidden;
-    margin-bottom: 30px;
-    padding-bottom: 50px;
+    margin-bottom: 1.875rem; /* 30px */
+    padding-bottom: 3.125rem; /* 50px */
     box-sizing: border-box;
     position: relative;
 }
@@ -92,8 +93,8 @@
 
 .review-card {
     background: #152333;
-    border-radius: 5px;
-    padding: 30px 20px;
+    border-radius: 0.3125rem; /* 5px */
+    padding: 1.875rem 1.25rem; /* 30px 20px */
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -103,24 +104,24 @@
 }
 
 .review-author {
-    margin-bottom: 27px;
+    margin-bottom: 1.6875rem; /* 27px */
 }
 
 .review-name {
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     font-style: normal;
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     line-height: 120%;
     color: #FFFFFF;
-    margin-bottom: 3px;
+    margin-bottom: 0.1875rem; /* 3px */
 }
 
 .review-role {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 12px;
+    font-size: 0.75rem; /* 12px */
     line-height: 120%;
     color: rgba(255, 255, 255, 0.7);
 }
@@ -129,7 +130,7 @@
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 12px;
+    font-size: 0.75rem; /* 12px */
     line-height: 140%;
     color: #FFFFFF;
     flex: 1;
@@ -138,39 +139,39 @@
 .reviews-pagination {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    margin-top: 30px;
+    gap: 0.5rem; /* 8px */
+    margin-top: 1.875rem; /* 30px */
 }
 
 .reviews-pagination .swiper-pagination-bullet {
-    width: 8px;
-    height: 8px;
+    width: 0.5rem; /* 8px */
+    height: 0.5rem; /* 8px */
     background: #91A2B8;
     opacity: 1;
-    border-radius: 2px;
+    border-radius: 0.125rem; /* 2px */
     transition: all 0.3s ease;
 }
 
 .reviews-pagination .swiper-pagination-bullet-active {
     background: #152333;
-    width: 24px;
+    width: 1.5rem; /* 24px */
 }
 
 .reviews-footer {
     display: flex;
     justify-content: flex-end;
-    margin-top: 30px;
+    margin-top: 1.875rem; /* 30px */
     padding: 0;
 }
 
 .reviews-link {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem; /* 8px */
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-style: normal;
-    font-size: 14px;
+    font-size: 0.875rem; /* 14px */
     line-height: 120%;
     color: #152333;
     text-decoration: underline;
@@ -183,22 +184,56 @@
 }
 
 .reviews-link svg {
-    width: 16px;
-    height: 16px;
+    width: 1rem; /* 16px */
+    height: 1rem; /* 16px */
+}
+
+/* ============================================
+   Адаптив для планшета (768px - 1024px)
+   ============================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .reviews-section {
+        max-width: 95%;
+        margin: 4rem auto 0; /* 64px */
+        padding: 0 1.5rem; /* 24px */
+    }
+    
+    .reviews-header {
+        margin-bottom: 2rem; /* 32px */
+    }
+    
+    .reviews-title {
+        font-size: 1.75rem; /* 28px */
+    }
+    
+    .review-card {
+        padding: 1.5rem 1.25rem; /* 24px 20px */
+    }
+    
+    .review-author {
+        margin-bottom: 1.25rem; /* 20px */
+    }
+    
+    .review-name {
+        font-size: 0.9375rem; /* 15px */
+    }
+    
+    .review-text {
+        font-size: 0.6875rem; /* 11px */
+    }
 }
 
 @media (max-width: 768px) {
     .reviews-section {
-        padding: 0 10px;
-        margin-top: 25px;
+        padding: 0 0.625rem; /* 10px */
+        margin-top: 1.5625rem; /* 25px */
     }
     
     .reviews-title {
         font-family: 'Montserrat', sans-serif;
         font-weight: 700;
         font-style: normal;
-        font-size: 20px;
+        font-size: 1.25rem; /* 20px */
         line-height: 120%;
     }
 }
-

@@ -3,35 +3,44 @@
    ============================================ */
 .info-cards {
     width: 100%;
-    margin-top: -80px;
+    margin-top: -5rem; /* -80px */
     position: relative;
     z-index: 10;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 .info-cards .container-fluid {
-    width: 1280px;
-    padding: 0 20px;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1.5625%; /* ~20px от 1280px */
     margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .info-cards-inner {
-    max-width: 1120px;
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0;
+    box-sizing: border-box;
 }
 
 .info-card {
     background: #E9F1FC;
-    border-radius: 5px;
-    padding: 30px 20px;
+    border-radius: 0.3125rem; /* 5px */
+    padding: 2.34375% 1.5625%; /* ~30px 20px от 1280px */
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0; /* Предотвращает переполнение в grid */
 }
 
 .info-card:hover {
@@ -59,10 +68,10 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-style: normal;
-    font-size: 20px;
+    font-size: 1.25rem; /* 20px */
     line-height: 120%;
     color: #152333;
-    margin: 0 0 10px 0;
+    margin: 0 0 0.625rem 0; /* 10px */
     text-transform: uppercase;
 }
 
@@ -75,10 +84,10 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 14px;
+    font-size: 0.875rem; /* 14px */
     line-height: 120%;
     color: #152333;
-    margin: 0 0 20px 0;
+    margin: 0 0 1.25rem 0; /* 20px */
 }
 
 .card-2 .card-description,
@@ -90,7 +99,7 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-style: normal;
-    font-size: 12px;
+    font-size: 0.75rem; /* 12px */
     line-height: 120%;
     text-decoration: underline;
     text-decoration-style: solid;
@@ -99,7 +108,7 @@
     color: #152333;
     display: inline-flex;
     align-items: center;
-    gap: 15px;
+    gap: 0.9375rem; /* 15px */
     margin-top: auto;
 }
 
@@ -109,8 +118,8 @@
 }
 
 .card-link img {
-    width: 10px;
-    height: 10px;
+    width: 0.625rem; /* 10px */
+    height: 0.625rem; /* 10px */
     display: block;
 }
 
@@ -126,28 +135,79 @@
 .card-link:hover {
     text-decoration: underline;
     opacity: 0.8;
-    gap: 20px;
+    gap: 1.25rem; /* 20px */
+}
+
+/* ============================================
+   Адаптив для планшета (768px - 1024px)
+   ============================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .info-cards {
+        margin-top: -4rem; /* -64px */
+    }
+    
+    .info-cards .container-fluid {
+        width: 95%;
+        max-width: 95%;
+        padding: 0 1.875%; /* ~24px от 1280px */
+    }
+    
+    .info-cards-inner {
+        width: 100%;
+        max-width: 100%;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0;
+        box-sizing: border-box;
+    }
+    
+    .info-card {
+        padding: 1.875% 1.5625%; /* ~24px 20px от 1280px */
+        min-width: 0; /* Предотвращает переполнение в grid */
+    }
+    
+    .card-title {
+        font-size: 1.125rem; /* 18px */
+        margin: 0 0 0.5rem 0;
+    }
+    
+    .card-description {
+        font-size: 0.8125rem; /* 13px */
+        margin: 0 0 1rem 0;
+    }
+    
+    .card-link {
+        font-size: 0.6875rem; /* 11px */
+        gap: 0.75rem; /* 12px */
+    }
+    
+    .card-link img {
+        width: 0.5625rem; /* 9px */
+        height: 0.5625rem; /* 9px */
+    }
 }
 
 @media (max-width: 768px) {
     .info-cards {
-        margin-top: -60px;
+        margin-top: -3.75rem; /* -60px */
     }
     
     .info-cards .container-fluid {
         width: 100%;
-        padding: 0 10px;
+        padding: 0 2.5%; /* ~10px от 400px (мобильная ширина) */
         margin: 0;
     }
     
     .info-cards-inner {
+        width: 100%;
         max-width: 100%;
         grid-template-columns: 1fr;
         gap: 0;
+        box-sizing: border-box;
     }
     
     .info-card {
-        padding: 20px 15px;
+        padding: 5% 3.75%; /* ~20px 15px от 400px (мобильная ширина) */
+        min-width: 0; /* Предотвращает переполнение в grid */
     }
 }
 
