@@ -3,43 +3,45 @@
    ============================================ */
 .why-choose-us {
     width: 100%;
-    max-width: 1240px;
-    margin: 80px auto 0;
+    max-width: 96.875%; /* 1240px / 1280px */
+    margin: 5rem auto 0; /* 80px */
     position: relative;
     background-image: url('/assets/images/our.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: 5px;
+    border-radius: 0.3125rem; /* 5px */
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .why-choose-us .container-fluid {
     width: 100%;
-    max-width: 1280px;
-    padding: 0 20px;
+    max-width: 80rem; /* 1280px */
+    padding: 0 1.25rem; /* 20px */
     margin: 0 auto;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .why-choose-us-inner {
-    max-width: 1120px;
+    max-width: 87.5%; /* 1120px / 1280px */
     margin: 0 auto;
-    padding: 60px 50px;
+    padding: 3.75rem 3.125rem; /* 60px 50px */
 }
 
 .why-choose-header {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 60px;
+    gap: 0.9375rem; /* 15px */
+    margin-bottom: 3.75rem; /* 60px */
 }
 
 .why-choose-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-style: normal;
-    font-size: 35px;
+    font-size: 2.1875rem; /* 35px */
     line-height: 120%;
     color: #FFFFFF;
     margin: 0;
@@ -51,14 +53,14 @@
     flex: 1;
     height: 1px;
     border: 1px solid #91A2B8;
-    min-width: 20px;
+    min-width: 1.25rem; /* 20px */
 }
 
 .why-choose-subtitle {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-style: normal;
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     line-height: 120%;
     color: #FFFFFF;
     margin: 0;
@@ -69,7 +71,7 @@
 .advantages-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+    gap: 1.875rem; /* 30px */
     align-items: stretch;
 }
 
@@ -81,9 +83,9 @@
 }
 
 .advantage-icon {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 15px;
+    width: 3.75rem; /* 60px */
+    height: 3.75rem; /* 60px */
+    margin-bottom: 0.9375rem; /* 15px */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -109,12 +111,12 @@
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-style: normal;
-    font-size: 18px;
+    font-size: 1.125rem; /* 18px */
     line-height: 120%;
     color: #FFFFFF;
-    margin: 0 0 10px 0;
+    margin: 0 0 0.625rem 0; /* 10px */
     text-transform: uppercase;
-    min-height: 44px;
+    min-height: 2.75rem; /* 44px */
     display: flex;
     align-items: flex-start;
 }
@@ -123,34 +125,89 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-style: normal;
-    font-size: 12px;
+    font-size: 0.75rem; /* 12px */
     line-height: 120%;
     color: #FFFFFF;
     margin: 0;
 }
 
+/* ============================================
+   Адаптив для планшета (768px - 1024px)
+   ============================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .why-choose-us {
+        max-width: 95%;
+        margin: 4rem auto 0; /* 64px */
+    }
+    
+    .why-choose-us .container-fluid {
+        width: 95%;
+        max-width: 95%;
+        padding: 0 1.5rem; /* 24px */
+    }
+    
+    .why-choose-us-inner {
+        max-width: 100%;
+        padding: 2.5rem 2rem; /* 40px 32px */
+    }
+    
+    .why-choose-header {
+        gap: 1rem; /* 16px */
+        margin-bottom: 2.5rem; /* 40px */
+    }
+    
+    .why-choose-title {
+        font-size: 1.75rem; /* 28px */
+    }
+    
+    .why-choose-subtitle {
+        font-size: 0.9375rem; /* 15px */
+    }
+    
+    .advantages-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem; /* 24px */
+    }
+    
+    .advantage-icon {
+        width: 3.5rem; /* 56px */
+        height: 3.5rem; /* 56px */
+        margin-bottom: 0.75rem; /* 12px */
+    }
+    
+    .advantage-title {
+        font-size: 1rem; /* 16px */
+        min-height: 2.5rem; /* 40px */
+        margin: 0 0 0.5rem 0;
+    }
+    
+    .advantage-description {
+        font-size: 0.6875rem; /* 11px */
+    }
+}
+
 @media (max-width: 768px) {
     .why-choose-us {
-        margin-top: 25px;
+        margin-top: 1.5625rem; /* 25px */
     }
     
     .why-choose-us .container-fluid {
         width: 100%;
-        padding: 0 10px;
+        padding: 0 0.625rem; /* 10px */
     }
     
     .why-choose-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 15px;
-        margin-bottom: 30px;
+        gap: 0.9375rem; /* 15px */
+        margin-bottom: 1.875rem; /* 30px */
     }
     
     .why-choose-title {
         font-family: 'Montserrat', sans-serif;
         font-weight: 700;
         font-style: normal;
-        font-size: 20px;
+        font-size: 1.25rem; /* 20px */
     }
     
     .why-choose-line {
@@ -163,19 +220,19 @@
     
     .advantages-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
+        gap: 1.875rem; /* 30px */
     }
     
     .advantage-icon {
-        width: 56px;
-        height: 56px;
+        width: 3.5rem; /* 56px */
+        height: 3.5rem; /* 56px */
     }
     
     .advantage-title {
         font-family: 'Inter', sans-serif;
         font-weight: 600;
         font-style: normal;
-        font-size: 15px;
+        font-size: 0.9375rem; /* 15px */
         min-height: auto;
     }
     
@@ -183,7 +240,7 @@
         font-family: 'Montserrat', sans-serif;
         font-weight: 500;
         font-style: normal;
-        font-size: 10px;
+        font-size: 0.625rem; /* 10px */
         line-height: 100%;
         letter-spacing: 0;
     }

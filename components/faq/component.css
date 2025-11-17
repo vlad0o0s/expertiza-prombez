@@ -3,38 +3,41 @@
    ============================================ */
 .faq-section {
     width: 100%;
-    margin-top: 80px;
+    margin-top: 5rem; /* 80px */
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 .faq-section .container-fluid {
     width: 100%;
-    max-width: 1280px;
+    max-width: 80rem; /* 1280px */
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 1.25rem; /* 20px */
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .faq-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-style: normal;
-    font-size: 35px;
+    font-size: 2.1875rem; /* 35px */
     line-height: 120%;
     color: #152333;
     text-align: left;
-    margin: 0 0 60px 0;
+    margin: 0 0 3.75rem 0; /* 60px */
     text-transform: uppercase;
 }
 
 .faq-list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem; /* 20px */
 }
 
 .faq-item {
     background: #E9F1FC;
-    border-radius: 5px;
+    border-radius: 0.3125rem; /* 5px */
     overflow: hidden;
     transition: all 0.3s ease;
 }
@@ -43,31 +46,31 @@
     width: 100%;
     background: #E9F1FC;
     border: none;
-    padding: 25px 30px;
+    padding: 1.5625rem 1.875rem; /* 25px 30px */
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
     text-align: left;
     transition: all 0.3s ease;
-    gap: 20px;
+    gap: 1.25rem; /* 20px */
 }
 
 .faq-question-text {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-style: normal;
-    font-size: 20px;
+    font-size: 1.25rem; /* 20px */
     line-height: 120%;
     color: #152333;
     flex: 1;
 }
 
 .faq-icon {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem; /* 40px */
+    height: 2.5rem; /* 40px */
     background: #E60012;
-    border-radius: 5px;
+    border-radius: 0.3125rem; /* 5px */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,8 +79,8 @@
 }
 
 .faq-icon img {
-    width: 13px;
-    height: 13px;
+    width: 0.8125rem; /* 13px */
+    height: 0.8125rem; /* 13px */
     filter: brightness(0) invert(1);
     transition: transform 0.3s ease, filter 0.3s ease;
     transform: rotate(0deg);
@@ -105,35 +108,91 @@
     overflow: hidden;
     background: #152333;
     transition: max-height 0.3s ease, padding 0.3s ease;
-    padding: 0 30px;
+    padding: 0 1.875rem; /* 30px */
 }
 
 .faq-item.active .faq-answer {
-    max-height: 500px;
-    padding: 0 30px 25px 30px;
+    max-height: 31.25rem; /* 500px */
+    padding: 0 1.875rem 1.5625rem 1.875rem; /* 0 30px 25px 30px */
 }
 
 .faq-answer p {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     line-height: 140%;
     color: #FFFFFF;
     margin: 0;
-    padding-top: 20px;
+    padding-top: 1.25rem; /* 20px */
+}
+
+/* ============================================
+   Адаптив для планшета (768px - 1024px)
+   ============================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .faq-section {
+        margin-top: 4rem; /* 64px */
+    }
+    
+    .faq-section .container-fluid {
+        width: 95%;
+        max-width: 95%;
+        padding: 0 1.5rem; /* 24px */
+    }
+    
+    .faq-title {
+        font-size: 1.75rem; /* 28px */
+        margin: 0 0 2.5rem 0; /* 40px */
+    }
+    
+    .faq-list {
+        gap: 1rem; /* 16px */
+    }
+    
+    .faq-question {
+        padding: 1.25rem 1.5rem; /* 20px 24px */
+        gap: 1rem; /* 16px */
+    }
+    
+    .faq-question-text {
+        font-size: 1.125rem; /* 18px */
+    }
+    
+    .faq-icon {
+        width: 2.25rem; /* 36px */
+        height: 2.25rem; /* 36px */
+    }
+    
+    .faq-icon img {
+        width: 0.75rem; /* 12px */
+        height: 0.75rem; /* 12px */
+    }
+    
+    .faq-answer {
+        padding: 0 1.5rem; /* 24px */
+    }
+    
+    .faq-item.active .faq-answer {
+        padding: 0 1.5rem 1.25rem 1.5rem; /* 0 24px 20px 24px */
+    }
+    
+    .faq-answer p {
+        font-size: 0.9375rem; /* 15px */
+        padding-top: 1rem; /* 16px */
+    }
 }
 
 @media (max-width: 768px) {
     .faq-section {
-        margin-top: 25px;
+        margin-top: 1.5625rem; /* 25px */
     }
 
     .faq-title {
         font-family: 'Montserrat', sans-serif;
         font-weight: 700;
         font-style: normal;
-        font-size: 20px;
+        font-size: 1.25rem; /* 20px */
         line-height: 120%;
     }
 
@@ -141,7 +200,7 @@
         font-family: 'Montserrat', sans-serif;
         font-weight: 600;
         font-style: normal;
-        font-size: 13px;
+        font-size: 0.8125rem; /* 13px */
         line-height: 120%;
     }
 
@@ -149,13 +208,12 @@
         font-family: 'Montserrat', sans-serif;
         font-weight: 500;
         font-style: normal;
-        font-size: 12px;
+        font-size: 0.75rem; /* 12px */
         line-height: 140%;
     }
 
     .faq-icon img {
-        width: 11px;
-        height: 11px;
+        width: 0.6875rem; /* 11px */
+        height: 0.6875rem; /* 11px */
     }
 }
-

@@ -3,25 +3,27 @@
    ============================================ */
 .company-banner {
     width: 100%;
-    max-width: 1240px;
-    margin: 80px auto 0;
+    max-width: 96.875%; /* 1240px / 1280px */
+    margin: 5rem auto 0; /* 80px */
     background: #E9F1FC;
-    padding: 30px 0;
-    border-radius: 5px;
+    padding: 1.875rem 0; /* 30px */
+    border-radius: 0.3125rem; /* 5px */
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .company-banner .container-fluid {
     width: 100%;
-    max-width: 1280px;
-    padding: 0 20px;
+    max-width: 80rem; /* 1280px */
+    padding: 0 1.25rem; /* 20px */
     margin: 0 auto;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .company-banner-inner {
     width: 100%;
-    max-width: 1120px;
+    max-width: 87.5%; /* 1120px / 1280px */
     margin: 0 auto;
     box-sizing: border-box;
 }
@@ -29,7 +31,7 @@
 .company-desktop {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 1.875rem; /* 30px */
 }
 
 .company-mobile {
@@ -51,7 +53,7 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-style: normal;
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     line-height: 120%;
     color: #152333;
     margin: 0;
@@ -62,7 +64,7 @@
 .company-buttons {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 0.3125rem; /* 5px */
     flex-shrink: 0;
 }
 
@@ -84,14 +86,14 @@
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-style: normal;
-    font-size: 13px;
+    font-size: 0.8125rem; /* 13px */
     line-height: 120%;
     letter-spacing: 0%;
     text-align: center;
     color: #FFFFFF;
     background: #152333;
-    padding: 15px 32px;
-    border-radius: 5px;
+    padding: 0.9375rem 2rem; /* 15px 32px */
+    border-radius: 0.3125rem; /* 5px */
     border: none;
     text-decoration: none;
     display: inline-block;
@@ -108,8 +110,8 @@
 .btn-arrow-company {
     background: #E60012;
     border: none;
-    border-radius: 5px;
-    padding: 15px;
+    border-radius: 0.3125rem; /* 5px */
+    padding: 0.9375rem; /* 15px */
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -121,27 +123,70 @@
 }
 
 .btn-arrow-company img {
-    width: 15px;
-    height: 15px;
+    width: 0.9375rem; /* 15px */
+    height: 0.9375rem; /* 15px */
     display: block;
     filter: brightness(0) invert(1);
     position: relative;
     z-index: 1;
 }
 
+/* ============================================
+   Адаптив для планшета (768px - 1024px)
+   ============================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .company-banner {
+        max-width: 95%;
+        margin: 4rem auto 0; /* 64px */
+        padding: 1.5rem 0; /* 24px */
+    }
+    
+    .company-banner .container-fluid {
+        width: 95%;
+        max-width: 95%;
+        padding: 0 1.5rem; /* 24px */
+    }
+    
+    .company-banner-inner {
+        max-width: 100%;
+    }
+    
+    .company-desktop {
+        gap: 1.5rem; /* 24px */
+    }
+    
+    .company-text {
+        font-size: 0.9375rem; /* 15px */
+    }
+    
+    .btn-order-company {
+        padding: 0.875rem 1.75rem; /* 14px 28px */
+        font-size: 0.75rem; /* 12px */
+    }
+    
+    .btn-arrow-company {
+        padding: 0.875rem; /* 14px */
+    }
+    
+    .btn-arrow-company img {
+        width: 0.875rem; /* 14px */
+        height: 0.875rem; /* 14px */
+    }
+}
+
 @media (max-width: 768px) {
     .company-banner {
-        padding: 20px 0;
-        margin-top: 25px;
+        padding: 1.25rem 0; /* 20px */
+        margin-top: 1.5625rem; /* 25px */
     }
     
     .company-banner .container-fluid {
         width: 100%;
-        padding: 0 10px;
+        padding: 0 0.625rem; /* 10px */
     }
     
     .company-banner-inner {
-        padding: 0 10px;
+        padding: 0 0.625rem; /* 10px */
     }
     
     .company-desktop {
@@ -151,16 +196,16 @@
     .company-mobile {
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 0.9375rem; /* 15px */
         align-items: flex-start;
-        padding: 0 15px;
+        padding: 0 0.9375rem; /* 15px */
     }
     
     .company-text {
         font-family: 'Montserrat', sans-serif;
         font-weight: 600;
         font-style: normal;
-        font-size: 12px;
+        font-size: 0.75rem; /* 12px */
         line-height: 120%;
         width: 100%;
         margin: 0;
@@ -169,24 +214,28 @@
     .company-bottom-row {
         display: flex;
         width: 100%;
-        gap: 20px;
+        gap: 1.25rem; /* 20px */
         align-items: center;
         position: relative;
-        min-height: 60px;
+        min-height: 3.75rem; /* 60px */
     }
     
     .company-mobile .company-icon {
         position: absolute;
-        left: -35px;
-        bottom: -19px;
-        width: 100px;
+        left: -2.1875rem; /* -35px */
+        bottom: -1.1875rem; /* -19px */
+        width: 6.25rem; /* 100px */
         height: auto;
         flex-shrink: 0;
     }
     
+    .company-banner-inner {
+        overflow: hidden; /* Скрываем элементы, выходящие за границы */
+    }
+    
     .company-buttons {
         flex-direction: row;
-        gap: 5px;
+        gap: 0.3125rem; /* 5px */
         margin-left: auto;
         white-space: nowrap;
         flex-shrink: 0;
@@ -196,7 +245,7 @@
         font-family: 'Inter', sans-serif;
         font-weight: 600;
         font-style: normal;
-        font-size: 13px;
+        font-size: 0.8125rem; /* 13px */
         white-space: nowrap;
         flex-shrink: 0;
     }

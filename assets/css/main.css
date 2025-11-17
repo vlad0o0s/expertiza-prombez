@@ -51,6 +51,9 @@ a:active {
 html {
     font-size: 16px;
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
 }
 
 body {
@@ -58,6 +61,10 @@ body {
     line-height: 1.6;
     color: var(--color-black);
     background-color: var(--color-white);
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
 }
 
 /* ============================================
@@ -96,15 +103,19 @@ a:hover {
    Контейнеры
    ============================================ */
 .container {
-    max-width: 1200px;
+    max-width: 75rem; /* 1200px */
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 1.25rem; /* 20px */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .container-fluid {
-    width: 1280px;
-    padding: 20px 20px;
+    width: 100%;
+    max-width: 80rem; /* 1280px */
+    padding: 1.25rem 1.25rem; /* 20px */
     margin: 0 auto;
+    box-sizing: border-box;
 }
 
 /* Полноширинный контейнер без отступов */
@@ -189,18 +200,18 @@ a:hover {
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -15px;
+    margin: 0 -0.9375rem; /* -15px */
 }
 
 .col {
     flex: 1;
-    padding: 0 15px;
+    padding: 0 0.9375rem; /* 15px */
 }
 
-.col-12 { flex: 0 0 100%; max-width: 100%; padding: 0 15px; }
-.col-6 { flex: 0 0 50%; max-width: 50%; padding: 0 15px; }
-.col-4 { flex: 0 0 33.333333%; max-width: 33.333333%; padding: 0 15px; }
-.col-3 { flex: 0 0 25%; max-width: 25%; padding: 0 15px; }
+.col-12 { flex: 0 0 100%; max-width: 100%; padding: 0 0.9375rem; /* 15px */ }
+.col-6 { flex: 0 0 50%; max-width: 50%; padding: 0 0.9375rem; /* 15px */ }
+.col-4 { flex: 0 0 33.333333%; max-width: 33.333333%; padding: 0 0.9375rem; /* 15px */ }
+.col-3 { flex: 0 0 25%; max-width: 25%; padding: 0 0.9375rem; /* 15px */ }
 
 @media (max-width: 768px) {
     .col-6, .col-4, .col-3 {
@@ -258,9 +269,39 @@ textarea.form-control {
 /* ============================================
    Адаптивность
    ============================================ */
+/* Планшет (768px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    html {
+        overflow-x: hidden;
+    }
+    
+    body {
+        overflow-x: hidden;
+    }
+    
+    .container-fluid {
+        width: 95%;
+        max-width: 95%;
+        padding: 1.25rem 1.5rem; /* 20px 24px */
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+    
+    .container {
+        max-width: 95%;
+        padding: 0 1.5rem; /* 24px */
+        box-sizing: border-box;
+    }
+}
+
 @media (max-width: 768px) {
     html {
         font-size: 14px;
+        overflow-x: hidden;
+    }
+    
+    body {
+        overflow-x: hidden;
     }
     
     h1 { font-size: 2rem; }
@@ -268,13 +309,16 @@ textarea.form-control {
     h3 { font-size: 1.5rem; }
     
     .section {
-        padding: 40px 0;
+        padding: 2.5rem 0; /* 40px */
     }
 
     /* Мобильная ширина контейнера */
     .container-fluid {
         width: 100%;
-        padding: 0 10px;
+        max-width: 100%;
+        padding: 0 0.625rem; /* 10px */
         margin: 0;
+        box-sizing: border-box;
+        overflow-x: hidden;
     }
 }
