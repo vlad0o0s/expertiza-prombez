@@ -65,6 +65,10 @@ function render_modal_menu() {
                                            target="<?php echo htmlspecialchars($item['link']['target'] ?? '_blank'); ?>">
                                             <?php echo htmlspecialchars($item['link']['text']); ?>
                                         </a>
+                                    <?php elseif (is_array($item) && isset($item['href'])): ?>
+                                        <a href="<?php echo htmlspecialchars($item['href']); ?>">
+                                            <?php echo htmlspecialchars($item['text']); ?>
+                                        </a>
                                     <?php else: ?>
                                         <?php echo htmlspecialchars($item); ?>
                                     <?php endif; ?>

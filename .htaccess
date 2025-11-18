@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteBase /
+
+# Перенаправление /expertiza-prombezopasnosti на /pages/expertiza-prombezopasnosti.php
+RewriteRule ^expertiza-prombezopasnosti/?$ pages/expertiza-prombezopasnosti.php [L]
+
