@@ -2,268 +2,353 @@
    Глобальные переменные цветов
    ============================================ */
 :root {
-    --color-primary: #E60012;
-    --color-secondary: #91A2B8;
-    --color-light-gray: #E6E6E6;
-    --color-light-blue: #E9F1FC;
-    --color-white: #FFFFFF;
-    --color-dark-blue: #152333;
-    --color-dark-gray: #3C3C3C;
-    --color-black: #0A0A0A;
+  --color-primary: #e60012;
+  --color-secondary: #91a2b8;
+  --color-light-gray: #e6e6e6;
+  --color-light-blue: #e9f1fc;
+  --color-white: #ffffff;
+  --color-dark-blue: #152333;
+  --color-dark-gray: #3c3c3c;
+  --color-black: #0a0a0a;
 }
 
 /* ============================================
    Сброс стилей и базовые настройки
    ============================================ */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    line-height: 120%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 120%;
 }
 
 /* Отключение дефолтных состояний фокуса/активации (оформим вручную) */
 *:focus,
 *:focus-visible,
 *:active {
-    outline: none !important;
-    box-shadow: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 button,
 input,
 select,
 textarea {
-    -webkit-appearance: none;
-    appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 a,
 button {
-    -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a:focus,
 a:active {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 html {
-    font-size: 16px;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 100%;
+  font-size: 16px;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 body {
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
-    color: var(--color-black);
-    background-color: var(--color-white);
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 100%;
-    position: relative;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--color-black);
+  background-color: var(--color-white);
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
 }
 
 /* ============================================
    Типографика
    ============================================ */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-    color: var(--color-dark-blue);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: var(--color-dark-blue);
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.75rem; }
-h4 { font-size: 1.5rem; }
-h5 { font-size: 1.25rem; }
-h6 { font-size: 1rem; }
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.75rem;
+}
+h4 {
+  font-size: 1.5rem;
+}
+h5 {
+  font-size: 1.25rem;
+}
+h6 {
+  font-size: 1rem;
+}
 
 p {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 a {
-    color: var(--color-primary);
-    text-decoration: none;
-    transition: color 0.3s ease;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--color-dark-blue);
-    text-decoration: underline;
+  color: var(--color-dark-blue);
+  text-decoration: underline;
+}
+
+/* Исключение для карточек услуг */
+a.service-card--link,
+a.service-card--link:hover,
+a.service-card--link:active,
+a.service-card--link:focus,
+a.service-card--link:visited {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  border-top: none !important;
+}
+
+a.service-card--link *,
+a.service-card--link:hover *,
+a.service-card--link:active *,
+a.service-card--link:focus *,
+a.service-card--link:visited * {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  border-top: none !important;
 }
 
 /* ============================================
    Контейнеры
    ============================================ */
 .container {
-    max-width: 75rem; /* 1200px */
-    margin: 0 auto;
-    padding: 0 1.25rem; /* 20px */
-    width: 100%;
-    box-sizing: border-box;
+  max-width: 75rem; /* 1200px */
+  margin: 0 auto;
+  padding: 0 1.25rem; /* 20px */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .container-fluid {
-    width: 100%;
-    max-width: 80rem; /* 1280px */
-    padding: 1.25rem 1.25rem; /* 20px */
-    margin: 0 auto;
-    box-sizing: border-box;
+  width: 100%;
+  max-width: 80rem; /* 1280px */
+  padding: 1.25rem 1.25rem; /* 20px */
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* Полноширинный контейнер без отступов */
 .container-full {
-    width: 100%;
-    margin: 0;
-    padding: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 /* ============================================
    Кнопки
    ============================================ */
 .btn {
-    display: inline-block;
-    padding: 12px 24px;
-    font-size: 1rem;
-    font-weight: 500;
-    text-align: center;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .btn-primary {
-    background-color: var(--color-primary);
-    color: var(--color-white);
+  background-color: var(--color-primary);
+  color: var(--color-white);
 }
 
 .btn-primary:hover {
-    background-color: #cc0011;
-    color: var(--color-white);
-    text-decoration: none;
+  background-color: #cc0011;
+  color: var(--color-white);
+  text-decoration: none;
 }
 
 .btn-secondary {
-    background-color: var(--color-secondary);
-    color: var(--color-white);
+  background-color: var(--color-secondary);
+  color: var(--color-white);
 }
 
 .btn-secondary:hover {
-    background-color: #7a8fa0;
-    color: var(--color-white);
-    text-decoration: none;
+  background-color: #7a8fa0;
+  color: var(--color-white);
+  text-decoration: none;
 }
 
 .btn-outline {
-    background-color: transparent;
-    border: 2px solid var(--color-primary);
-    color: var(--color-primary);
+  background-color: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
 }
 
 .btn-outline:hover {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    text-decoration: none;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  text-decoration: none;
 }
 
 /* ============================================
    Утилиты цветов
    ============================================ */
-.bg-primary { background-color: var(--color-primary) !important; }
-.bg-secondary { background-color: var(--color-secondary) !important; }
-.bg-light-gray { background-color: var(--color-light-gray) !important; }
-.bg-light-blue { background-color: var(--color-light-blue) !important; }
-.bg-white { background-color: var(--color-white) !important; }
-.bg-dark-blue { background-color: var(--color-dark-blue) !important; }
-.bg-dark-gray { background-color: var(--color-dark-gray) !important; }
-.bg-black { background-color: var(--color-black) !important; }
+.bg-primary {
+  background-color: var(--color-primary) !important;
+}
+.bg-secondary {
+  background-color: var(--color-secondary) !important;
+}
+.bg-light-gray {
+  background-color: var(--color-light-gray) !important;
+}
+.bg-light-blue {
+  background-color: var(--color-light-blue) !important;
+}
+.bg-white {
+  background-color: var(--color-white) !important;
+}
+.bg-dark-blue {
+  background-color: var(--color-dark-blue) !important;
+}
+.bg-dark-gray {
+  background-color: var(--color-dark-gray) !important;
+}
+.bg-black {
+  background-color: var(--color-black) !important;
+}
 
-.text-primary { color: var(--color-primary) !important; }
-.text-secondary { color: var(--color-secondary) !important; }
-.text-white { color: var(--color-white) !important; }
-.text-dark-blue { color: var(--color-dark-blue) !important; }
-.text-dark-gray { color: var(--color-dark-gray) !important; }
-.text-black { color: var(--color-black) !important; }
+.text-primary {
+  color: var(--color-primary) !important;
+}
+.text-secondary {
+  color: var(--color-secondary) !important;
+}
+.text-white {
+  color: var(--color-white) !important;
+}
+.text-dark-blue {
+  color: var(--color-dark-blue) !important;
+}
+.text-dark-gray {
+  color: var(--color-dark-gray) !important;
+}
+.text-black {
+  color: var(--color-black) !important;
+}
 
 /* ============================================
    Сетка
    ============================================ */
 .row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 -0.9375rem; /* -15px */
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -0.9375rem; /* -15px */
 }
 
 .col {
-    flex: 1;
-    padding: 0 0.9375rem; /* 15px */
+  flex: 1;
+  padding: 0 0.9375rem; /* 15px */
 }
 
-.col-12 { flex: 0 0 100%; max-width: 100%; padding: 0 0.9375rem; /* 15px */ }
-.col-6 { flex: 0 0 50%; max-width: 50%; padding: 0 0.9375rem; /* 15px */ }
-.col-4 { flex: 0 0 33.333333%; max-width: 33.333333%; padding: 0 0.9375rem; /* 15px */ }
-.col-3 { flex: 0 0 25%; max-width: 25%; padding: 0 0.9375rem; /* 15px */ }
+.col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 0 0.9375rem; /* 15px */
+}
+.col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 0 0.9375rem; /* 15px */
+}
+.col-4 {
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
+  padding: 0 0.9375rem; /* 15px */
+}
+.col-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding: 0 0.9375rem; /* 15px */
+}
 
 @media (max-width: 768px) {
-    .col-6, .col-4, .col-3 {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
+  .col-6,
+  .col-4,
+  .col-3 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
 
 /* ============================================
    Формы
    ============================================ */
 .form-group {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .form-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: var(--color-dark-blue);
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--color-dark-blue);
 }
 
 .form-control {
-    width: 100%;
-    padding: 10px 15px;
-    font-size: 1rem;
-    border: 1px solid var(--color-light-gray);
-    border-radius: 4px;
-    transition: border-color 0.3s ease;
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 1px solid var(--color-light-gray);
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
 }
 
 .form-control:focus {
-    outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px rgba(230, 0, 18, 0.1);
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(230, 0, 18, 0.1);
 }
 
 textarea.form-control {
-    min-height: 120px;
-    resize: vertical;
+  min-height: 120px;
+  resize: vertical;
 }
 
 /* ============================================
    Секции
    ============================================ */
 .section {
-    padding: 60px 0;
+  padding: 60px 0;
 }
 
 .section-title {
-    text-align: center;
-    margin-bottom: 3rem;
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
 /* ============================================
@@ -271,54 +356,60 @@ textarea.form-control {
    ============================================ */
 /* Планшет (768px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
-    html {
-        overflow-x: hidden;
-    }
-    
-    body {
-        overflow-x: hidden;
-    }
-    
-    .container-fluid {
-        width: 95%;
-        max-width: 95%;
-        padding: 1.25rem 1.5rem; /* 20px 24px */
-        box-sizing: border-box;
-        overflow-x: hidden;
-    }
-    
-    .container {
-        max-width: 95%;
-        padding: 0 1.5rem; /* 24px */
-        box-sizing: border-box;
-    }
+  html {
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .container-fluid {
+    width: 95%;
+    max-width: 95%;
+    padding: 1.25rem 1.5rem; /* 20px 24px */
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 95%;
+    padding: 0 1.5rem; /* 24px */
+    box-sizing: border-box;
+  }
 }
 
 @media (max-width: 768px) {
-    html {
-        font-size: 14px;
-        overflow-x: hidden;
-    }
-    
-    body {
-        overflow-x: hidden;
-    }
-    
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.75rem; }
-    h3 { font-size: 1.5rem; }
-    
-    .section {
-        padding: 2.5rem 0; /* 40px */
-    }
+  html {
+    font-size: 14px;
+    overflow-x: hidden;
+  }
 
-    /* Мобильная ширина контейнера */
-    .container-fluid {
-        width: 100%;
-        max-width: 100%;
-        padding: 0 0.625rem; /* 10px */
-        margin: 0;
-        box-sizing: border-box;
-        overflow-x: hidden;
-    }
+  body {
+    overflow-x: hidden;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  .section {
+    padding: 2.5rem 0; /* 40px */
+  }
+
+  /* Мобильная ширина контейнера */
+  .container-fluid {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 0.625rem; /* 10px */
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
 }
