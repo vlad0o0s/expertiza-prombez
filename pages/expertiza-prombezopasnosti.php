@@ -8,6 +8,9 @@ $page_key = 'expertiza-prombezopasnosti';
 
 // Подключаем CSS для компонентов ДО header.php
 $additional_css = [];
+// Подключение CSS с анимациями
+$additional_css[] = '/assets/css/index.css';
+
 $breadcrumbs_css = '/components/breadcrumbs/component.css';
 if (file_exists(__DIR__ . '/../components/breadcrumbs/component.css')) {
     $additional_css[] = $breadcrumbs_css;
@@ -43,7 +46,8 @@ if (file_exists(__DIR__ . '/../components/faq/component.css')) {
     $additional_css[] = $faq_css;
 }
 
-$additional_js = [];
+// Подключение JavaScript для анимаций
+$additional_js = ['/assets/js/index-animations.js'];
 
 include __DIR__ . '/../includes/header.php';
 

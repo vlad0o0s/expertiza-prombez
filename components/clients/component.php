@@ -9,7 +9,7 @@ if (file_exists($cssPath)) {
 <section class="our-clients">
     <div class="container-fluid">
         <div class="clients-inner">
-            <div class="clients-slider-wrapper">
+            <div class="clients-slider-wrapper animate-on-scroll">
                 <div class="swiper clients-swiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
@@ -66,7 +66,7 @@ if (file_exists($cssPath)) {
                 </div>
             </div>
 
-            <div class="clients-header">
+            <div class="clients-header animate-on-scroll delay-1">
                 <h2 class="clients-main-title">НАШИ<br>КЛИЕНТЫ</h2>
                 <div class="clients-nav">
                     <button class="clients-nav-btn clients-nav-prev" aria-label="Previous">

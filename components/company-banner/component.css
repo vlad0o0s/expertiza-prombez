@@ -3,20 +3,19 @@
    ============================================ */
 .company-banner {
     width: 100%;
-    max-width: 1240px;
+    max-width: 1280px;
     margin: 80px auto 0;
-    background: #E9F1FC;
-    padding: 30px 0;
+    padding: 30px 80px;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
 .company-banner .container-fluid {
     width: 100%;
-    max-width: 1280px;
-    padding: 0px 20px;
     margin: 0 auto;
+    border-radius: 8px;
     box-sizing: border-box;
+    background: #E9F1FC;
 }
 
 .company-banner-inner {
@@ -30,6 +29,7 @@
     display: flex;
     align-items: center;
     gap: 30px;
+    padding: 0;
 }
 
 .company-mobile {
@@ -45,6 +45,9 @@
     height: auto;
     flex-shrink: 0;
     display: block;
+    position: relative;
+    left: -20px;
+    bottom: -20px;
 }
 
 .company-text {
@@ -145,7 +148,7 @@
     }
     
     .company-banner-inner {
-        padding: 0 10px;
+        padding: 20px 10px;
     }
     
     .company-desktop {

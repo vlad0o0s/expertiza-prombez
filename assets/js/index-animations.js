@@ -12,19 +12,53 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
                 entry.target.classList.add('animated');
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Находим все элементы с классом animate-on-scroll
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
-    
-    animatedElements.forEach(function(element) {
-        observer.observe(element);
+    // Функция для проверки и инициализации видимых элементов
+    function checkVisibleElements() {
+        const animatedElements = document.querySelectorAll('.animate-on-scroll:not(.animated)');
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        
+        animatedElements.forEach(function(element) {
+            const rect = element.getBoundingClientRect();
+            // Элемент считается видимым, если он в пределах viewport или чуть ниже
+            const isVisible = rect.top < windowHeight + 200 && rect.bottom > -200;
+            
+            if (isVisible) {
+                // Добавляем класс animated для видимых элементов
+                element.classList.add('animated');
+            } else {
+                // Наблюдаем за невидимыми элементами
+                observer.observe(element);
+            }
+        });
+    }
+
+    // Проверяем элементы после загрузки DOM
+    setTimeout(function() {
+        checkVisibleElements();
+    }, 200);
+
+    // Дополнительная проверка после полной загрузки страницы
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            checkVisibleElements();
+        }, 300);
     });
+
+    // Также проверяем при скролле
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(function() {
+            checkVisibleElements();
+        }, 100);
+    }, { passive: true });
 
     // Анимация для hero секции при загрузке страницы (без задержки)
     const heroContent = document.querySelector('.hero-content');
