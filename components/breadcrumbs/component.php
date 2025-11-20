@@ -19,7 +19,7 @@ if (!$items && $current_title) {
 ?>
 
 <?php if (!empty($items)): ?>
-<nav class="breadcrumbs" aria-label="Хлебные крошки">
+<nav class="breadcrumbs animate-on-scroll" aria-label="Хлебные крошки">
     <div class="container">
         <div class="breadcrumbs__inner">
             <?php foreach ($items as $index => $item): ?>

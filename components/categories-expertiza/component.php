@@ -1,11 +1,11 @@
 <section class="categories-expertiza">
     <div class="container-fluid">
-        <div class="categories-header animate-on-scroll">
+        <div class="categories-header">
             <div class="categories-title-row">
-                <h3 class="categories-main-title">ЭКСПЕРТИЗЫ<br>ПРОМБЕЗОПАСНОСТИ</h3>
-                <div class="categories-line"></div>
-                <h2 class="categories-subtitle">КАТЕГОРИИ</h2>
-                <img src="/assets/images/polygon.svg" alt="" class="categories-icon">
+                <h3 class="categories-main-title animate-on-scroll fade-in">ЭКСПЕРТИЗЫ<br>ПРОМБЕЗОПАСНОСТИ</h3>
+                <div class="categories-line animate-on-scroll delay-1"></div>
+                <h2 class="categories-subtitle animate-on-scroll delay-2">КАТЕГОРИИ</h2>
+                <img src="/assets/images/polygon.svg" alt="" class="categories-icon animate-on-scroll delay-3">
             </div>
         </div>
         

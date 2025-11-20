@@ -9,7 +9,7 @@ if (file_exists($cssPath)) {
 <section class="our-articles">
     <div class="container-fluid">
         <div class="articles-inner">
-            <div class="articles-header">
+            <div class="articles-header animate-on-scroll">
                 <h2 class="articles-main-title">НАШИ<br>СТАТЬИ</h2>
                 <a href="#" class="articles-view-all">
                     Смотреть все статьи
@@ -18,7 +18,7 @@ if (file_exists($cssPath)) {
             </div>
             
             <div class="articles-grid">
-                <div class="article-card">
+                <div class="article-card animate-on-scroll delay-1">
                     <div class="article-nav">
                         <span class="article-number">
                             <span class="article-current">01</span>/<span class="article-total">12</span>
@@ -36,7 +36,7 @@ if (file_exists($cssPath)) {
                     </div>
                 </div>
                 
-                <div class="article-card">
+                <div class="article-card animate-on-scroll delay-2">
                     <div class="article-nav">
                         <span class="article-number">
                             <span class="article-current">02</span>/<span class="article-total">12</span>
@@ -54,7 +54,7 @@ if (file_exists($cssPath)) {
                     </div>
                 </div>
                 
-                <div class="article-card">
+                <div class="article-card animate-on-scroll delay-3">
                     <div class="article-nav">
                         <span class="article-number">
                             <span class="article-current">03</span>/<span class="article-total">12</span>
