@@ -1,0 +1,214 @@
+/* ============================================
+   Подвал сайта
+   ============================================ */
+.site-footer { background-color: transparent; margin-top: 40px; }
+
+/* Десктопная версия футера (показывается по умолчанию) */
+.footer-desktop { display: block; }
+.footer-mobile { display: none; }
+
+/* Скрываем мобильную версию на десктопе */
+@media (min-width: 769px) {
+    .footer-desktop { display: block !important; }
+    .footer-mobile { display: none !important; }
+}
+
+.footer-box { background: #152333; border-radius: 5px; }
+.footer-inner { max-width: 1120px; margin: 0 auto; }
+.footer-row { display: flex; align-items: center; gap: 28px; padding: 18px 0; }
+.footer-center { display: flex; align-items: center; gap: 28px; margin-left: auto; margin-right: auto; }
+.footer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 8px;
+    padding: 10px 16px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 120%;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+}
+
+.footer-btn:hover { border-color: var(--color-primary); background-color: transparent; color: var(--color-primary); text-decoration: none; }
+.footer-menu ul { display: flex; list-style: none; gap: 32px; }
+.footer-menu a { color: rgba(255,255,255,0.8); font-weight: 600; font-size: 14px; transition: color 0.2s ease, opacity 0.2s ease; }
+.footer-menu a:hover { color: var(--color-primary); opacity: 1; text-decoration: none; }
+.footer-contacts { margin-left: auto; display: flex; align-items: flex-start; gap: 12px; flex-direction: column; }
+.footer-phone, .footer-email { color: #fff; font-weight: 600; font-size: 14px; text-decoration: none !important; transition: color 0.2s ease, opacity 0.2s ease; }
+.footer-phone:hover, .footer-email:hover { color: var(--color-primary); opacity: 1; }
+.footer-social { display: flex; list-style: none; gap: 8px; }
+.footer-social a { display: inline-flex; align-items: center; justify-content: center; padding: 6px; background: #1B2D41; border-radius: 5px; transition: opacity 0.2s ease, background-color 0.2s ease; }
+.footer-social a:hover { opacity: 0.85; background-color: rgba(27, 45, 65, 0.8); }
+.footer-social img { width: 15px; height: 15px; display: block; }
+
+/* Мобильная версия футера */
+.footer-mobile-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.footer-mobile-left {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-mobile-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.footer-mobile-brand .logo img {
+    width: 105px;
+    height: 53px;
+}
+
+.footer-mobile-name {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 120%;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.footer-mobile-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.footer-mobile-phone {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 120%;
+    letter-spacing: 0;
+    text-align: center;
+    text-decoration: none;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.footer-mobile-email {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 120%;
+    letter-spacing: 0;
+    text-align: center;
+    text-decoration: none;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.footer-mobile-social {
+    display: flex;
+    list-style: none;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.footer-mobile-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    background: #1B2D41;
+    border-radius: 5px;
+}
+
+.footer-mobile-social img {
+    width: 15px;
+    height: 15px;
+    display: block;
+}
+
+.footer-mobile-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 16px;
+}
+
+.footer-mobile-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 8px;
+    padding: 10px 16px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 120%;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+}
+
+.footer-mobile-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.footer-mobile-menu a {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 120%;
+    text-decoration: none;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.footer-mobile-menu a:hover {
+    color: var(--color-primary);
+    opacity: 1;
+    text-decoration: none;
+}
+
+.footer-mobile-phone:hover,
+.footer-mobile-email:hover {
+    color: var(--color-primary);
+    opacity: 1;
+}
+
+.footer-mobile-btn:hover {
+    border-color: var(--color-primary);
+    background-color: transparent;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.footer-mobile-social a {
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.footer-mobile-social a:hover {
+    opacity: 0.85;
+    background-color: rgba(27, 45, 65, 0.8);
+}
+
+@media (max-width: 768px) {
+    /* Мобильная версия футера */
+    .footer-desktop { display: none !important; }
+    .footer-mobile { display: block !important; }
+    .site-footer .container-fluid { width: 100% !important; padding: 0 !important; margin: 0 !important; }
+    .footer-mobile { background: #152333; }
+    .footer-mobile-content { padding: 20px 10px; }
+    .footer-mobile .logo img { width: 60px; height: 30px; }
+}
+

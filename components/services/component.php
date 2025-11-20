@@ -1,15 +1,24 @@
+<?php
+// Подключаем CSS для компонента
+$cssPath = __DIR__ . '/component.css';
+if (file_exists($cssPath)) {
+    echo '<link rel="stylesheet" href="/components/services/component.css">';
+}
+?>
+
 <section class="our-services">
     <div class="container-fluid">
-        <div class="services-header animate-on-scroll">
-            <div class="services-title-row">
-                <img src="/assets/images/polygon.svg" alt="" class="services-icon">
-                <h2 class="services-subtitle">НАШИ УСЛУГИ</h2>
-                <div class="services-line"></div>
-                <h3 class="services-main-title">ОСНОВНЫЕ НАПРАВЛЕНИЯ<br>НАШЕЙ РАБОТЫ</h3>
+        <div class="our-services-inner">
+            <div class="services-header animate-on-scroll">
+                <div class="services-title-row">
+                    <img src="/assets/images/polygon.svg" alt="" class="services-icon">
+                    <h2 class="services-subtitle">НАШИ УСЛУГИ</h2>
+                    <div class="services-line"></div>
+                    <h3 class="services-main-title">ОСНОВНЫЕ НАПРАВЛЕНИЯ<br>НАШЕЙ РАБОТЫ</h3>
+                </div>
             </div>
-        </div>
-        
-        <div class="services-grid">
+            
+            <div class="services-grid">
             <a href="/expertiza-prombezopasnosti" class="service-card service-card--link animate-on-scroll delay-1">
                 <div class="service-image-wrapper">
                     <img src="/assets/images/our_services1.png" alt="Экспертиза промбезопасности">
@@ -129,6 +138,7 @@
                 <div class="service-line"></div>
                 <p class="service-description">Проверка и улучшение систем охраны труда на предприятии</p>
             </a>
+            </div>
         </div>
     </div>
 </section>

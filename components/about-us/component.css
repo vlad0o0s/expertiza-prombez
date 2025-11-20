@@ -3,23 +3,19 @@
    ============================================ */
 .about-us-section {
     width: 100%;
-    margin-top: 5rem; /* 80px */
-    overflow-x: hidden;
-    box-sizing: border-box;
+    margin-top: 80px;
 }
 
 .about-us-section .container-fluid {
     width: 100%;
-    max-width: 80rem; /* 1280px */
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 0 1.25rem; /* 20px */
     box-sizing: border-box;
-    overflow-x: hidden;
 }
 
 .about-us-inner {
     display: flex;
-    gap: 2.5rem; /* 40px */
+    gap: 40px;
     align-items: flex-start;
 }
 
@@ -29,10 +25,10 @@
 
 .about-us-image {
     flex: 0 0 auto;
-    width: 24.25rem; /* 388px */
-    height: 30.8125rem; /* 493px */
+    width: 388px;
+    height: 493px;
     overflow: hidden;
-    clip-path: polygon(0 0, calc(100% - 3.125rem) 0, 100% 3.125rem, 100% 100%, 3.125rem 100%, 0 calc(100% - 3.125rem));
+    clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 50px, 100% 100%, 50px 100%, 0 calc(100% - 50px));
 }
 
 .about-us-image img {
@@ -51,20 +47,20 @@
 .about-us-header {
     display: flex;
     align-items: center;
-    gap: 0.9375rem; /* 15px */
-    margin-bottom: 1.875rem; /* 30px */
+    gap: 15px;
+    margin-bottom: 30px;
 }
 
 .about-us-icon {
-    width: 1.3125rem; /* 21px */
-    height: 1.375rem; /* 22px */
+    width: 21px;
+    height: 22px;
 }
 
 .about-us-subtitle {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-style: normal;
-    font-size: 1rem; /* 16px */
+    font-size: 16px;
     line-height: 120%;
     color: #152333;
     margin: 0;
@@ -75,25 +71,25 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-style: normal;
-    font-size: 1.5625rem; /* 25px */
+    font-size: 25px;
     line-height: 120%;
     color: #152333;
-    margin: 0 0 1.25rem 0; /* 20px */
+    margin: 0 0 20px 0;
     text-transform: uppercase;
 }
 
 .about-us-text {
-    margin-bottom: 2.5rem; /* 40px */
+    margin-bottom: 40px;
 }
 
 .about-us-text p {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-style: normal;
-    font-size: 0.875rem; /* 14px */
+    font-size: 14px;
     line-height: 140%;
     color: #152333;
-    margin: 0 0 0.9375rem 0; /* 15px */
+    margin: 0 0 15px 0;
 }
 
 .about-us-text p:last-child {
@@ -106,7 +102,7 @@
     gap: 0;
     border-top: 1px solid rgba(145, 162, 184, 0.5);
     border-bottom: 1px solid rgba(145, 162, 184, 0.5);
-    padding: 1.5625rem 1.25rem; /* 25px 20px */
+    padding: 25px 20px;
     background: transparent;
 }
 
@@ -115,7 +111,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 0 1.25rem; /* 20px */
+    padding: 0 20px;
     position: relative;
 }
 
@@ -133,10 +129,10 @@
     font-family: 'Martian Mono', monospace;
     font-weight: 600;
     font-style: normal;
-    font-size: 1.875rem; /* 30px */
+    font-size: 30px;
     line-height: 120%;
     color: #909DAD;
-    margin-bottom: 0.625rem; /* 10px */
+    margin-bottom: 10px;
     white-space: nowrap;
 }
 
@@ -144,81 +140,18 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-style: normal;
-    font-size: 0.75rem; /* 12px */
+    font-size: 12px;
     line-height: 140%;
     color: #152333;
 }
 
-/* ============================================
-   Адаптив для планшета (768px - 1024px)
-   ============================================ */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .about-us-section {
-        margin-top: 4rem; /* 64px */
-    }
-    
-    .about-us-section .container-fluid {
-        width: 95%;
-        max-width: 95%;
-        padding: 0 1.5rem; /* 24px */
-    }
-    
-    .about-us-inner {
-        gap: 2rem; /* 32px */
-        flex-direction: column;
-    }
-    
-    .about-us-image {
-        width: 100%;
-        max-width: 20rem; /* 320px */
-        height: auto;
-        aspect-ratio: 388 / 493;
-    }
-    
-    .about-us-header {
-        gap: 0.75rem; /* 12px */
-        margin-bottom: 1.5rem; /* 24px */
-    }
-    
-    .about-us-title {
-        font-size: 1.375rem; /* 22px */
-        margin: 0 0 1rem 0;
-    }
-    
-    .about-us-text {
-        margin-bottom: 2rem; /* 32px */
-    }
-    
-    .about-us-text p {
-        font-size: 0.8125rem; /* 13px */
-        margin: 0 0 0.75rem 0;
-    }
-    
-    .about-us-stats {
-        padding: 1.25rem 1rem; /* 20px 16px */
-    }
-    
-    .stat-item {
-        padding: 0 1rem; /* 16px */
-    }
-    
-    .stat-number {
-        font-size: 1.5rem; /* 24px */
-        margin-bottom: 0.5rem;
-    }
-    
-    .stat-description {
-        font-size: 0.6875rem; /* 11px */
-    }
-}
-
 @media (max-width: 768px) {
     .about-us-section {
-        margin-top: 1.5625rem; /* 25px */
+        margin-top: 25px;
     }
     
     .about-us-section .container-fluid {
-        padding: 0 0.625rem; /* 10px */
+        padding: 0 10px;
     }
     
     .about-us-desktop {
@@ -228,26 +161,26 @@
     .about-us-mobile {
         display: flex;
         flex-direction: column;
-        padding: 0 0.625rem; /* 10px */
+        padding: 0 10px;
     }
     
     .about-us-mobile-header {
         display: flex;
         align-items: center;
-        gap: 0.9375rem; /* 15px */
-        margin-bottom: 1.25rem; /* 20px */
+        gap: 15px;
+        margin-bottom: 20px;
     }
     
     .about-us-mobile-icon {
-        width: 1.3125rem; /* 21px */
-        height: 1.375rem; /* 22px */
+        width: 21px;
+        height: 22px;
     }
     
     .about-us-mobile-subtitle {
         font-family: 'Montserrat', sans-serif;
         font-weight: 600;
         font-style: normal;
-        font-size: 1rem; /* 16px */
+        font-size: 16px;
         line-height: 120%;
         color: #152333;
         margin: 0;
@@ -256,14 +189,14 @@
     
     .about-us-mobile-top {
         display: flex;
-        gap: 0.9375rem; /* 15px */
+        gap: 15px;
         align-items: flex-start;
-        margin-bottom: 1.25rem; /* 20px */
+        margin-bottom: 20px;
     }
     
     .about-us-mobile-image {
-        width: 5.875rem; /* 94px */
-        height: 7.375rem; /* 118px */
+        width: 94px;
+        height: 118px;
         flex-shrink: 0;
         overflow: hidden;
     }
@@ -279,7 +212,7 @@
         font-family: 'Montserrat', sans-serif;
         font-weight: 700;
         font-style: normal;
-        font-size: 1.25rem; /* 20px */
+        font-size: 20px;
         line-height: 120%;
         color: #152333;
         margin: 0;
@@ -293,17 +226,17 @@
     }
     
     .about-us-mobile-text {
-        margin-bottom: 1.875rem; /* 30px */
+        margin-bottom: 30px;
     }
     
     .about-us-mobile-text p {
         font-family: 'Montserrat', sans-serif;
         font-weight: 500;
         font-style: normal;
-        font-size: 0.75rem; /* 12px */
+        font-size: 12px;
         line-height: 140%;
         color: #152333;
-        margin: 0 0 0.9375rem 0; /* 15px */
+        margin: 0 0 15px 0;
     }
     
     .about-us-mobile-text p:last-child {
@@ -316,15 +249,15 @@
         gap: 0;
         border-top: 1px solid rgba(145, 162, 184, 0.5);
         border-bottom: 1px solid rgba(145, 162, 184, 0.5);
-        padding: 1.25rem 0; /* 20px */
+        padding: 20px 0;
     }
     
     .stat-mobile-item {
         display: grid;
-        grid-template-columns: 5rem 1fr; /* 80px */
+        grid-template-columns: 80px 1fr;
         align-items: center;
-        gap: 0.625rem; /* 10px */
-        padding: 0.9375rem 0; /* 15px */
+        gap: 10px;
+        padding: 15px 0;
         border-bottom: 1px solid rgba(145, 162, 184, 0.5);
     }
     
@@ -336,12 +269,12 @@
         font-family: 'Martian Mono', monospace;
         font-weight: 600;
         font-style: normal;
-        font-size: 1.875rem; /* 30px */
+        font-size: 30px;
         line-height: 120%;
         color: #909DAD;
         margin-bottom: 0;
         white-space: nowrap;
-        width: 5rem; /* 80px */
+        width: 80px;
         text-align: left;
         flex-shrink: 0;
     }
@@ -350,7 +283,7 @@
         font-family: 'Montserrat', sans-serif;
         font-weight: 500;
         font-style: normal;
-        font-size: 0.75rem; /* 12px */
+        font-size: 12px;
         line-height: 140%;
         color: #152333;
         text-align: left;

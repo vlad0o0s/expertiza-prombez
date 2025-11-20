@@ -38,7 +38,7 @@ return [
         'og_description' => 'Свяжитесь с нами для консультации по вопросам промышленной безопасности',
         'og_image' => SITE_URL . '/assets/images/og-image-contacts.jpg',
         'og_type' => 'website',
-        'canonical' => SITE_URL . '/contacts.php',
+        'canonical' => SITE_URL . '/contacts',
         'schema_type' => 'ContactPage', // Schema.org тип для страницы контактов
     ],
     
@@ -64,7 +64,7 @@ return [
         'og_description' => 'Информация о компании, занимающейся экспертизой промышленной безопасности',
         'og_image' => SITE_URL . '/assets/images/og-image-about.jpg',
         'og_type' => 'website',
-        'canonical' => SITE_URL . '/about.php',
+        'canonical' => SITE_URL . '/about',
         'schema_type' => 'AboutPage', // Schema.org тип для страницы о нас
     ],
     
@@ -77,7 +77,7 @@ return [
         'og_description' => 'Полный спектр услуг по экспертизе промышленной безопасности',
         'og_image' => SITE_URL . '/assets/images/og-image-services.jpg',
         'og_type' => 'website',
-        'canonical' => SITE_URL . '/services.php',
+        'canonical' => SITE_URL . '/services',
         'schema_type' => 'Service', // Schema.org тип для страницы услуг
     ],
     

@@ -1,3 +1,11 @@
+<?php
+// Подключаем CSS для компонента
+$cssPath = __DIR__ . '/component.css';
+if (file_exists($cssPath)) {
+    echo '<link rel="stylesheet" href="/components/contacts/component.css">';
+}
+?>
+
 <section class="contacts-section animate-on-scroll">
     <div class="container-fluid">
         <div class="contacts-inner">

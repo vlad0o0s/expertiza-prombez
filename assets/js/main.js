@@ -42,13 +42,17 @@ function initSwiper() {
     }
     
     // Дополнительные слайдеры можно добавить по классам
-    const swiperInstances = document.querySelectorAll('.swiper:not(.swiper-main)');
+    // Исключаем clients-swiper, так как он инициализируется отдельно
+    const swiperInstances = document.querySelectorAll('.swiper:not(.swiper-main):not(.clients-swiper)');
     swiperInstances.forEach(function(swiperEl) {
-        new Swiper(swiperEl, {
-            slidesPerView: 'auto',
-            spaceBetween: 20,
-            loop: false,
-        });
+        // Проверяем, не инициализирован ли уже
+        if (!swiperEl.swiper) {
+            new Swiper(swiperEl, {
+                slidesPerView: 'auto',
+                spaceBetween: 20,
+                loop: false,
+            });
+        }
     });
 }
 

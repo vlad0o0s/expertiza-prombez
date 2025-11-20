@@ -1,3 +1,11 @@
+<?php
+// Подключаем CSS для компонента
+$cssPath = __DIR__ . '/component.css';
+if (file_exists($cssPath)) {
+    echo '<link rel="stylesheet" href="/components/info-cards/component.css">';
+}
+?>
+
 <section class="info-cards">
     <div class="container-fluid">
         <div class="info-cards-inner">
@@ -9,7 +17,7 @@
                     <img src="/assets/images/arrowR.svg" alt="">
                 </a>
             </div>
-            
+
             <div class="info-card card-2 animate-on-scroll delay-2">
                 <h3 class="card-title">ИНТЕРЕСНЫЕ СТАТЬИ<br>И НОВОСТИ</h3>
                 <p class="card-description">Свежие материалы о промбезопасности</p>
@@ -18,7 +26,7 @@
                     <img src="/assets/images/arrowR.svg" alt="">
                 </a>
             </div>
-            
+
             <div class="info-card card-3 animate-on-scroll delay-3">
                 <h3 class="card-title">ОТЗЫВЫ О НАШЕЙ<br>ЭКСПЕРТНОЙ РАБОТЕ</h3>
                 <p class="card-description">Компании, доверившие нам экспертизу</p>
@@ -30,4 +38,3 @@
         </div>
     </div>
 </section>
-
