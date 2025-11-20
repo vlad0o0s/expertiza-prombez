@@ -1,6 +1,15 @@
+<?php
+// Подключаем CSS для компонента
+$cssPath = __DIR__ . '/component.css';
+if (file_exists($cssPath)) {
+    echo '<link rel="stylesheet" href="/components/reviews/component.css">';
+}
+?>
+
 <section class="reviews-section animate-on-scroll">
     <div class="container-fluid">
-        <div class="reviews-header">
+        <div class="reviews-inner">
+            <div class="reviews-header">
             <h2 class="reviews-title">ОТЗЫВЫ</h2>
             <div class="reviews-navigation">
                 <button class="reviews-prev" aria-label="Предыдущий слайд">
@@ -93,6 +102,7 @@
                     <path d="M6 3L11 8L6 13M11 8H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </a>
+        </div>
         </div>
     </div>
 </section>

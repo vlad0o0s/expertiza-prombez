@@ -1,3 +1,11 @@
+<?php
+// Подключаем CSS для компонента
+$cssPath = __DIR__ . '/component.css';
+if (file_exists($cssPath)) {
+    echo '<link rel="stylesheet" href="/components/about-us/component.css">';
+}
+?>
+
 <section class="about-us-section animate-on-scroll">
     <div class="container-fluid">
         <!-- ПК версия -->

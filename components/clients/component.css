@@ -1,0 +1,204 @@
+/* ============================================
+   Our Clients секция
+   ============================================ */
+
+.our-clients {
+  width: 100%;
+  margin-top: 80px;
+  box-sizing: border-box;
+}
+
+.our-clients .container-fluid {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 100px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.clients-inner {
+  width: 100%;
+  display: flex;
+  gap: 40px;
+  box-sizing: border-box;
+}
+
+.clients-header {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.clients-main-title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 35px;
+  line-height: 120%;
+  color: #152333;
+  margin: 0;
+  text-transform: uppercase;
+  text-align: right;
+}
+
+.clients-nav {
+  display: flex;
+  gap: 8px;
+  margin-top: 95px;
+  justify-content: flex-end;
+}
+
+.clients-nav-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  transition: opacity 0.3s ease;
+}
+
+.clients-nav-btn:hover {
+  opacity: 0.7;
+}
+
+.clients-nav-btn img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.clients-nav-prev img {
+  transform: rotate(180deg);
+}
+
+.clients-slider-wrapper {
+  flex: 1;
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.clients-swiper {
+  width: 100% !important;
+  max-width: 100%;
+  height: auto;
+  min-height: 150px;
+  border: 2px solid rgba(145, 162, 184, 0.5); /* #91A2B880 */
+  border-radius: 5px;
+  overflow: hidden;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.clients-swiper.swiper-initialized {
+  opacity: 1;
+}
+
+.clients-swiper .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 20px;
+  aspect-ratio: 1;
+  height: auto;
+}
+
+.client-logo {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.client-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ============================================
+   Адаптив для планшета (768px - 1024px)
+   ============================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .our-clients .container-fluid {
+    padding: 0 40px;
+  }
+
+  .clients-inner {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .clients-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .clients-main-title {
+    font-size: 28px;
+  }
+}
+
+/* ============================================
+   Адаптив для мобильной версии (max-width: 768px)
+   ============================================ */
+@media (max-width: 768px) {
+  .our-clients {
+    margin-top: 40px;
+  }
+
+  .our-clients .container-fluid {
+    padding: 0 20px;
+  }
+
+  .clients-inner {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .clients-slider-wrapper {
+    order: 2;
+  }
+
+  .clients-header {
+    order: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+  }
+
+  .clients-main-title {
+    font-size: 24px;
+    text-align: left;
+  }
+
+  .clients-nav {
+    margin-top: 0;
+  }
+
+  .clients-swiper {
+    min-height: 90px;
+  }
+
+  .clients-swiper .swiper-slide {
+    aspect-ratio: auto;
+    height: 90px;
+    min-height: 90px;
+  }
+}
+

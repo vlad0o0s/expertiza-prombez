@@ -3,7 +3,7 @@
 $menuItems = [
 	[
 		'label' => 'Услуги',
-		'href' => '/services.php',
+		'href' => '/services',
 		'children' => [
 			['label' => 'Экспертиза промышленной безопасности', 'href' => '/expertiza-prombezopasnosti'],
 			['label' => 'Экологическая экспертиза', 'href' => '#'],
@@ -17,11 +17,11 @@ $menuItems = [
 	],
 	[
 		'label' => 'Статьи',
-		'href' => '/articles.php',
+		'href' => '/articles',
 	],
 	[
 		'label' => 'О компании',
-		'href' => '/about.php',
+		'href' => '/about',
 		'children' => [
 			['label' => 'Презентация', 'href' => '#'],
 			['label' => 'Документы', 'href' => '#'],

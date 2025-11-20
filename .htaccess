@@ -1,6 +1,16 @@
 RewriteEngine On
 RewriteBase /
 
+# Перенаправление старых URL с .php на новые без .php (301 редирект)
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?] [NC]
+RewriteRule ^ /%1? [R=301,L]
+
 # Перенаправление /expertiza-prombezopasnosti на /pages/expertiza-prombezopasnosti.php
 RewriteRule ^expertiza-prombezopasnosti/?$ pages/expertiza-prombezopasnosti.php [L]
+
+# Если запрашивается файл без расширения, проверяем существование .php файла
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php [L]
 

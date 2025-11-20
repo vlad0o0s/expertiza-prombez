@@ -70,12 +70,10 @@ $pageDescription = isset($page_description) ? $page_description : $seo['descript
     
     <!-- Основные стили -->
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="stylesheet" href="/assets/css/header-footer.css">
     <link rel="stylesheet" href="/assets/css/messages.css">
     
     <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" 
-          onerror="this.onerror=null; this.href='https://unpkg.com/swiper@11/swiper-bundle.min.css';">
+    <link rel="stylesheet" href="/assets/css/vendor/swiper.min.css">
     
     <!-- Дополнительные стили страницы (если есть) -->
     <?php if (isset($additional_css)): ?>
@@ -85,55 +83,8 @@ $pageDescription = isset($page_description) ? $page_description : $seo['descript
     <?php endif; ?>
 </head>
 <body>
-    <header class="site-header">
-        <div class="container-fluid">
-            <div class="header-box">
-                <div class="header-inner">
-                    <div class="header-row">
-                        <a class="logo" href="/">
-                            <img src="/assets/images/logo.png" alt="<?php echo SITE_NAME; ?>">
-                        </a>
-                        <div class="site-name">ТОП ЭКСПЕРТ</div>
-                        <nav class="main-nav header-menu">
-                            <?php include_once __DIR__ . '/menu.php'; ?>
-                            <ul>
-                                <?php render_menu_items($menuItems); ?>
-                            </ul>
-                        </nav>
-                        <div class="header-contacts">
-                            <a href="tel:+74951270935">+ 7 495 127 09-35</a>
-                            <a href="mailto:info@te-g.ru">info@te-g.ru</a>
-                        </div>
-                        <a class="header-btn" href="/sitemap.php">
-                            <img class="icon-sitemap" src="/assets/images/iconSitemap.svg" alt="">
-                            КАРТА САЙТА
-                        </a>
-                        <button class="mobile-menu-toggle" aria-label="Меню">
-                            <img src="/assets/images/burgermenu.svg" alt="">
-                        </button>
-                    </div>
-                    <div class="header-mobile-secondary">
-                        <div class="header-contacts">
-                            <a href="tel:+74951270935">+ 7 495 127 09-35</a>
-                            <a href="mailto:info@te-g.ru">info@te-g.ru</a>
-                        </div>
-                        <a class="header-btn" href="/sitemap.php">
-                            ЗАКАЗАТЬ УСЛУГУ
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- Мобильное модальное меню -->
-    <div class="mobile-modal" aria-hidden="true">
-        <div class="mobile-modal-content">
-            <div class="mobile-modal-inner">
-                <?php
-                // Подключаем функцию рендеринга модального меню
-                require_once __DIR__ . '/modal-menu-render.php';
-                render_modal_menu();
-                ?>
-            </div>
-        </div>
-    </div>
+    <?php
+    // Подключаем компонент header
+    require_once __DIR__ . '/component-loader.php';
+    load_component('header');
+    ?>

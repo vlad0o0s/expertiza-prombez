@@ -1,7 +1,16 @@
+<?php
+// Подключаем CSS для компонента
+$cssPath = __DIR__ . '/component.css';
+if (file_exists($cssPath)) {
+    echo '<link rel="stylesheet" href="/components/faq/component.css">';
+}
+?>
+
 <section class="faq-section animate-on-scroll">
     <div class="container-fluid">
-        <h2 class="faq-title">ОТВЕТЫ НА ЧАСТЫЕ ВОПРОСЫ</h2>
-        <div class="faq-list">
+        <div class="faq-inner">
+            <h2 class="faq-title">ОТВЕТЫ НА ЧАСТЫЕ ВОПРОСЫ</h2>
+            <div class="faq-list">
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
                     <span class="faq-question-text">Зачем нужна экспертиза промышленной безопасности?</span>
@@ -61,6 +70,7 @@
                     <p>Нужно устранить выявленные нарушения, провести ремонт или модернизацию, после чего пройти повторную проверку.</p>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </section>
