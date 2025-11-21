@@ -11,7 +11,6 @@
                 числе работы над сложными и большими проектами
             </p>
         </article>
-        <img class="about-feature-divider" src="/assets/images/line-240.svg" alt="" aria-hidden="true" />
         <article class="about-feature-item">
             <h2 class="about-feature-title">Реализуем различные экспертизы</h2>
             <p class="about-feature-description">
@@ -21,7 +20,6 @@
                 квалификации
             </p>
         </article>
-        <img class="about-feature-divider" src="/assets/images/line-239.svg" alt="" aria-hidden="true" />
         <article class="about-feature-item">
             <h2 class="about-feature-title">Удерживаем низкие цены и сохраняем высокое качество</h2>
             <div class="about-feature-list">

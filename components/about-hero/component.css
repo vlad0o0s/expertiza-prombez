@@ -74,6 +74,7 @@
     width: 149px;
     height: 2px;
     margin: 0 0 20px 0;
+    background-color: var(--color-white);
 }
 
 .about-hero-line-left {

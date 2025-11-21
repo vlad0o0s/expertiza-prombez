@@ -132,20 +132,21 @@
 }
 
 .about-social-viber {
+    background-color: #665CAC;
+    border-radius: 3px;
     position: relative;
-    width: 14px;
-    height: 14px;
 }
 
-.about-social-viber-icon,
-.about-social-viber-logo,
-.about-social-viber-shape {
+.about-social-viber::before {
+    content: 'V';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color-white);
+    font-weight: 700;
+    font-size: 10px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .about-contact-map {

@@ -8,10 +8,8 @@
     <div class="about-hero-content">
         <div class="about-hero-left">
             <h1 class="about-hero-title">О КОМПАНИИ "ТОП ЭКСПЕРТ"</h1>
-            <img class="about-hero-line about-hero-line-left" src="/assets/images/line-236.svg" alt=""
-                aria-hidden="true" />
-            <img class="about-hero-line about-hero-line-right" src="/assets/images/line-237.svg" alt=""
-                aria-hidden="true" />
+            <div class="about-hero-line about-hero-line-left"></div>
+            <div class="about-hero-line about-hero-line-right"></div>
         </div>
         <div class="about-hero-text-wrapper">
             <div class="about-hero-text-columns">

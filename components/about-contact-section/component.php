@@ -30,11 +30,7 @@
                     <span class="about-social-icon about-social-whatsapp"></span>
                 </a>
                 <a href="#" class="about-social-link" aria-label="Viber">
-                    <span class="about-social-icon about-social-viber">
-                        <img class="about-social-viber-icon" src="/assets/images/combined-shape-2.svg" alt="" aria-hidden="true" />
-                        <img class="about-social-viber-logo" src="/assets/images/group-1597882124.png" alt="" aria-hidden="true" />
-                        <img class="about-social-viber-shape" src="/assets/images/subtract-2.svg" alt="" aria-hidden="true" />
-                    </span>
+                    <span class="about-social-icon about-social-viber"></span>
                 </a>
             </div>
         </div>

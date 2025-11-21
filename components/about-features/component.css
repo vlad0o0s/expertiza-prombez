@@ -61,9 +61,6 @@
     text-align: left;
 }
 
-.about-feature-divider {
-    display: none;
-}
 
 .about-feature-list {
     display: flex;
