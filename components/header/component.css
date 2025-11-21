@@ -586,15 +586,39 @@
         color: #E60012;
     }
     
+    /* Все ссылки в списке выглядят как обычный текст */
     .mm-list li a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    
+    .mm-list li a:hover {
+        color: inherit;
+        text-decoration: none;
+    }
+    
+    /* Исключение для внешней ссылки sudexp.org */
+    .mm-list li a.mm-link-external {
         color: #E60012;
         text-decoration: underline;
         transition: color 0.3s ease;
     }
     
-    .mm-list li a:hover {
+    .mm-list li a.mm-link-external:hover {
         color: #152333;
         text-decoration: underline;
+    }
+    
+    /* Ссылки внутри текста (inline) тоже как обычный текст */
+    .mm-list li a.mm-link-inline {
+        color: inherit;
+        text-decoration: none;
+    }
+    
+    .mm-list li a.mm-link-inline:hover {
+        color: inherit;
+        text-decoration: none;
     }
     
     /* Стили для секции контактов на ПК */
@@ -667,6 +691,41 @@
 .mm-section.is-open > .mm-section-body { max-height: 1000px; opacity: 1; }
 .mm-list { list-style: none; padding: 0; margin: 0; }
 .mm-list li { color: var(--color-dark-blue); font-size: 12px; font-weight: 500; padding: 6px 0; transition: color 0.2s ease; }
+
+/* Все ссылки в списке выглядят как обычный текст (мобильная версия) */
+.mm-list li a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.mm-list li a:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Исключение для внешней ссылки sudexp.org */
+.mm-list li a.mm-link-external {
+    color: var(--color-primary);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.mm-list li a.mm-link-external:hover {
+    color: var(--color-dark-blue);
+    text-decoration: underline;
+}
+
+/* Ссылки внутри текста (inline) тоже как обычный текст */
+.mm-list li a.mm-link-inline {
+    color: inherit;
+    text-decoration: none;
+}
+
+.mm-list li a.mm-link-inline:hover {
+    color: inherit;
+    text-decoration: none;
+}
 .mm-contact { display: flex; align-items: center; gap: 8px; color: var(--color-dark-blue); font-weight: 600; font-size: 12px; padding: 6px 0; }
 .mm-contact img { width: 18px; height: 18px; }
 .mm-contact-label { display: flex; align-items: center; gap: 8px; color: var(--color-dark-blue); font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: 14px; line-height: 120%; letter-spacing: 0; padding: 8px 0 4px; }

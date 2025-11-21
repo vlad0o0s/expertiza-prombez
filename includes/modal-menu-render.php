@@ -62,11 +62,12 @@ function render_modal_menu() {
                                     <?php if (is_array($item) && isset($item['link'])): ?>
                                         <?php echo htmlspecialchars($item['text']); ?> 
                                         <a href="<?php echo htmlspecialchars($item['link']['url']); ?>" 
-                                           target="<?php echo htmlspecialchars($item['link']['target'] ?? '_blank'); ?>">
+                                           target="<?php echo htmlspecialchars($item['link']['target'] ?? '_blank'); ?>"
+                                           class="mm-link-external">
                                             <?php echo htmlspecialchars($item['link']['text']); ?>
                                         </a>
                                     <?php elseif (is_array($item) && isset($item['href'])): ?>
-                                        <a href="<?php echo htmlspecialchars($item['href']); ?>">
+                                        <a href="<?php echo htmlspecialchars($item['href']); ?>" class="mm-link-inline">
                                             <?php echo htmlspecialchars($item['text']); ?>
                                         </a>
                                     <?php else: ?>

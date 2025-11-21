@@ -1,47 +1,44 @@
 <?php
 /**
  * Класс для отправки писем через SMTP
+ * Использует PHPMailer из public_html/PHPMailer
  */
-class MailSender {
+
+// Подключаем PHPMailer из корня проекта
+require_once __DIR__ . '/../PHPMailer/src/PHPMailer.php';
+require_once __DIR__ . '/../PHPMailer/src/SMTP.php';
+require_once __DIR__ . '/../PHPMailer/src/Exception.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+class MailSender
+{
     private $mail;
-    
-    public function __construct() {
-        if (defined('COMPOSER_NOT_INSTALLED') || !class_exists('PHPMailer\PHPMailer\PHPMailer')) {
-            throw new Exception('Composer зависимости не установлены. Запустите: composer install');
-        }
-        $this->mail = new PHPMailer\PHPMailer\PHPMailer(true);
+
+    public function __construct()
+    {
+        $this->mail = new PHPMailer(true);
         $this->configure();
     }
-    
-    private function configure() {
-        // Настройки SMTP
+
+    private function configure()
+    {
+        // Настройки SMTP (как в public_html/sendmail.php)
         $this->mail->isSMTP();
-        $this->mail->Host = SMTP_HOST;
+        $this->mail->Host = 'smtp.beget.com';
         $this->mail->SMTPAuth = true;
-        $this->mail->Username = SMTP_USERNAME;
-        $this->mail->Password = SMTP_PASSWORD;
-        
-        // Для Beget используем SSL на порту 465
-        if (SMTP_PORT == 465) {
-            $this->mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
-        } else {
-            $this->mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
-        }
-        
-        $this->mail->Port = SMTP_PORT;
+        $this->mail->Username = 'test@realmdigital.ru';
+        $this->mail->Password = 'SmmwcUd123!';
+        $this->mail->SMTPSecure = 'ssl';
+        $this->mail->Port = 465;
+
         $this->mail->CharSet = 'UTF-8';
-        $this->mail->SMTPOptions = array(
-            'ssl' => array(
-                'verify_peer' => false,
-                'verify_peer_name' => false,
-                'allow_self_signed' => true
-            )
-        );
-        
+
         // Отправитель
-        $this->mail->setFrom(SMTP_FROM_EMAIL, SMTP_FROM_NAME);
+        $this->mail->setFrom('test@realmdigital.ru', 'TOP EXPERT');
     }
-    
+
     /**
      * Отправить письмо
      * 
@@ -51,23 +48,24 @@ class MailSender {
      * @param array $attachments Массив путей к файлам для вложения
      * @return bool
      */
-    public function send($to, $subject, $body, $attachments = []) {
+    public function send($to, $subject, $body, $attachments = [])
+    {
         try {
             $this->mail->clearAddresses();
             $this->mail->clearAttachments();
-            
+
             $this->mail->addAddress($to);
             $this->mail->isHTML(true);
             $this->mail->Subject = $subject;
             $this->mail->Body = $body;
-            
+
             // Добавление вложений
             foreach ($attachments as $attachment) {
                 if (file_exists($attachment)) {
                     $this->mail->addAttachment($attachment);
                 }
             }
-            
+
             return $this->mail->send();
         } catch (Exception $e) {
             error_log("Ошибка отправки письма: {$this->mail->ErrorInfo}");
