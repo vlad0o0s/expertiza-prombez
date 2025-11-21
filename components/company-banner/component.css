@@ -138,7 +138,7 @@
 
 @media (max-width: 768px) {
     .company-banner {
-        padding: 20px 0;
+        padding: 20px 10px;
         margin-top: 25px;
     }
     

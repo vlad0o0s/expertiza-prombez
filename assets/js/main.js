@@ -2,6 +2,41 @@
  * Главный JavaScript файл
  */
 
+// Счетчик открытых модальных окон для правильной блокировки прокрутки
+let modalOpenCount = 0;
+
+/**
+ * Блокировка/разблокировка прокрутки страницы
+ * Делаем функцию глобальной для использования в других компонентах
+ */
+window.toggleBodyScroll = function(lock) {
+    if (lock) {
+        modalOpenCount++;
+        if (modalOpenCount === 1) {
+            // Сохраняем текущую позицию прокрутки
+            const scrollY = window.scrollY;
+            document.body.setAttribute('data-scroll-y', scrollY);
+            document.body.classList.add('modal-open');
+            document.documentElement.classList.add('modal-open');
+            document.body.style.top = `-${scrollY}px`;
+        }
+    } else {
+        modalOpenCount--;
+        if (modalOpenCount < 0) modalOpenCount = 0;
+        
+        if (modalOpenCount === 0) {
+            // Восстанавливаем позицию прокрутки
+            const scrollY = document.body.getAttribute('data-scroll-y') || '0';
+            document.body.classList.remove('modal-open');
+            document.documentElement.classList.remove('modal-open');
+            document.body.style.top = '';
+            document.body.removeAttribute('data-scroll-y');
+            
+            window.scrollTo(0, parseInt(scrollY));
+        }
+    }
+}
+
 // Инициализация после загрузки DOM
 document.addEventListener('DOMContentLoaded', function() {
     // Инициализация Swiper (будет вызвана при наличии слайдеров)
@@ -92,7 +127,7 @@ function initMobileMenu() {
         mobileMenuToggle.addEventListener('click', function() {
             const img = this.querySelector('img');
             const isOpen = modal.classList.toggle('open');
-            document.body.style.overflow = isOpen ? 'hidden' : '';
+            toggleBodyScroll(isOpen);
             setModalTop();
             if (img) {
                 img.src = isOpen ? '/assets/images/exit.svg' : '/assets/images/burgermenu.svg';
@@ -118,7 +153,7 @@ function initMobileMenu() {
         modalClose.addEventListener('click', function() {
             const img = mobileMenuToggle ? mobileMenuToggle.querySelector('img') : null;
             modal.classList.remove('open');
-            document.body.style.overflow = '';
+            toggleBodyScroll(false);
             if (img) img.src = '/assets/images/burgermenu.svg';
         });
     }
@@ -129,7 +164,7 @@ function initMobileMenu() {
             if (e.target === modal) {
                 const img = mobileMenuToggle ? mobileMenuToggle.querySelector('img') : null;
                 modal.classList.remove('open');
-                document.body.style.overflow = '';
+                toggleBodyScroll(false);
                 if (img) img.src = '/assets/images/burgermenu.svg';
             }
         });
@@ -138,7 +173,7 @@ function initMobileMenu() {
             if (e.key === 'Escape' && modal.classList.contains('open')) {
                 const img = mobileMenuToggle ? mobileMenuToggle.querySelector('img') : null;
                 modal.classList.remove('open');
-                document.body.style.overflow = '';
+                toggleBodyScroll(false);
                 if (img) img.src = '/assets/images/burgermenu.svg';
             }
         });

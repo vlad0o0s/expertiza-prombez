@@ -46,6 +46,17 @@ textarea {
   appearance: none;
 }
 
+/* Блокировка прокрутки при открытых модальных окнах */
+body.modal-open {
+    overflow: hidden !important;
+    position: fixed;
+    width: 100%;
+}
+
+html.modal-open {
+    overflow: hidden !important;
+}
+
 a,
 button {
   -webkit-tap-highlight-color: transparent;

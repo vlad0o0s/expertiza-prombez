@@ -19,7 +19,15 @@ function render_modal_menu() {
                     <div class="mm-section-body">
                         <ul class="mm-list">
                             <?php foreach ($menuConfig['epb']['items'] as $item): ?>
-                                <li><?php echo htmlspecialchars($item); ?></li>
+                                <li>
+                                    <?php if (is_array($item) && isset($item['href'])): ?>
+                                        <a href="<?php echo htmlspecialchars($item['href']); ?>" class="mm-link-inline">
+                                            <?php echo htmlspecialchars($item['text']); ?>
+                                        </a>
+                                    <?php else: ?>
+                                        <?php echo htmlspecialchars($item); ?>
+                                    <?php endif; ?>
+                                </li>
                             <?php endforeach; ?>
                         </ul>
                     </div>
