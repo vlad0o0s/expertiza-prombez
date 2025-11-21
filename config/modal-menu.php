@@ -89,7 +89,7 @@ return [
         ],
         'link' => [
             'text' => 'Запросить коммерческое предложение',
-            'href' => '#',
+            'href' => '/zapros-kommercheskogo-predlozheniya',
         ],
     ],
 ];
