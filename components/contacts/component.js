@@ -99,7 +99,11 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(modalOverlay);
         
         // Блокируем прокрутку страницы
-        document.body.style.overflow = 'hidden';
+        if (typeof toggleBodyScroll === 'function') {
+            toggleBodyScroll(true);
+        } else {
+            document.body.style.overflow = 'hidden';
+        }
         
         // Показываем модальное окно
         setTimeout(function() {
@@ -110,7 +114,11 @@ document.addEventListener('DOMContentLoaded', function() {
         function closeModal() {
             modalOverlay.classList.remove('show');
             // Разблокируем прокрутку страницы
-            document.body.style.overflow = '';
+            if (typeof toggleBodyScroll === 'function') {
+                toggleBodyScroll(false);
+            } else {
+                document.body.style.overflow = '';
+            }
             setTimeout(function() {
                 if (modalOverlay.parentNode) {
                     modalOverlay.parentNode.removeChild(modalOverlay);

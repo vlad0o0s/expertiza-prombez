@@ -116,8 +116,7 @@ input[type="email" i],
   font-weight: 500;
   border: 0px solid;
   box-sizing: border-box;
-  height: auto;
-  min-height: 50px;
+  min-height: 40px;
 }
 
 input[type="text" i]:focus-visible,
