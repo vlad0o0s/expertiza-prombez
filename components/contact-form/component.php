@@ -24,14 +24,16 @@ $consent_id = $data['consent_id'] ?? 'consent';
             <form class="contact-form" action="/sendmail.php" method="post">
                 <div class="contact-form-row">
                     <div class="contact-form-field">
-                        <label for="<?php echo htmlspecialchars($name_id); ?>" class="contact-form-label">Ваше имя</label>
-                        <input type="text" id="<?php echo htmlspecialchars($name_id); ?>" name="name" class="contact-form-input" placeholder="Имя"
-                            required />
+                        <label for="<?php echo htmlspecialchars($name_id); ?>" class="contact-form-label">Ваше
+                            имя</label>
+                        <input type="text" id="<?php echo htmlspecialchars($name_id); ?>" name="name"
+                            class="contact-form-input" placeholder="Имя" required />
                     </div>
                     <div class="contact-form-field">
-                        <label for="<?php echo htmlspecialchars($phone_id); ?>" class="contact-form-label">Ваш номер телефона</label>
-                        <input type="tel" id="<?php echo htmlspecialchars($phone_id); ?>" name="phone" class="contact-form-input"
-                            placeholder="+ 7 495 127 09-35" required />
+                        <label for="<?php echo htmlspecialchars($phone_id); ?>" class="contact-form-label">Ваш номер
+                            телефона</label>
+                        <input type="tel" id="<?php echo htmlspecialchars($phone_id); ?>" name="phone"
+                            class="contact-form-input" placeholder="+ 7 495 127 09-35" required />
                     </div>
                     <button type="submit" class="contact-form-submit">
                         <span class="contact-form-submit-text">ОТПРАВИТЬ</span>
@@ -41,7 +43,8 @@ $consent_id = $data['consent_id'] ?? 'consent';
                     </button>
                 </div>
                 <div class="contact-form-consent">
-                    <input type="checkbox" id="<?php echo htmlspecialchars($consent_id); ?>" name="consent" class="contact-form-checkbox" required />
+                    <input type="checkbox" id="<?php echo htmlspecialchars($consent_id); ?>" name="consent"
+                        class="contact-form-checkbox" required />
                     <label for="<?php echo htmlspecialchars($consent_id); ?>" class="contact-form-consent-text">
                         Нажимая кнопку "Отправить", Вы даете согласие на
                         <a href="#" class="contact-form-consent-link">обработку персональных данных и соглашаетесь с
@@ -52,4 +55,3 @@ $consent_id = $data['consent_id'] ?? 'consent';
         </div>
     </div>
 </section>
-

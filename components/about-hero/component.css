@@ -1,0 +1,225 @@
+/* ============================================
+   Hero секция страницы "О компании"
+   ============================================ */
+
+.about-hero {
+    position: relative;
+    width: 100%;
+    min-height: 853px;
+    margin-top: 30px;
+    margin-bottom: 0;
+    z-index: 1;
+}
+
+.about-hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/images/Group 1597882155.png');
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.about-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        rgba(20, 29, 48, 0.6) 0%,
+        rgba(20, 29, 48, 0.6) 100%
+    );
+}
+
+.about-hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 60px 100px;
+    box-sizing: border-box;
+    display: flex;
+    gap: 41px;
+    align-items: flex-start;
+}
+
+.about-hero-left {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 30%;
+}
+
+.about-hero-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--color-white);
+    font-size: 35px;
+    letter-spacing: 0;
+    line-height: normal;
+    margin: 0 0 20px 0;
+    text-align: left;
+    
+}
+
+.about-hero-line {
+    display: block;
+    width: 149px;
+    height: 2px;
+    margin: 0 0 20px 0;
+    background-color: var(--color-white);
+}
+
+.about-hero-line-left {
+    margin-bottom: 0;
+}
+
+.about-hero-line-right {
+    display: block;
+    margin-top: 0;
+}
+
+.about-hero-text-wrapper {
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
+}
+
+.about-hero-text-columns {
+    display: flex;
+    gap: 41px;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.about-hero-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+    min-width: 0;
+}
+
+.about-hero-text-line {
+    width: 150px;
+    height: 2px;
+    background-color: var(--color-white);
+    flex-shrink: 0;
+}
+
+
+.about-hero-description {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: var(--color-white);
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: normal;
+    margin: 0;
+}
+
+.about-hero-description-text {
+    display: inline;
+}
+
+.about-hero-link {
+    color: var(--color-white);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.about-hero-link:hover {
+    color: var(--color-primary);
+}
+
+/* Адаптивность для планшета (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .about-hero-content {
+        padding: 40px 60px;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .about-hero-left {
+        width: 100%;
+    }
+
+    .about-hero-title {
+        font-size: 28px;
+    }
+
+    .about-hero-text-wrapper {
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .about-hero-text-columns {
+        gap: 30px;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .about-hero-column {
+        flex: 0 0 calc(50% - 15px);
+        max-width: none;
+    }
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+    .about-hero {
+        min-height: 853px;
+        margin-bottom: 40px;
+    }
+
+    .about-hero-background {
+        height: 853px;
+    }
+
+    .about-hero-content {
+        padding: 40px 20px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .about-hero-left {
+        width: 100%;
+    }
+
+    .about-hero-title {
+        font-size: 24px;
+    }
+
+    .about-hero-line {
+        width: 100px;
+    }
+
+    .about-hero-text-wrapper {
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .about-hero-text-columns {
+        flex-direction: column;
+        gap: 50px;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .about-hero-column {
+        flex: 1;
+        max-width: 100%;
+    }
+
+    .about-hero-description {
+        font-size: 14px;
+    }
+}
+

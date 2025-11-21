@@ -1,0 +1,222 @@
+/* ============================================
+   Секция контактов с картой для страницы "О компании"
+   ============================================ */
+
+.about-contact-section {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    padding: 0 60px;
+    box-sizing: border-box;
+}
+
+.about-contact-info {
+    flex: 0 0 640px;
+    background-color: var(--color-dark-blue);
+    padding: 60px 40px;
+    box-sizing: border-box;
+}
+
+.about-contact-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.about-contact-icon {
+    width: 21px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.about-contact-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: var(--color-white);
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: normal;
+    margin: 0;
+}
+
+.about-contact-subheading {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: var(--color-white);
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: normal;
+    margin: 0 0 30px 0;
+}
+
+.about-contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.about-contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.about-contact-label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: var(--color-white);
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+    margin: 0;
+    opacity: 0.8;
+}
+
+.about-contact-value {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: var(--color-white);
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: normal;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.about-contact-value:hover {
+    color: var(--color-primary);
+}
+
+.about-contact-social {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.about-social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background-color: #1b2d41;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.about-social-link:hover {
+    background-color: var(--color-primary);
+}
+
+.about-social-icon {
+    display: block;
+    width: 14px;
+    height: 14px;
+}
+
+.about-social-telegram {
+    background-image: url('/assets/images/tg.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.about-social-whatsapp {
+    background-image: url('/assets/images/wa.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.about-social-viber {
+    background-color: #665CAC;
+    border-radius: 3px;
+    position: relative;
+}
+
+.about-social-viber::before {
+    content: 'V';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color-white);
+    font-weight: 700;
+    font-size: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.about-contact-map {
+    flex: 1;
+    min-height: 428px;
+}
+
+.about-map-widget {
+    width: 100%;
+    height: 100%;
+    min-height: 428px;
+}
+
+.about-map-widget iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 428px;
+    border: none;
+    display: block;
+}
+
+.about-map-widget a {
+    display: none;
+}
+
+/* Адаптивность для планшета (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .about-contact-section {
+        flex-direction: column;
+        padding: 0 30px;
+    }
+
+    .about-contact-info {
+        flex: 1;
+        width: 100%;
+    }
+
+    .about-contact-map {
+        min-height: 300px;
+    }
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+    .about-contact-section {
+        flex-direction: column;
+        margin-bottom: 40px;
+        padding: 0 20px;
+    }
+
+    .about-contact-info {
+        flex: 1;
+        width: 100%;
+        padding: 30px 20px;
+    }
+
+    .about-contact-heading {
+        font-size: 14px;
+    }
+
+    .about-contact-subheading {
+        font-size: 12px;
+    }
+
+    .about-contact-value {
+        font-size: 14px;
+    }
+
+    .about-contact-map {
+        min-height: 250px;
+    }
+}
+

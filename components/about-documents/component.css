@@ -1,0 +1,161 @@
+/* ============================================
+   Секция документов компании
+   ============================================ */
+
+.about-documents {
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+.about-documents .container {
+    max-width: 1280px;
+    padding: 0 100px;
+}
+
+.about-documents-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--color-dark-blue);
+    font-size: 25px;
+    letter-spacing: 0;
+    line-height: normal;
+    margin: 0 0 40px 0;
+    text-align: left;
+}
+
+.about-documents-list {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.about-document-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    flex: 1;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    transition: none;
+}
+
+.about-document-item:hover {
+    box-shadow: none;
+}
+
+.about-document-icon {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+}
+
+.about-document-icon-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.about-document-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.about-document-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: var(--color-dark-blue);
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.about-document-link {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: var(--color-primary);
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: normal;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+    align-self: flex-start;
+}
+
+.about-document-link:hover {
+    color: var(--color-dark-blue);
+    text-decoration: underline;
+}
+
+/* Адаптивность для планшета (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .about-documents .container {
+        padding: 0 60px;
+    }
+
+    .about-documents-title {
+        font-size: 22px;
+    }
+
+    .about-documents-list {
+        gap: 20px;
+    }
+
+    .about-document-item {
+        gap: 15px;
+    }
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+    .about-documents {
+        margin-bottom: 40px;
+    }
+
+    .about-documents .container {
+        padding: 0 20px;
+    }
+
+    .about-documents-title {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    .about-documents-list {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .about-document-item {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .about-document-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .about-document-icon-image {
+        width: 100%;
+        height: 100%;
+    }
+
+    .about-document-name {
+        font-size: 14px;
+    }
+
+    .about-document-link {
+        font-size: 13px;
+    }
+}
+
