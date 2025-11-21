@@ -38,8 +38,12 @@ function load_component($componentName, $data = []) {
     
     // Включаем PHP файл компонента
     if (file_exists($componentFile)) {
+        // Убеждаемся, что $data всегда определена как массив
+        $data = is_array($data) ? $data : [];
         // Извлекаем переменные из массива $data для использования в компоненте
         extract($data);
+        // Создаем переменную $data для прямого доступа в компонентах (extract не создает саму переменную)
+        $data = $data;
         include $componentFile;
     } else {
         echo "<!-- Component {$componentName} not found -->";

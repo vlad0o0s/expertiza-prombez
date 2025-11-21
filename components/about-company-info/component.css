@@ -1,0 +1,93 @@
+/* ============================================
+   Секция с информацией о компании и банковскими реквизитами
+   ============================================ */
+
+.about-company-info {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    padding: 0 60px;
+    box-sizing: border-box;
+}
+
+.about-company-info-container {
+    background-color: var(--color-light-blue);
+    border-radius: 5px;
+    padding: 60px 40px;
+    box-sizing: border-box;
+}
+
+.about-company-info-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--color-dark-blue);
+    font-size: 25px;
+    letter-spacing: 0;
+    line-height: normal;
+    margin: 0 0 30px 0;
+}
+
+.about-company-info-content {
+    width: 100%;
+}
+
+.about-company-info-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: var(--color-dark-blue);
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.about-company-info-line {
+    display: inline;
+}
+
+.about-company-info-link {
+    color: var(--color-dark-blue);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.about-company-info-link:hover {
+    color: var(--color-primary);
+}
+
+/* Адаптивность для планшета (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .about-company-info {
+        padding: 0 30px;
+    }
+
+    .about-company-info-container {
+        padding: 40px 30px;
+    }
+
+    .about-company-info-title {
+        font-size: 22px;
+    }
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+    .about-company-info {
+        margin-bottom: 40px;
+        padding: 0 20px;
+    }
+
+    .about-company-info-container {
+        padding: 40px 20px;
+    }
+
+    .about-company-info-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .about-company-info-text {
+        font-size: 13px;
+    }
+}
+

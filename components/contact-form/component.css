@@ -267,7 +267,53 @@
     .contact-form-section .container {
         width: 95%;
         max-width: 95%;
-        padding: 0 1.5rem;
+        padding: 0 30px;
+    }
+
+    .contact-form-section-inner {
+        padding: 50px 40px;
+    }
+
+    .contact-form-title {
+        font-size: 28px;
+    }
+
+    .contact-form-description {
+        font-size: 13px;
+        margin-bottom: 25px;
+    }
+
+    .contact-form-row {
+        flex-wrap: wrap;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .contact-form-field {
+        flex: 1;
+        min-width: 200px;
+        max-width: calc(50% - 5px);
+    }
+
+    .contact-form-input {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .contact-form-submit {
+        flex: 0 0 100%;
+        width: 100%;
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    .contact-form-submit-text {
+        flex: 1;
+        max-width: 300px;
+    }
+
+    .contact-form-consent {
+        max-width: 100%;
     }
 }
 
@@ -293,6 +339,7 @@
     .contact-form-row {
         flex-direction: column;
         align-items: stretch;
+        width: 100%;
     }
 
     .contact-form-input {
@@ -309,6 +356,189 @@
 
     .contact-form-consent {
         max-width: 100%;
+    }
+}
+
+/* ============================================
+   Модальное окно для уведомлений
+   ============================================ */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+}
+
+.modal-popup {
+    background-color: var(--color-white);
+    border-radius: 10px;
+    padding: 40px 30px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.show .modal-popup {
+    transform: scale(1);
+}
+
+.modal-popup-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--color-dark-blue);
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.modal-popup-close:hover {
+    color: var(--color-primary);
+}
+
+.modal-popup-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.modal-popup-success .modal-popup-icon {
+    background-color: #28a745;
+    color: var(--color-white);
+}
+
+.modal-popup-error .modal-popup-icon {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.modal-popup-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--color-dark-blue);
+    margin: 0 0 15px 0;
+}
+
+.modal-popup-message {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--color-dark-blue);
+    margin: 0 0 30px 0;
+    line-height: 1.5;
+}
+
+.modal-popup-button {
+    margin-top: 20px;
+}
+
+.modal-popup-button button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 5px;
+    padding: 12px 40px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-popup-button button:hover {
+    background-color: #cc0010;
+}
+
+@media (max-width: 768px) {
+    .modal-overlay {
+        padding: 20px;
+        align-items: flex-end;
+        justify-content: center;
+    }
+
+    .modal-popup {
+        padding: 30px 25px;
+        max-width: 100%;
+        width: 100%;
+        border-radius: 15px 15px 0 0;
+        margin-bottom: 0;
+        max-height: 90vh;
+        overflow-y: auto;
+        transform: translateY(100%);
+    }
+
+    .modal-overlay.show .modal-popup {
+        transform: translateY(0);
+    }
+
+    .modal-popup-close {
+        top: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+        font-size: 32px;
+    }
+
+    .modal-popup-icon {
+        width: 56px;
+        height: 56px;
+        margin-bottom: 15px;
+    }
+
+    .modal-popup-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .modal-popup-title {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .modal-popup-message {
+        font-size: 14px;
+        line-height: 1.4;
+        margin-bottom: 25px;
+    }
+
+    .modal-popup-button {
+        margin-top: 15px;
+    }
+
+    .modal-popup-button button {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 15px;
     }
 }
 

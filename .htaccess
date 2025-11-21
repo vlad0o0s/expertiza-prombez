@@ -16,6 +16,9 @@ RewriteRule ^zapros-kommercheskogo-predlozheniya/?$ pages/zapros-kommercheskogo-
 # Перенаправление /epb-podemnih-sooruzheniy-i-kranov на /pages/expertiza-template.php
 RewriteRule ^epb-podemnih-sooruzheniy-i-kranov/?$ pages/expertiza-template.php [L]
 
+# Перенаправление /about на /pages/about.php
+RewriteRule ^about/?$ pages/about.php [L]
+
 # Если запрашивается файл без расширения, проверяем существование .php файла
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
