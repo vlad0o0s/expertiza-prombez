@@ -39,13 +39,37 @@
   display: block;
 }
 
+/* Отступы и ширина как у .categories-expertiza .container-fluid */
+.breadcrumbs .container {
+  width: 100%;
+  max-width: 80rem; /* 1280px */
+  padding: 0 100px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+/* Планшет (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .breadcrumbs .container {
+    width: 95%;
+    max-width: 95%;
+    padding: 0 1.5rem; /* 24px */
+    overflow-y: hidden;
+  }
+}
+
 @media (max-width: 768px) {
   .breadcrumbs {
     margin-top: 20px;
   }
 
   .breadcrumbs .container {
+    width: 100%;
     padding: 0 0.625rem; /* 10px */
+    margin: 0;
+    overflow-y: hidden;
   }
 
   .breadcrumbs__inner {

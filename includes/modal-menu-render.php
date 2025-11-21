@@ -37,7 +37,15 @@ function render_modal_menu() {
                         <?php if (!empty($menuConfig['articles']['items'])): ?>
                             <ul class="mm-list">
                                 <?php foreach ($menuConfig['articles']['items'] as $item): ?>
-                                    <li><?php echo htmlspecialchars($item); ?></li>
+                                    <li>
+                                        <?php if (is_array($item) && isset($item['href'])): ?>
+                                            <a href="<?php echo htmlspecialchars($item['href']); ?>">
+                                                <?php echo htmlspecialchars($item['text']); ?>
+                                            </a>
+                                        <?php else: ?>
+                                            <?php echo htmlspecialchars($item); ?>
+                                        <?php endif; ?>
+                                    </li>
                                 <?php endforeach; ?>
                             </ul>
                         <?php endif; ?>

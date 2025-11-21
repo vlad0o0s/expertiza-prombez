@@ -17,7 +17,7 @@ $menuItems = [
 	],
 	[
 		'label' => 'Статьи',
-		'href' => '/articles',
+		'href' => '/stati',
 	],
 	[
 		'label' => 'О компании',
