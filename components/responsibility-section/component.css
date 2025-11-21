@@ -1,0 +1,107 @@
+/* ============================================
+   Компонент секции ответственности
+   ============================================ */
+
+/* Ответственность */
+.responsibility-section {
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+.responsibility-section .container {
+    width: 100%;
+    max-width: 80rem; /* 1280px */
+    padding: 0 100px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.responsibility-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.responsibility-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--color-dark-blue);
+    font-size: 25px;
+    letter-spacing: 0;
+    line-height: 120%;
+    margin: 0;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.responsibility-content {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0;
+    flex: 1;
+}
+
+.responsibility-text {
+    display: flex;
+    align-items: flex-start;
+    gap: 16.6px;
+    max-width: 552px;
+}
+
+.responsibility-icon {
+    width: 20.78px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.responsibility-text p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: var(--color-dark-blue);
+    font-size: 16px;
+    text-align: right;
+    letter-spacing: 0;
+    line-height: 140%;
+    margin: 0;
+}
+
+/* Адаптивность для планшета (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .responsibility-section .container {
+        width: 95%;
+        max-width: 95%;
+        padding: 0 1.5rem;
+    }
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+    .responsibility-section {
+        margin-bottom: 40px;
+    }
+
+    .responsibility-section .container {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .responsibility-inner {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .responsibility-content {
+        justify-content: flex-start;
+    }
+
+    .responsibility-text {
+        flex-direction: row;
+        gap: 10px;
+        max-width: 100%;
+    }
+
+    .responsibility-text p {
+        text-align: left;
+    }
+}
+

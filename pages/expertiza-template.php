@@ -125,7 +125,7 @@ $expertiza_data = [
         [
             'number' => '02',
             'title' => 'Анализ запроса <br />и определение задач',
-            'description' => 'Мы оцениваем предоставленные данные, формируем перечень необходимых исследований <br />и согласовываем условия сотрудничества'
+            'description' => 'Мы оцениваем предоставленные данные, формируем перечень необходимых исследований и согласовываем условия сотрудничества'
         ],
         [
             'number' => '03',
@@ -135,12 +135,12 @@ $expertiza_data = [
         [
             'number' => '04',
             'title' => 'Проведение <br />экспертизы',
-            'description' => 'Наши специалисты проводят исследование, применяя современные методики <br />и оборудование'
+            'description' => 'Наши специалисты проводят исследование, применяя современные методики и оборудование'
         ],
         [
             'number' => '05',
             'title' => 'Подготовка и выдача экспертного заключения',
-            'description' => 'Вы получаете официальный документ с детальным анализом, выводами и обоснованиями, который можно использовать <br />в суде или других инстанциях'
+            'description' => 'Вы получаете официальный документ с детальным анализом, выводами и обоснованиями, который можно использовать в суде или других инстанциях'
         ]
     ]
 ];
@@ -152,10 +152,13 @@ $additional_css[] = '/components/commercial-proposal-form/component.css';
 $additional_css[] = '/components/reviews/component.css';
 $additional_css[] = '/components/faq/component.css';
 $additional_css[] = '/components/expertiza-template/component.css';
+// CSS для contact-form подключается автоматически через load_component
 
 // Подключение JavaScript
 $additional_js = [];
+$additional_js[] = 'https://cdn.jsdelivr.net/npm/imask@6.4.3/dist/imask.min.js';
 $additional_js[] = '/components/expertiza-template/component.js';
+// JS для contact-form подключается автоматически через load_component
 
 include __DIR__ . '/../includes/header.php';
 
@@ -223,166 +226,42 @@ include __DIR__ . '/../includes/header.php';
     </section>
 
     <!-- Ответственность -->
-    <section class="responsibility-section">
-        <div class="container">
-            <div class="responsibility-inner">
-                <h2 class="responsibility-title">КАКАЯ ОТВЕТСТВЕННОСТЬ<br />ЗА НЕПРОВЕДЕНИЕ ЭПБ?</h2>
-                <div class="responsibility-content">
-                    <div class="responsibility-text">
-                        <p>
-                            <?php echo htmlspecialchars($expertiza_data['responsibility_text']); ?>
-                        </p>
-                        <img class="responsibility-icon" src="/assets/images/Polygon 7.svg" alt="" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <?php load_component('responsibility-section', [
+        'title' => 'КАКАЯ ОТВЕТСТВЕННОСТЬ<br />ЗА НЕПРОВЕДЕНИЕ ЭПБ?',
+        'text' => $expertiza_data['responsibility_text'],
+        'icon' => '/assets/images/Polygon 7.svg'
+    ]); ?>
 
     <!-- Предупреждение -->
-    <section class="warning-section">
-        <div class="container">
-            <div class="warning-section-inner">
-                <img class="warning-image" src="/assets/images/Текст абзаца (3) 1.png" alt="Предупреждение" />
-                <div class="warning-content">
-                    <p class="warning-text-secondary">
-                        <?php echo htmlspecialchars($expertiza_data['warning_secondary']); ?>
-                    </p>
-                    <a href="#contact-form" class="warning-link">
-                        <span>Оставить заявку на проведение экспертизы</span>
-                        <img src="/assets/images/arrow-43.svg" alt="" />
-                    </a>
-                </div>
-            </div>
-            <p class="warning-text-primary">
-                <?php echo htmlspecialchars($expertiza_data['warning_primary']); ?>
-            </p>
-        </div>
-    </section>
+    <?php load_component('warning-section', [
+        'warning_secondary' => $expertiza_data['warning_secondary'],
+        'warning_primary' => $expertiza_data['warning_primary'],
+        'contact_form_id' => 'contact-form',
+        'warning_image' => '/assets/images/Текст абзаца (3) 1.png',
+        'background_image' => '/assets/images/image 6344877.png'
+    ]); ?>
 
     <!-- Другие экспертизы -->
-    <section class="other-services-section">
-        <div class="container">
-            <div class="other-services-header">
-                <h2 class="other-services-title">ДРУГИЕ<br />ЭКСПЕРТИЗЫ</h2>
-                <div class="other-services-navigation">
-                    <button class="other-services-prev" aria-label="Предыдущий слайд">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </button>
-                    <button class="other-services-next" aria-label="Следующий слайд">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <div class="swiper other-services-swiper">
-                <div class="swiper-wrapper other-services-carousel">
-                    <?php foreach ($expertiza_data['other_services'] as $service): ?>
-                        <div class="swiper-slide">
-                            <article class="service-card <?php echo $service['active'] ? 'service-card-active' : ''; ?>">
-                                <img class="service-card-image" src="<?php echo htmlspecialchars($service['image']); ?>"
-                                    alt="<?php echo htmlspecialchars(strip_tags($service['title'])); ?>" />
-                                <div class="service-card-content">
-                                    <div class="service-card-info">
-                                        <div class="service-card-info-item">
-                                            <span class="service-card-info-label">Стоимость</span>
-                                            <span
-                                                class="service-card-info-value"><?php echo htmlspecialchars($service['price']); ?></span>
-                                        </div>
-                                        <span class="service-card-divider"></span>
-                                        <div class="service-card-info-item">
-                                            <span class="service-card-info-label">Сроки</span>
-                                            <span
-                                                class="service-card-info-value"><?php echo htmlspecialchars($service['term']); ?></span>
-                                        </div>
-                                    </div>
-                                    <h3 class="service-card-title"><?php echo $service['title']; ?></h3>
-                                    <p class="service-card-description">
-                                        <?php echo htmlspecialchars($service['description']); ?>
-                                    </p>
-                                    <a href="<?php echo htmlspecialchars($service['link']); ?>" class="service-card-link">
-                                        <span>Подробнее</span>
-                                        <img src="/assets/images/arrow-39-4.svg" alt="" />
-                                    </a>
-                                    <span
-                                        class="service-card-category"><?php echo htmlspecialchars($service['category']); ?></span>
-                                </div>
-                            </article>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </div>
-    </section>
+    <?php load_component('other-services-section', [
+        'title' => 'ДРУГИЕ<br />ЭКСПЕРТИЗЫ',
+        'services' => $expertiza_data['other_services']
+    ]); ?>
 
     <!-- Форма контактов -->
-    <section class="contact-form-section" id="contact-form">
-        <div class="container">
-            <div class="contact-form-section-inner">
-                <h2 class="contact-form-title">ОСТАВЛЯЙТЕ ЗАЯВКУ — НАЧНЕМ РАБОТУ</h2>
-                <p class="contact-form-description">
-                    Заполните форму обратной связи. После обращения с вами свяжется менеджер в рабочее время с 9:00 до
-                    19:00
-                </p>
-                <form class="contact-form" action="/sendmail.php" method="post">
-                    <div class="contact-form-row">
-                        <div class="contact-form-field">
-                            <label for="name" class="contact-form-label">Ваше имя</label>
-                            <input type="text" id="name" name="name" class="contact-form-input" placeholder="Имя"
-                                required />
-                        </div>
-                        <div class="contact-form-field">
-                            <label for="phone" class="contact-form-label">Ваш номер телефона</label>
-                            <input type="tel" id="phone" name="phone" class="contact-form-input"
-                                placeholder="+ 7 495 127 09-35" required />
-                        </div>
-                        <button type="submit" class="contact-form-submit">
-                            <span class="contact-form-submit-text">ОТПРАВИТЬ</span>
-                            <span class="contact-form-submit-icon">
-                                <img src="/assets/images/Arrow.svg" alt="" />
-                            </span>
-                        </button>
-                    </div>
-                    <div class="contact-form-consent">
-                        <input type="checkbox" id="consent" name="consent" class="contact-form-checkbox" required />
-                        <label for="consent" class="contact-form-consent-text">
-                            Нажимая кнопку "Отправить", Вы даете согласие на
-                            <a href="#" class="contact-form-consent-link">обработку персональных данных и соглашаетесь с
-                                политикой конфиденциальности</a>
-                        </label>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
+    <?php load_component('contact-form', [
+        'form_id' => 'contact-form',
+        'name_id' => 'name',
+        'phone_id' => 'phone',
+        'consent_id' => 'consent'
+    ]); ?>
 
     <!-- Этапы проведения -->
-    <section class="stages-section">
-        <div class="container">
-            <h2 class="stages-title">ЭТАПЫ ПРОВЕДЕНИЯ ЭПБ</h2>
-            <img class="stages-indicator" src="/assets/images/group-1597882195.png" alt="" />
-            <div class="stages-list">
-                <?php foreach ($expertiza_data['stages'] as $stage): ?>
-                    <article class="stage-item">
-                        <span class="stage-number"><?php echo htmlspecialchars($stage['number']); ?></span>
-                        <h3 class="stage-title"><?php echo $stage['title']; ?></h3>
-                        <p class="stage-description"><?php echo $stage['description']; ?></p>
-                        <?php if (isset($stage['link']) && $stage['link']): ?>
-                            <a href="#contact-form" class="stage-link">
-                                <span>Оставить заявку</span>
-                                <img src="/assets/images/arrow-39-3.svg" alt="" />
-                            </a>
-                        <?php endif; ?>
-                    </article>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </section>
+    <?php load_component('stages-section', [
+        'title' => 'ЭТАПЫ ПРОВЕДЕНИЯ ЭПБ',
+        'stages' => $expertiza_data['stages'],
+        'indicator_image' => '/assets/images/group-1597882195.png',
+        'contact_form_id' => 'contact-form'
+    ]); ?>
 
     <!-- Отзывы -->
     <?php load_component('reviews'); ?>

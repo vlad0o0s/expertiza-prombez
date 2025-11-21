@@ -1,0 +1,167 @@
+/* ============================================
+   Компонент секции "Этапы проведения"
+   ============================================ */
+
+/* Этапы проведения */
+.stages-section {
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+.stages-section .container {
+    width: 100%;
+    max-width: 80rem; /* 1280px */
+    padding: 0 100px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.stages-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--color-dark-blue);
+    font-size: 35px;
+    letter-spacing: 0;
+    line-height: 120%;
+    margin: 0 0 83px 0;
+    text-transform: uppercase;
+}
+
+.stages-indicator {
+    position: absolute;
+    top: 496px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 52px;
+    height: 10px;
+    z-index: 1;
+}
+
+.stages-list {
+    display: flex;
+    gap: 7px;
+    position: relative;
+}
+
+.stage-item {
+    width: 210px;
+    min-height: 210px;
+    background-color: #E9F1FC;
+    border-radius: 5px;
+    padding: 25px 15px;
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.stage-number {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: var(--color-dark-blue);
+    font-size: 30px;
+    letter-spacing: 0;
+    line-height: 120%;
+    display: block;
+    margin-bottom: 19px;
+}
+
+.stage-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--color-dark-blue);
+    font-size: 13px;
+    letter-spacing: 0;
+    line-height: 120%;
+    margin: 0 0 10px 0;
+}
+
+.stage-description {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: var(--color-dark-blue);
+    font-size: 11px;
+    letter-spacing: 0;
+    line-height: 140%;
+    margin: 0 0 15px 0;
+    flex: 1;
+}
+
+.stage-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 14.4px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: var(--color-dark-blue);
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 120%;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+    margin-top: auto;
+}
+
+.stage-link:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.stage-link img {
+    width: 8.27px;
+    height: 8.27px;
+}
+
+/* Адаптивность для планшета (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .stages-section .container {
+        width: 95%;
+        max-width: 95%;
+        padding: 0 1.5rem;
+    }
+
+    .stages-list {
+        flex-wrap: wrap;
+    }
+
+    .stage-item {
+        width: calc(50% - 4px);
+    }
+
+    .stages-indicator {
+        display: none;
+    }
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+    .stages-section {
+        margin-bottom: 40px;
+    }
+
+    .stages-section .container {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .stages-title {
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
+
+    .stages-indicator {
+        display: none;
+    }
+
+    .stages-list {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .stage-item {
+        width: 100%;
+        min-height: auto;
+    }
+}
+
