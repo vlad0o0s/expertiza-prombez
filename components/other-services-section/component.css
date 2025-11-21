@@ -1,0 +1,301 @@
+/* ============================================
+   Компонент секции "Другие экспертизы"
+   ============================================ */
+
+.other-services-section {
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+.other-services-section .container {
+    width: 100%;
+    max-width: 80rem; /* 1280px */
+    padding: 0 100px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.other-services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 58px;
+}
+
+.other-services-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--color-dark-blue);
+    font-size: 35px;
+    letter-spacing: 0;
+    line-height: 120%;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.other-services-navigation {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.other-services-prev,
+.other-services-next {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #91A2B8;
+    transition: color 0.3s ease;
+}
+
+.other-services-prev:hover,
+.other-services-next:hover {
+    color: #152333;
+}
+
+.other-services-prev svg,
+.other-services-next svg {
+    width: 24px;
+    height: 24px;
+}
+
+.other-services-prev.swiper-button-disabled,
+.other-services-next.swiper-button-disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.other-services-swiper {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+.other-services-carousel {
+    display: flex;
+}
+
+.other-services-swiper .swiper-slide {
+    width: 260px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.service-card {
+    width: 100%;
+    height: 260px;
+    border-radius: 5px;
+    border: 1.5px solid rgba(145, 162, 184, 0.5);
+    padding: 13px;
+    position: relative;
+    background: #ffffff;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.service-card-active {
+    background-color: var(--color-dark-blue);
+    border: none;
+    opacity: 1;
+}
+
+.service-card-image {
+    width: 53px;
+    height: 53px;
+    object-fit: contain;
+    margin-bottom: 29px;
+    position: relative;
+    z-index: 1;
+}
+
+.service-card-content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+}
+
+.service-card-info {
+    position: absolute;
+    top: 23px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    z-index: 2;
+}
+
+.service-card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 120%;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+}
+
+.service-card-active .service-card-title {
+    color: #ffffff;
+}
+
+.service-card:not(.service-card-active) .service-card-title {
+    color: var(--color-dark-blue);
+}
+
+.service-card-description {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0;
+    line-height: 120%;
+    margin: 0px 0 50px 0;
+    flex: 1;
+}
+
+.service-card-active .service-card-description {
+    color: #ffffff;
+}
+
+.service-card:not(.service-card-active) .service-card-description {
+    color: var(--color-dark-blue);
+}
+
+.service-card-category {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: rgba(207, 215, 224, 0.5);
+    font-size: 50px;
+    letter-spacing: 0;
+    line-height: 120%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.service-card-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.service-card-info-label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0;
+    line-height: 120%;
+}
+
+.service-card-active .service-card-info-label {
+    color: #ffffff;
+}
+
+.service-card:not(.service-card-active) .service-card-info-label {
+    color: var(--color-dark-blue);
+}
+
+.service-card-info-value {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0;
+    line-height: 120%;
+}
+
+.service-card-active .service-card-info-value {
+    color: #ffffff;
+}
+
+.service-card:not(.service-card-active) .service-card-info-value {
+    color: var(--color-dark-blue);
+}
+
+.service-card-divider {
+    width: 1px;
+    height: 34px;
+    background-color: currentColor;
+    opacity: 0.3;
+}
+
+.service-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 14.4px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 120%;
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+    margin-top: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.service-card-link:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+}
+
+.service-card-active .service-card-link {
+    color: #ffffff;
+}
+
+.service-card:not(.service-card-active) .service-card-link {
+    color: var(--color-dark-blue);
+}
+
+.service-card-link img {
+    width: 8.27px;
+    height: 8.27px;
+}
+
+/* Адаптивность для планшета (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .other-services-section .container {
+        width: 95%;
+        max-width: 95%;
+        padding: 0 1.5rem;
+    }
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+    .other-services-section {
+        margin-bottom: 40px;
+    }
+
+    .other-services-section .container {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .other-services-header {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .other-services-title {
+        font-size: 24px;
+    }
+
+    .service-card {
+        height: auto;
+        min-height: 260px;
+    }
+
+    .other-services-swiper .swiper-slide {
+        width: auto;
+    }
+}
+
