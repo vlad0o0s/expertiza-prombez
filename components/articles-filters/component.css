@@ -36,13 +36,13 @@
   font-weight: 600;
   font-size: 12px;
   color: #152333;
-  border: 1.20px solid #152333;
+  border: 1.2px solid #152333;
   border-radius: 5px;
   text-decoration: none;
   cursor: pointer;
   background: transparent;
   transition: all 0.3s ease;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   white-space: nowrap;
 }
 
@@ -79,7 +79,7 @@
   font-size: 13px;
   text-align: center;
   color: #fff;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .articles-filters-toggle-icon {
@@ -122,7 +122,7 @@
   text-align: left;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   text-decoration: none;
 }
 
@@ -165,4 +165,3 @@
     display: block;
   }
 }
-
