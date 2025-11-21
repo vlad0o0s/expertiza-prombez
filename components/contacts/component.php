@@ -50,7 +50,7 @@ if (file_exists($cssPath)) {
                     </div>
                 </div>
                 
-                <a href="#" class="contacts-link">
+                <a href="/zapros-kommercheskogo-predlozheniya" class="contacts-link">
                     Запросить коммерческое предложение
                     <img src="/assets/images/arrowR.svg" alt="">
                 </a>

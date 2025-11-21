@@ -2,11 +2,16 @@ RewriteEngine On
 RewriteBase /
 
 # Перенаправление старых URL с .php на новые без .php (301 редирект)
+# Исключаем sendmail.php из редиректа (для AJAX запросов)
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?] [NC]
+RewriteCond %{REQUEST_URI} !^/sendmail\.php [NC]
 RewriteRule ^ /%1? [R=301,L]
 
 # Перенаправление /expertiza-prombezopasnosti на /pages/expertiza-prombezopasnosti.php
 RewriteRule ^expertiza-prombezopasnosti/?$ pages/expertiza-prombezopasnosti.php [L]
+
+# Перенаправление /zapros-kommercheskogo-predlozheniya на /pages/zapros-kommercheskogo-predlozheniya.php
+RewriteRule ^zapros-kommercheskogo-predlozheniya/?$ pages/zapros-kommercheskogo-predlozheniya.php [L]
 
 # Если запрашивается файл без расширения, проверяем существование .php файла
 RewriteCond %{REQUEST_FILENAME} !-f
