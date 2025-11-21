@@ -24,10 +24,20 @@ if (!$items && $current_title) {
         <div class="breadcrumbs__inner">
             <?php foreach ($items as $index => $item): ?>
                 <?php if ($index > 0): ?>
-                    <span class="breadcrumbs__separator" aria-hidden="true">
-                        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.33333 12.1667L11.5 8L7.33333 3.83333" stroke="#152333" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
+                    <?php
+                    // Первая стрелка большая, остальные маленькие
+                    $is_small_arrow = ($index > 1);
+                    ?>
+                    <span class="breadcrumbs__separator<?= $is_small_arrow ? ' breadcrumbs__separator--small' : '' ?>" aria-hidden="true">
+                        <?php if ($is_small_arrow): ?>
+                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.33333 12.1667L11.5 8L7.33333 3.83333" stroke="#152333" stroke-opacity="0.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        <?php else: ?>
+                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.33333 12.1667L11.5 8L7.33333 3.83333" stroke="#152333" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        <?php endif; ?>
                     </span>
                 <?php endif; ?>
                 <?php
