@@ -1,7 +1,7 @@
 <?php
 
-require_once 'config/config.php';
-require_once 'includes/component-loader.php';
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../includes/component-loader.php';
 
 $page_key = 'stati';
 
@@ -11,34 +11,34 @@ $additional_css = [];
 $additional_css[] = '/assets/css/index.css';
 
 $breadcrumbs_css = '/components/breadcrumbs/component.css';
-if (file_exists(__DIR__ . '/components/breadcrumbs/component.css')) {
+if (file_exists(__DIR__ . '/../components/breadcrumbs/component.css')) {
     $additional_css[] = $breadcrumbs_css;
 }
 
 $categories_css = '/components/categories-expertiza/component.css';
-if (file_exists(__DIR__ . '/components/categories-expertiza/component.css')) {
+if (file_exists(__DIR__ . '/../components/categories-expertiza/component.css')) {
     $additional_css[] = $categories_css;
 }
 
 $articles_filters_css = '/components/articles-filters/component.css';
-if (file_exists(__DIR__ . '/components/articles-filters/component.css')) {
+if (file_exists(__DIR__ . '/../components/articles-filters/component.css')) {
     $additional_css[] = $articles_filters_css;
 }
 
 $articles_list_css = '/components/articles-list/component.css';
-if (file_exists(__DIR__ . '/components/articles-list/component.css')) {
+if (file_exists(__DIR__ . '/../components/articles-list/component.css')) {
     $additional_css[] = $articles_list_css;
 }
 
 $pagination_css = '/components/pagination/component.css';
-if (file_exists(__DIR__ . '/components/pagination/component.css')) {
+if (file_exists(__DIR__ . '/../components/pagination/component.css')) {
     $additional_css[] = $pagination_css;
 }
 
 // Подключение JavaScript для анимаций
 $additional_js = ['/assets/js/index-animations.js'];
 
-include __DIR__ . '/includes/header.php';
+include __DIR__ . '/../includes/header.php';
 
 ?>
 
@@ -69,5 +69,6 @@ include __DIR__ . '/includes/header.php';
     <?php load_component('pagination'); ?>
 </main>
 
-<?php include __DIR__ . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/../includes/footer.php'; ?>
+
 

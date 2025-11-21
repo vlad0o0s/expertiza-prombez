@@ -19,6 +19,12 @@ RewriteRule ^epb-podemnih-sooruzheniy-i-kranov/?$ pages/expertiza-template.php [
 # Перенаправление /about на /pages/about.php
 RewriteRule ^about/?$ pages/about.php [L]
 
+# Перенаправление /stati/oboznacheniye-trass-polietilenovykh-gazoprovodov на страницу статьи
+RewriteRule ^stati/oboznacheniye-trass-polietilenovykh-gazoprovodov/?$ pages/stati/oboznacheniye-trass-polietilenovykh-gazoprovodov.php [L]
+
+# Перенаправление /stati на /pages/stati.php
+RewriteRule ^stati/?$ pages/stati.php [L]
+
 # Если запрашивается файл без расширения, проверяем существование .php файла
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
