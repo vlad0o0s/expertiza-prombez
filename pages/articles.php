@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../includes/component-loader.php';
 
-$page_key = 'stati';
+$page_key = 'articles';
 
 // Подключаем CSS для компонентов ДО header.php
 $additional_css = [];
@@ -48,7 +48,7 @@ include __DIR__ . '/../includes/header.php';
         'current_title' => 'Статьи'
     ]);
     ?>
-    
+
     <div class="categories-expertiza">
         <div class="container-fluid">
             <div class="categories-header">
@@ -61,14 +61,12 @@ include __DIR__ . '/../includes/header.php';
             </div>
         </div>
     </div>
-    
+
     <?php load_component('articles-filters'); ?>
-    
+
     <?php load_component('articles-list'); ?>
-    
+
     <?php load_component('pagination'); ?>
 </main>
 
 <?php include __DIR__ . '/../includes/footer.php'; ?>
-
-

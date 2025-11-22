@@ -56,7 +56,7 @@ return [
     ],
     
     // Страница статей
-    'stati' => [
+    'articles' => [
         'title' => 'Статьи - Экспертиза Промбезопасность',
         'description' => 'Полезные статьи и материалы по промышленной безопасности. Актуальная информация, новости и экспертные мнения.',
         'keywords' => 'статьи промбезопасность, промышленная безопасность, статьи экспертиза, новости промбезопасности',
@@ -64,7 +64,7 @@ return [
         'og_description' => 'Полезные статьи и материалы по промышленной безопасности',
         'og_image' => SITE_URL . '/assets/images/og-image.jpg',
         'og_type' => 'website',
-        'canonical' => SITE_URL . '/stati',
+        'canonical' => SITE_URL . '/articles',
         'schema_type' => 'CollectionPage', // Schema.org тип для страницы со статьями
     ],
     

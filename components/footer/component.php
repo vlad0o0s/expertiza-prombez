@@ -27,7 +27,7 @@ if (file_exists($cssPath)) {
                                     <li><a href="/contacts">Контакты</a></li>
                                     <li><a href="/services">Услуги</a></li>
                                     <li><a href="/about">О компании</a></li>
-                                    <li><a href="/stati">Статьи</a></li>
+                                    <li><a href="/articles">Статьи</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -102,7 +102,7 @@ if (file_exists($cssPath)) {
                             <li><a href="/contacts">Контакты</a></li>
                             <li><a href="/services">Услуги</a></li>
                             <li><a href="/about">О компании</a></li>
-                            <li><a href="/stati">Статьи</a></li>
+                            <li><a href="/articles">Статьи</a></li>
                         </ul>
                     </nav>
                 </div>
