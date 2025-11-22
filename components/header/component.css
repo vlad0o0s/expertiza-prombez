@@ -684,8 +684,13 @@
 .mm-section-toggle { width: 100%; background: transparent; border: 0; color: var(--color-dark-blue); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; line-height: 120%; letter-spacing: 0; padding: 10px 0; display: flex; align-items: center; justify-content: space-between; text-align: left; transition: color 0.2s ease; }
 .mm-title { color: var(--color-dark-blue); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; line-height: 120%; letter-spacing: 0; text-align: left; }
 .mm-arrow { width: 15px; height: 8px; background-color: currentColor; -webkit-mask: url('/assets/images/arrowMenu.svg') no-repeat center/contain; mask: url('/assets/images/arrowMenu.svg') no-repeat center/contain; transition: transform 0.25s ease; }
-.mm-section.is-open > .mm-section-toggle { color: var(--color-primary); }
-.mm-section.is-open > .mm-section-toggle .mm-title { color: var(--color-primary); }
+
+/* Красный цвет только на мобильной версии */
+@media (max-width: 768px) {
+    .mm-section.is-open > .mm-section-toggle { color: var(--color-primary); }
+    .mm-section.is-open > .mm-section-toggle .mm-title { color: var(--color-primary); }
+}
+
 .mm-section.is-open > .mm-section-toggle .mm-arrow { transform: rotate(180deg); }
 .mm-section-body { display: block; max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.3s ease, opacity 0.3s ease; }
 .mm-section.is-open > .mm-section-body { max-height: 1000px; opacity: 1; }

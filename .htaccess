@@ -19,16 +19,46 @@ RewriteRule ^epb-podemnih-sooruzheniy-i-kranov/?$ pages/expertiza-template.php [
 # Перенаправление /about на /pages/about.php
 RewriteRule ^about/?$ pages/about.php [L]
 
-# Перенаправление /articles/oboznacheniye-trass-polietilenovykh-gazoprovodov на страницу статьи
-RewriteRule ^articles/oboznacheniye-trass-polietilenovykh-gazoprovodov/?$ pages/articles/oboznacheniye-trass-polietilenovykh-gazoprovodov.php [L]
-
 # Перенаправление /articles на /pages/articles.php
 RewriteRule ^articles/?$ pages/articles.php [L]
+
+# Динамические URL статей - проверяем slug в БД
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^articles/([^/]+)/?$ pages/article.php?slug=$1 [L,QSA]
 
 # Перенаправление /laboratoriya-nerazrushayushchego-kontrolya на /pages/laboratoriya-nerazrushayushchego-kontrolya.php
 RewriteRule ^laboratoriya-nerazrushayushchego-kontrolya/?$ pages/laboratoriya-nerazrushayushchego-kontrolya.php [L]
 
+# Динамические URL ЭПБ - проверяем slug в БД (должно быть после всех конкретных правил, но перед админкой)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/admin [NC]
+RewriteCond %{REQUEST_URI} !^/articles [NC]
+RewriteCond %{REQUEST_URI} !^/expertiza-prombezopasnosti [NC]
+RewriteCond %{REQUEST_URI} !^/zapros-kommercheskogo-predlozheniya [NC]
+RewriteCond %{REQUEST_URI} !^/about [NC]
+RewriteCond %{REQUEST_URI} !^/laboratoriya-nerazrushayushchego-kontrolya [NC]
+RewriteRule ^([^/]+)/?$ pages/epb.php?slug=$1 [L,QSA]
+
+# Админ-панель - явные правила для админки
+RewriteRule ^admin/?$ admin/index.php [L]
+RewriteRule ^admin/login/?$ admin/login.php [L]
+RewriteRule ^admin/dashboard/?$ admin/dashboard.php [L]
+RewriteRule ^admin/logout/?$ admin/logout.php [L]
+RewriteRule ^admin/articles/?$ admin/articles.php [L]
+RewriteRule ^admin/articles/create/?$ admin/articles/create.php [L]
+RewriteRule ^admin/articles/edit/?$ admin/articles/edit.php [L]
+RewriteRule ^admin/articles/delete/?$ admin/articles/delete.php [L]
+RewriteRule ^admin/articles/upload-image/?$ admin/articles/upload-image.php [L]
+RewriteRule ^admin/epb/?$ admin/epb.php [L]
+RewriteRule ^admin/epb/create/?$ admin/epb/create.php [L]
+RewriteRule ^admin/epb/edit/?$ admin/epb/edit.php [L]
+RewriteRule ^admin/epb/delete/?$ admin/epb/delete.php [L]
+
 # Если запрашивается файл без расширения, проверяем существование .php файла
+# Исключаем админ-панель из этого правила
+RewriteCond %{REQUEST_URI} !^/admin [NC]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f

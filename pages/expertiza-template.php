@@ -259,7 +259,7 @@ include __DIR__ . '/../includes/header.php';
     <?php load_component('stages-section', [
         'title' => 'ЭТАПЫ ПРОВЕДЕНИЯ ЭПБ',
         'stages' => $expertiza_data['stages'],
-        'indicator_image' => '/assets/images/group-1597882195.png',
+        'indicator_image' => '/assets/images/Group 1597882155.png',
         'contact_form_id' => 'contact-form'
     ]); ?>
 

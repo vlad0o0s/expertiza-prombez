@@ -88,9 +88,7 @@ include __DIR__ . '/../includes/header.php';
 
             <div class="chemical-lab-section">
                 <div class="chemical-lab-images">
-                    <img class="chemical-lab-image"
-                        src="/assets/images/krupnym-planom-ruki-derza-laboratornuu-posudu-1.png"
-                        alt="Лабораторная посуда" />
+                    <img class="chemical-lab-image" src="/assets/images/himlab.png" alt="Лабораторная посуда" />
                     <img class="chemical-lab-image-secondary" src="/assets/images/himlab.png"
                         alt="Химическая лаборатория" />
                 </div>
@@ -106,8 +104,7 @@ include __DIR__ . '/../includes/header.php';
                     </ul>
                     <a href="#chemical-lab-details" class="chemical-lab-link">
                         <span class="chemical-lab-link-text">Подробнее</span>
-                        <img class="chemical-lab-link-icon" src="/assets/images/arrow-41.svg" alt=""
-                            aria-hidden="true" />
+                        <img class="chemical-lab-link-icon" src="/assets/images/Arrow.svg" alt="" aria-hidden="true" />
                     </a>
                 </div>
             </div>

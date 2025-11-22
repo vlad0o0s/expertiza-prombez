@@ -2,8 +2,19 @@
 
 require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../includes/component-loader.php';
+require_once __DIR__ . '/../includes/articles-functions.php';
 
 $page_key = 'articles';
+
+// Получаем параметры фильтрации и пагинации
+$category = $_GET['category'] ?? 'all';
+$page = max(1, intval($_GET['page'] ?? 1));
+
+// Получаем статьи из БД
+$articlesData = getArticles($category !== 'all' ? $category : null, $page, 12);
+$articles = $articlesData['articles'];
+$totalPages = $articlesData['totalPages'];
+$currentPage = $articlesData['page'];
 
 // Подключаем CSS для компонентов ДО header.php
 $additional_css = [];
@@ -62,11 +73,29 @@ include __DIR__ . '/../includes/header.php';
         </div>
     </div>
 
-    <?php load_component('articles-filters'); ?>
+    <?php 
+    load_component('articles-filters', [
+        'currentCategory' => $category
+    ]); 
+    ?>
 
-    <?php load_component('articles-list'); ?>
+    <?php 
+    load_component('articles-list', [
+        'articles' => $articles,
+        'currentPage' => $currentPage,
+        'total' => $articlesData['total']
+    ]); 
+    ?>
 
-    <?php load_component('pagination'); ?>
+    <?php 
+    if ($totalPages > 1) {
+        load_component('pagination', [
+            'currentPage' => $currentPage,
+            'totalPages' => $totalPages,
+            'baseUrl' => '/articles' . ($category !== 'all' ? '?category=' . urlencode($category) : '')
+        ]);
+    }
+    ?>
 </main>
 
 <?php include __DIR__ . '/../includes/footer.php'; ?>

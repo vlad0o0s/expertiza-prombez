@@ -1,3 +1,14 @@
+<?php
+// Подключаем функции для работы с ЭПБ
+require_once __DIR__ . '/../../includes/epb-functions.php';
+
+// Получаем список всех опубликованных ЭПБ
+$epbList = getEpbList();
+
+// Определяем задержки для анимации (циклически от 1 до 8)
+$delayClasses = ['delay-1', 'delay-2', 'delay-3', 'delay-4', 'delay-5', 'delay-6', 'delay-7', 'delay-8'];
+?>
+
 <section class="categories-expertiza">
     <div class="container-fluid">
         <div class="categories-header">
@@ -10,230 +21,49 @@
         </div>
         
         <div class="categories-grid">
-            <div class="category-card animate-on-scroll delay-1">
-                <div class="category-image-wrapper">
-                    <img src="/assets/images/categories (1).png" alt="ЭПБ объектов с опасными веществами">
-                    <div class="category-number-mobile">Э1</div>
+            <?php if (empty($epbList)): ?>
+                <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #91A2B8;">
+                    <p>ЭПБ пока нет. Добавьте их через админ-панель.</p>
                 </div>
-                <div class="category-title-row">
-                    <div class="category-number">Э1</div>
-                    <div class="category-title-wrapper">
-                        <h4 class="category-title">ЭПБ ОБЪЕКТОВ<br>С ОПАСНЫМИ ВЕЩЕСТВАМИ</h4>
-                    </div>
-                </div>
-                <div class="category-line"></div>
-                <p class="category-description">Экспертиза промышленной безопасности объектов, использующих опасные вещества в производственных процессах</p>
-            </div>
-            
-            <div class="category-card animate-on-scroll delay-2">
-                <div class="category-image-wrapper">
-                    <img src="/assets/images/categories (2).png" alt="ЭПБ оборудования, работающего под давлением">
-                    <div class="category-number-mobile">Э2</div>
-                </div>
-                <div class="category-title-row">
-                    <div class="category-number">Э2</div>
-                    <div class="category-title-wrapper">
-                        <h4 class="category-title">ЭПБ ОБОРУДОВАНИЯ,<br>РАБОТАЮЩЕГО ПОД ДАВЛЕНИЕМ</h4>
-                    </div>
-                </div>
-                <div class="category-line"></div>
-                <p class="category-description">Оценка безопасности сосудов, трубопроводов и оборудования, работающего под избыточным давлением</p>
-            </div>
-            
-            <div class="category-card animate-on-scroll delay-3">
-                <div class="category-image-wrapper">
-                    <img src="/assets/images/categories (3).png" alt="ЭПБ подъемных сооружений и кранов">
-                    <div class="category-number-mobile">Э3</div>
-                </div>
-                <div class="category-title-row">
-                    <div class="category-number">Э3</div>
-                    <div class="category-title-wrapper">
-                        <h4 class="category-title">ЭПБ ПОДЪЕМНЫХ<br>СООРУЖЕНИЙ И КРАНОВ</h4>
-                    </div>
-                </div>
-                <div class="category-line"></div>
-                <p class="category-description">Экспертиза грузоподъемных механизмов, кранов и подъемных сооружений на соответствие требованиям безопасности</p>
-            </div>
-            
-            <div class="category-card animate-on-scroll delay-4">
-                <div class="category-image-wrapper">
-                    <img src="/assets/images/categories (4).png" alt="ЭПБ газового оборудования и газопроводов">
-                    <div class="category-number-mobile">Э4</div>
-                </div>
-                <div class="category-title-row">
-                    <div class="category-number">Э4</div>
-                    <div class="category-title-wrapper">
-                        <h4 class="category-title">ЭПБ ГАЗОВОГО<br>ОБОРУДОВАНИЯ И ГАЗОПРОВОДОВ</h4>
-                    </div>
-                </div>
-                <div class="category-line"></div>
-                <p class="category-description">Оценка безопасности газового оборудования, газопроводов и систем газоснабжения</p>
-            </div>
-            
-            <div class="category-card animate-on-scroll delay-5">
-                <div class="category-image-wrapper">
-                    <img src="/assets/images/categories (5).png" alt="ЭПБ объектов с горючими жидкостями">
-                    <div class="category-number-mobile">Э5</div>
-                </div>
-                <div class="category-title-row">
-                    <div class="category-number">Э5</div>
-                    <div class="category-title-wrapper">
-                        <h4 class="category-title">ЭПБ ОБЪЕКТОВ<br>С ГОРЮЧИМИ ЖИДКОСТЯМИ</h4>
-                    </div>
-                </div>
-                <div class="category-line"></div>
-                <p class="category-description">Экспертиза объектов хранения, переработки и использования горючих жидкостей</p>
-            </div>
-            
-            <div class="category-card animate-on-scroll delay-6">
-                <div class="category-image-wrapper">
-                    <img src="/assets/images/categories (6).png" alt="ЭПБ объектов со взрывчатыми веществами">
-                    <div class="category-number-mobile">Э6</div>
-                </div>
-                <div class="category-title-row">
-                    <div class="category-number">Э6</div>
-                    <div class="category-title-wrapper">
-                        <h4 class="category-title">ЭПБ ОБЪЕКТОВ<br>СО ВЗРЫВЧАТЫМИ ВЕЩЕСТВАМИ</h4>
-                    </div>
-                </div>
-                <div class="category-line"></div>
-                <p class="category-description">Оценка безопасности объектов производства, хранения и использования взрывчатых веществ</p>
-            </div>
-            
-            <div class="category-card animate-on-scroll delay-7">
-                <div class="category-image-wrapper">
-                    <img src="/assets/images/categories (7).png" alt="ЭПБ металлургических производств">
-                    <div class="category-number-mobile">Э7</div>
-                </div>
-                <div class="category-title-row">
-                    <div class="category-number">Э7</div>
-                    <div class="category-title-wrapper">
-                        <h4 class="category-title">ЭПБ МЕТАЛЛУРГИЧЕСКИХ<br>ПРОИЗВОДСТВ</h4>
-                    </div>
-                </div>
-                <div class="category-line"></div>
-                <p class="category-description">Экспертиза промышленной безопасности металлургических предприятий и производств</p>
-            </div>
-            
-            <div class="category-card animate-on-scroll delay-8">
-                <div class="category-image-wrapper">
-                    <img src="/assets/images/categories (8).png" alt="ЭПБ энергетических установок и котлов">
-                    <div class="category-number-mobile">Э8</div>
-                </div>
-                <div class="category-title-row">
-                    <div class="category-number">Э8</div>
-                    <div class="category-title-wrapper">
-                        <h4 class="category-title">ЭПБ ЭНЕРГЕТИЧЕСКИХ<br>УСТАНОВОК И КОТЛОВ</h4>
-                    </div>
-                </div>
-                <div class="category-line"></div>
-                <p class="category-description">Оценка безопасности котельных установок, энергетического оборудования и систем</p>
-            </div>
-            
-            <div class="category-card animate-on-scroll delay-1">
-                <div class="category-image-wrapper">
-                    <img src="/assets/images/categories (9).png" alt="ЭПБ горнодобывающих объектов">
-                    <div class="category-number-mobile">Э9</div>
-                </div>
-                <div class="category-title-row">
-                    <div class="category-number">Э9</div>
-                    <div class="category-title-wrapper">
-                        <h4 class="category-title">ЭПБ ГОРНОДОБЫВАЮЩИХ<br>ОБЪЕКТОВ</h4>
-                    </div>
-                </div>
-                <div class="category-line"></div>
-                <p class="category-description">Экспертиза безопасности горнодобывающих предприятий и объектов добычи полезных ископаемых</p>
-            </div>
-            
-            <div class="category-card animate-on-scroll delay-2">
-                <div class="category-image-wrapper">
-                    <img src="/assets/images/categories (10).png" alt="ЭПБ взрывных работ и материалов">
-                    <div class="category-number-mobile">Э10</div>
-                </div>
-                <div class="category-title-row">
-                    <div class="category-number">Э10</div>
-                    <div class="category-title-wrapper">
-                        <h4 class="category-title">ЭПБ ВЗРЫВНЫХ<br>РАБОТ И МАТЕРИАЛОВ</h4>
-                    </div>
-                </div>
-                <div class="category-line"></div>
-                <p class="category-description">Оценка безопасности проведения взрывных работ и использования взрывчатых материалов</p>
-            </div>
-            
-            <div class="category-card animate-on-scroll delay-3">
-                <div class="category-image-wrapper">
-                    <img src="/assets/images/categories (11).png" alt="ЭПБ нефтегазоперерабатывающих и нефтехимических объектов">
-                    <div class="category-number-mobile">Э11</div>
-                </div>
-                <div class="category-title-row">
-                    <div class="category-number">Э11</div>
-                    <div class="category-title-wrapper">
-                        <h4 class="category-title">ЭПБ НЕФТЕПЕРЕРАБАТЫВАЮЩИХ<br>И НЕФТЕХИМИЧЕСКИХ ОБЪЕКТОВ</h4>
-                    </div>
-                </div>
-                <div class="category-line"></div>
-                <p class="category-description">Экспертиза безопасности нефтеперерабатывающих заводов и нефтехимических производств</p>
-            </div>
-            
-            <div class="category-card animate-on-scroll delay-4">
-                <div class="category-image-wrapper">
-                    <img src="/assets/images/categories (12).png" alt="ЭПБ объектов угольной промышленности">
-                    <div class="category-number-mobile">Э12</div>
-                </div>
-                <div class="category-title-row">
-                    <div class="category-number">Э12</div>
-                    <div class="category-title-wrapper">
-                        <h4 class="category-title">ЭПБ ОБЪЕКТОВ<br>УГОЛЬНОЙ ПРОМЫШЛЕННОСТИ</h4>
-                    </div>
-                </div>
-                <div class="category-line"></div>
-                <p class="category-description">Оценка безопасности объектов угольной промышленности и угледобывающих предприятий</p>
-            </div>
-            
-            <div class="category-card animate-on-scroll delay-5">
-                <div class="category-image-wrapper">
-                    <img src="/assets/images/categories (13).png" alt="ЭПБ подземных объектов и тоннелей">
-                    <div class="category-number-mobile">Э13</div>
-                </div>
-                <div class="category-title-row">
-                    <div class="category-number">Э13</div>
-                    <div class="category-title-wrapper">
-                        <h4 class="category-title">ЭПБ ПОДЗЕМНЫХ<br>ОБЪЕКТОВ И ТОННЕЛЕЙ</h4>
-                    </div>
-                </div>
-                <div class="category-line"></div>
-                <p class="category-description">Экспертиза безопасности подземных сооружений, тоннелей и подземных объектов</p>
-            </div>
-            
-            <div class="category-card animate-on-scroll delay-6">
-                <div class="category-image-wrapper">
-                    <img src="/assets/images/categories (14).png" alt="ЭПБ трубо- газо- нефте- продукто- аммиакопроводов">
-                    <div class="category-number-mobile">Э14</div>
-                </div>
-                <div class="category-title-row">
-                    <div class="category-number">Э14</div>
-                    <div class="category-title-wrapper">
-                        <h4 class="category-title">ЭПБ ТРУБО- ГАЗО- НЕФТЕ-<br>ПРОДУКТО- АММИАКО- ПРОВОДОВ</h4>
-                    </div>
-                </div>
-                <div class="category-line"></div>
-                <p class="category-description">Оценка безопасности магистральных трубопроводов для транспортировки различных веществ</p>
-            </div>
-            
-            <div class="category-card animate-on-scroll delay-7">
-                <div class="category-image-wrapper">
-                    <img src="/assets/images/categories (15).png" alt="ЭПБ объектов хранения нефти и газа">
-                    <div class="category-number-mobile">Э15</div>
-                </div>
-                <div class="category-title-row">
-                    <div class="category-number">Э15</div>
-                    <div class="category-title-wrapper">
-                        <h4 class="category-title">ЭПБ ОБЪЕКТОВ<br>ХРАНЕНИЯ НЕФТИ И ГАЗА</h4>
-                    </div>
-                </div>
-                <div class="category-line"></div>
-                <p class="category-description">Экспертиза безопасности объектов хранения, резервуаров и хранилищ нефти и газа</p>
-            </div>
+            <?php else: ?>
+                <?php foreach ($epbList as $index => $epb): ?>
+                    <?php
+                    // Определяем задержку для анимации (циклически)
+                    $delayIndex = ($index % 8);
+                    $delayClass = $delayClasses[$delayIndex];
+                    
+                    // Получаем описание из hero_content (первые 150 символов без HTML)
+                    $description = strip_tags($epb['hero_content']);
+                    $description = mb_substr($description, 0, 150);
+                    if (mb_strlen(strip_tags($epb['hero_content'])) > 150) {
+                        $description .= '...';
+                    }
+                    
+                    // Изображение или дефолтное
+                    $image = !empty($epb['hero_image']) ? $epb['hero_image'] : '/assets/images/categories (' . (($index % 15) + 1) . ').png';
+                    
+                    // Категория (номер)
+                    $category = !empty($epb['category']) ? htmlspecialchars($epb['category']) : 'Э' . ($index + 1);
+                    
+                    // Заголовок в верхнем регистре
+                    $title = mb_strtoupper(htmlspecialchars($epb['title']));
+                    ?>
+                    <a href="/<?php echo htmlspecialchars($epb['slug']); ?>" class="category-card animate-on-scroll <?php echo $delayClass; ?>" style="text-decoration: none; color: inherit;">
+                        <div class="category-image-wrapper">
+                            <img src="<?php echo htmlspecialchars($image); ?>" alt="<?php echo htmlspecialchars($epb['title']); ?>">
+                            <div class="category-number-mobile"><?php echo $category; ?></div>
+                        </div>
+                        <div class="category-title-row">
+                            <div class="category-number"><?php echo $category; ?></div>
+                            <div class="category-title-wrapper">
+                                <h4 class="category-title"><?php echo $title; ?></h4>
+                            </div>
+                        </div>
+                        <div class="category-line"></div>
+                        <p class="category-description"><?php echo htmlspecialchars($description); ?></p>
+                    </a>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </section>
