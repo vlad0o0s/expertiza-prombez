@@ -33,7 +33,7 @@ return [
     'articles' => [
         'title' => 'Статьи',
         'items' => [
-            ['text' => 'Все статьи', 'href' => '/stati'],
+            ['text' => 'Все статьи', 'href' => '/articles'],
         ],
     ],
     

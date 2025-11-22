@@ -148,7 +148,7 @@ expertiza-prombez.ru/
 │   └── zapros-kommercheskogo-predlozheniya.php # Страница запроса КП
 ├── index.php                   # Главная страница
 ├── contacts.php                # Страница контактов
-├── stati.php                   # Страница статей
+├── pages/articles.php          # Страница статей
 ├── composer.json               # Зависимости Composer (PHPMailer)
 ├── package.json                # Зависимости npm (ESLint)
 ├── sendmail.php                # Обработчик отправки писем
@@ -505,7 +505,7 @@ $page_description = 'Кастомное описание';
 - `index` - главная
 - `contacts` - контакты
 - `expertiza-prombezopasnosti` - все экспертизы
-- `stati` - статьи
+- `articles` - статьи
 - `zapros-kommercheskogo-predlozheniya` - запрос КП
 - `expertiza-template` - шаблон экспертизы
 - `default` - значения по умолчанию
