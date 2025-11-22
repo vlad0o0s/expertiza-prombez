@@ -24,7 +24,7 @@ $background_image = $data['background_image'] ?? '/assets/images/image 6344877.p
                 </p>
                 <a href="#<?php echo htmlspecialchars($contact_form_id); ?>" class="warning-link">
                     <span>Оставить заявку на проведение экспертизы</span>
-                    <img src="/assets/images/arrow-43.svg" alt="" />
+                    <img src="/assets/images/Arrow.svg" alt="" />
                 </a>
             </div>
         </div>

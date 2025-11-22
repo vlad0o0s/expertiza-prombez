@@ -105,7 +105,7 @@ $services = $data['services'] ?? [
                                 </p>
                                 <a href="<?php echo htmlspecialchars($service['link']); ?>" class="lab-service-card-link">
                                     <span>Подробнее</span>
-                                    <img src="/assets/images/arrow-39-4.svg" alt="" />
+                                    <img src="/assets/images/Arrow.svg" alt="" />
                                 </a>
                                 <span class="lab-service-card-category"><?php echo htmlspecialchars($service['category']); ?></span>
                             </div>

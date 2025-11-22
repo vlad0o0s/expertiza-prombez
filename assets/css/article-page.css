@@ -13,14 +13,29 @@
   display: flex;
   gap: 30px;
   align-items: flex-start;
+  margin-bottom: 50px;
 }
 
-/* Левая колонка (65%) */
+/* Левая колонка (50%) */
 .article-main-column {
-  width: 60%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   gap: 50px;
+}
+
+/* Правая колонка (50%) */
+.article-sidebar-column {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Остальной контент на 100% ширины */
+.article-content-fullwidth {
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Блок 1: Изображение с заголовком и датой */
@@ -36,11 +51,26 @@
   justify-content: flex-end;
   box-sizing: border-box;
   border-radius: 5px;
+  position: relative;
+}
+
+.article-header-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(20, 29, 48, 0.6) 0%, rgba(20, 29, 48, 0.6) 100%);
+  border-radius: 5px;
+  z-index: 0;
 }
 
 .article-header-content {
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
 
 .article-header-title {
@@ -67,12 +97,25 @@
   padding-top: 35px;
 }
 
+/* Первый абзац в двухколоночном layout */
+.article-first-paragraph {
+  width: 100%;
+}
+
+/* Остальной контент на полную ширину */
+.article-content-fullwidth {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 0;
+}
+
 .article-content-title {
   font-weight: 700;
   font-size: 22px;
   color: #152333;
   padding-bottom: 20px;
   margin: 0;
+  display: none; /* Скрыт по требованию */
 }
 
 .article-content-text {
@@ -164,13 +207,7 @@
   opacity: 0.7;
 }
 
-/* Правая колонка (35%) */
-.article-sidebar-column {
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
+/* Правая колонка уже определена выше как 50% */
 
 /* Заголовок "ДРУГИЕ СТАТЬИ" */
 .sidebar-title {
@@ -330,8 +367,10 @@
     padding-top: 50px;
   }
 
-  .article-page-container > .article-content-block {
+  .article-content-fullwidth {
     order: 2;
+    width: 100%;
+    padding: 0 10px;
   }
 
   .article-header-image {

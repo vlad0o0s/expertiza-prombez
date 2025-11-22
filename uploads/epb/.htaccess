@@ -1,0 +1,10 @@
+# Разрешаем доступ только к изображениям
+<FilesMatch "\.(jpg|jpeg|png|gif|webp)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# Запрещаем доступ ко всем остальным файлам
+Order Deny,Allow
+Deny from all
+

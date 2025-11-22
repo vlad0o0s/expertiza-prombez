@@ -8,7 +8,7 @@ if (file_exists($cssPath)) {
 // Получаем данные из параметров компонента
 $title = $data['title'] ?? 'ЭТАПЫ ПРОВЕДЕНИЯ ЭПБ';
 $stages = $data['stages'] ?? [];
-$indicator_image = $data['indicator_image'] ?? '/assets/images/group-1597882195.png';
+$indicator_image = $data['indicator_image'] ?? '/assets/images/Group 1597882155.png';
 $contact_form_id = $data['contact_form_id'] ?? 'contact-form';
 ?>
 
@@ -16,7 +16,6 @@ $contact_form_id = $data['contact_form_id'] ?? 'contact-form';
 <section class="stages-section">
     <div class="container">
         <h2 class="stages-title"><?php echo htmlspecialchars($title); ?></h2>
-        <img class="stages-indicator" src="<?php echo htmlspecialchars($indicator_image); ?>" alt="" />
         <div class="stages-list">
             <?php foreach ($stages as $stage): ?>
                 <article class="stage-item">
@@ -26,7 +25,7 @@ $contact_form_id = $data['contact_form_id'] ?? 'contact-form';
                     <?php if (isset($stage['link']) && $stage['link']): ?>
                         <a href="#<?php echo htmlspecialchars($contact_form_id); ?>" class="stage-link">
                             <span>Оставить заявку</span>
-                            <img src="/assets/images/arrow-39-3.svg" alt="" />
+                            <img src="/assets/images/Arrow.svg" alt="" />
                         </a>
                     <?php endif; ?>
                 </article>
