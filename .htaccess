@@ -25,6 +25,9 @@ RewriteRule ^articles/oboznacheniye-trass-polietilenovykh-gazoprovodov/?$ pages/
 # Перенаправление /articles на /pages/articles.php
 RewriteRule ^articles/?$ pages/articles.php [L]
 
+# Перенаправление /laboratoriya-nerazrushayushchego-kontrolya на /pages/laboratoriya-nerazrushayushchego-kontrolya.php
+RewriteRule ^laboratoriya-nerazrushayushchego-kontrolya/?$ pages/laboratoriya-nerazrushayushchego-kontrolya.php [L]
+
 # Если запрашивается файл без расширения, проверяем существование .php файла
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

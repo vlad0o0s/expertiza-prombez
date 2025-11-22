@@ -1,0 +1,720 @@
+/* Специфичные стили для страницы Лаборатория неразрушающего контроля */
+/* Базовые стили наследуются из main.css */
+
+/* Убеждаемся, что шрифты правильно наследуются */
+body {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+.site-header,
+.site-header * {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* Hero Section */
+.hero-section {
+  margin: 20px 0;
+  display: flex;
+  gap: 20px;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 80px;
+  align-items: flex-start;
+}
+
+.hero-content {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.hero-title {
+  font-family: inherit;
+  font-weight: 700;
+  color: #152333;
+  font-size: 25px;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-bottom: 20px;
+}
+
+.hero-description {
+  font-family: inherit;
+  font-weight: 500;
+  color: #152333;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.hero-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 50%;
+}
+
+.hero-image-wrapper {
+  position: relative;
+  width: 534px;
+  height: 392px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(20, 29, 48, 0.5) 0%,
+    rgba(20, 29, 48, 0.7) 100%
+  );
+}
+
+.hero-stats {
+  position: absolute;
+    bottom: 25px;
+    left: 55px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.lab-service-card-category{
+        position: absolute;
+    bottom: 10px!important;
+    right: 24px; 
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: rgba(207, 215, 224, 0.5);
+    font-size: 50px;
+    letter-spacing: 0;
+    line-height: 120%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.hero-stat-label {
+  font-family: inherit;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.hero-stat-value {
+  font-family: inherit;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 30px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.hero-stat-divider {
+  width: 2px;
+  height: 65px;
+  background-color: #ffffff;
+}
+
+/* Combined Equipment and Chemical Lab Section */
+.equipment-chemical-section {
+  margin: 0px auto;
+  max-width: 1280px;
+  padding: 0 20px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  width: 50%;
+  flex-direction: column;
+}
+.company-buttons{
+    width: fit-content;
+}
+/* Equipment Section */
+.equipment-section {
+    padding: 35px 20px;
+}
+
+.equipment-title {
+  font-family: inherit;
+  font-weight: 700;
+  color: #152333;
+  font-size: 22px;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-bottom: 22px;
+}
+
+.equipment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 48px 0;
+}
+
+.equipment-item {
+  font-family: inherit;
+  font-weight: 500;
+  color: #152333;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-bottom: 4px;
+}
+
+.cta-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cta-button-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 190px;
+  height: 45px;
+  background-color: #152333;
+  border-radius: 5px;
+  font-family: inherit;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.cta-button-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background-color: #e60012;
+  border-radius: 5px;
+}
+
+.cta-button-icon img {
+  width: 12.61px;
+  height: 12.61px;
+}
+.lab-services-section{
+    margin: 60px auto;
+}
+
+/* Chemical Lab Section */
+.chemical-lab-section {
+  width: 100%;
+  flex: 0 0 50%;
+  display: flex;
+  gap: 20px;
+  border: 1.5px solid #152333;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.chemical-lab-images {
+  position: relative;
+  width: 159px;
+  height: 227px;
+  flex-shrink: 0;
+}
+
+.chemical-lab-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.chemical-lab-image-secondary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.chemical-lab-content {
+  flex: 1;
+  padding: 0;
+}
+
+.chemical-lab-title {
+  font-family: inherit;
+  font-weight: 700;
+  color: #152333;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-bottom: 16px;
+}
+
+.chemical-lab-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.chemical-lab-item {
+  font-family: inherit;
+  font-weight: 500;
+  color: #152333;
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 17px;
+}
+
+.chemical-lab-link {
+  display: flex;
+  align-items: center;
+  gap: 14.2px;
+  text-decoration: none;
+}
+
+.chemical-lab-link-text {
+  font-family: inherit;
+  font-weight: 600;
+  color: #152333;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.chemical-lab-link-icon {
+  width: 21.5px;
+  height: 11.05px;
+}
+
+/* Services Section */
+.services-section {
+  margin: 60px auto;
+  max-width: 1280px;
+  padding: 0 20px;
+  position: relative;
+}
+
+.services-title {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 25px;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-bottom: 32px;
+}
+
+.services-title-accent {
+  color: #e60012;
+}
+
+.services-title-main {
+  color: #152333;
+}
+
+.services-navigation {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  display: flex;
+  gap: 27px;
+}
+
+.services-nav-button {
+  width: 28px;
+  height: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.services-nav-button img {
+  width: 100%;
+  height: 100%;
+}
+
+.services-grid {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.service-card {
+  position: relative;
+  width: 260px;
+  min-height: 260px;
+  border-radius: 5px;
+  border: 1.5px solid #91a2b8;
+  opacity: 0.5;
+  padding: 13px 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card-active {
+  background-color: #152333;
+  border: none;
+  opacity: 1;
+}
+
+.service-icon {
+  width: 53px;
+  height: 53px;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+
+.service-title {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-bottom: 8px;
+  color: #152333;
+}
+
+.service-card-active .service-title {
+  color: #ffffff;
+}
+
+.service-description {
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-bottom: auto;
+  color: #152333;
+  flex: 1;
+}
+
+.service-card-active .service-description {
+  color: #ffffff;
+}
+
+.service-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.service-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.service-meta-label {
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+  color: #152333;
+}
+
+.service-card-active .service-meta-label {
+  color: #ffffff;
+}
+
+.service-meta-value {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+  color: #152333;
+}
+
+.service-card-active .service-meta-value {
+  color: #ffffff;
+}
+
+.service-meta-divider {
+  width: 1px;
+  height: 34px;
+  background-color: #152333;
+}
+
+.service-card-active .service-meta-divider {
+  background-color: #ffffff;
+}
+
+.service-link {
+  display: flex;
+  align-items: center;
+  gap: 14.4px;
+  text-decoration: none;
+}
+
+.service-link-text {
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: normal;
+  text-decoration: underline;
+  color: #152333;
+}
+
+.service-card-active .service-link-text {
+  color: #ffffff;
+}
+
+.service-link-icon {
+  width: 8.27px;
+  height: 8.27px;
+}
+
+.service-number {
+  position: absolute;
+  bottom: 48px;
+  right: 24px;
+  font-family: inherit;
+  font-weight: 600;
+  color: rgba(207, 215, 224, 0.5);
+  font-size: 50px;
+  letter-spacing: 0;
+  line-height: normal;
+  z-index: 0;
+}
+
+.services-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.pagination-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #91a2b8;
+  border-radius: 1px;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.pagination-dot-active {
+  background-color: #152333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .hero-section {
+    flex-direction: column;
+    padding: 0 20px;
+    gap: 20px;
+  }
+  
+  .hero-content-wrapper {
+    width: 100%;
+    order: 2;
+  }
+  
+  .equipment-chemical-section {
+    width: 100%;
+    order: 1;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0;
+  }
+  
+  .hero-image-wrapper {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 300px;
+  }
+  
+  .chemical-lab-section {
+    width: 100%;
+    flex: 0 0 100%;
+  }
+  
+  .equipment-section {
+    width: 100%;
+    padding: 20px 0;
+  }
+  
+  .services-grid {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    margin: 20px 0;
+    padding: 0 10px;
+    gap: 20px;
+  }
+  
+  .hero-content {
+    padding: 0 10px;
+  }
+  
+  .hero-content-wrapper {
+    order: 3;
+    padding: 0;
+  }
+  
+  .equipment-chemical-section {
+    order: 1;
+    width: 100%;
+    padding: 0 10px;
+  }
+  
+  /* Сначала hero-image-wrapper */
+  .hero-image-wrapper {
+    order: 1;
+    width: 100%;
+    height: auto;
+    min-height: 250px;
+  }
+  
+  /* Потом химическая лаборатория */
+  .chemical-lab-section {
+    order: 2;
+    flex-direction: column;
+    padding: 15px 10px;
+  }
+  
+  .chemical-lab-images {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 15px;
+  }
+  
+  .hero-stats {
+    bottom: 15px;
+    left: 20px;
+    gap: 15px;
+  }
+  
+  .hero-stat-label {
+    font-size: 12px;
+  }
+  
+  .hero-stat-value {
+    font-size: 24px;
+  }
+  
+  .hero-stat-divider {
+    height: 50px;
+  }
+  
+  .hero-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .hero-description {
+    font-size: 12px;
+  }
+  
+  .equipment-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .equipment-item {
+    font-size: 12px;
+  }
+  
+  .equipment-section {
+    padding: 20px 10px;
+  }
+  
+  .chemical-lab-title {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .chemical-lab-item {
+    font-size: 11px;
+  }
+  
+  .chemical-lab-link-text {
+    font-size: 14px;
+  }
+  
+  .services-title {
+    font-size: 18px;
+  }
+  
+  .services-navigation {
+    position: static;
+    margin-bottom: 20px;
+  }
+  
+  /* Компоненты на странице */
+  .lab-services-section .container {
+    padding: 0 10px;
+  }
+  
+  .lab-licenses-banner {
+    padding: 20px 10px;
+  }
+  
+  .lab-licenses-banner .container-fluid {
+    padding: 0 10px;
+  }
+  
+  .why-choose-us {
+    padding: 0 10px;
+  }
+  
+  .why-choose-us .container-fluid {
+    padding: 0 10px;
+  }
+  
+  .reviews-section {
+    padding: 0 10px;
+  }
+  
+  .reviews-section .container-fluid {
+    padding: 0 10px;
+  }
+  
+  .faq-section {
+    padding: 0 10px;
+  }
+  
+  .faq-section .container-fluid {
+    padding: 0 10px;
+  }
+}
+

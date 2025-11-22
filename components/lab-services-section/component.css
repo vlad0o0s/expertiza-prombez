@@ -1,0 +1,324 @@
+/* ============================================
+   Компонент секции "Услуги лаборатории неразрушающего контроля"
+   ============================================ */
+
+.lab-services-section {
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+.lab-services-section .container {
+    width: 100%;
+    max-width: 80rem; /* 1280px */
+    padding: 0 100px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.lab-services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+}
+
+.lab-services-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    letter-spacing: 0;
+    line-height: 120%;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.lab-services-title-accent {
+    color: #e60012;
+}
+
+.lab-services-title-main {
+    color: var(--color-dark-blue);
+}
+
+.lab-services-navigation {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lab-services-prev,
+.lab-services-next {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #91A2B8;
+    transition: color 0.3s ease;
+}
+
+.lab-services-prev:hover,
+.lab-services-next:hover {
+    color: #152333;
+}
+
+.lab-services-prev svg,
+.lab-services-next svg {
+    width: 24px;
+    height: 24px;
+}
+
+.lab-services-prev.swiper-button-disabled,
+.lab-services-next.swiper-button-disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.lab-services-swiper {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.lab-services-carousel {
+    display: flex;
+}
+
+.lab-services-swiper .swiper-slide {
+    width: 260px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.lab-service-card {
+    width: 100%;
+    height: 260px;
+    border-radius: 5px;
+    border: 1.5px solid rgba(145, 162, 184, 0.5);
+    padding: 13px;
+    position: relative;
+    background: #ffffff;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.lab-service-card-active {
+    background-color: #152333;
+    border: none;
+    opacity: 1;
+}
+
+.lab-service-card-image {
+    width: 53px;
+    height: 53px;
+    object-fit: contain;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+.lab-service-card-content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+    height: 100%;
+}
+
+.lab-service-card-info {
+    position: absolute;
+    top: 23px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    z-index: 2;
+}
+
+.lab-service-card-active .lab-service-card-info {
+    color: #ffffff;
+}
+
+.lab-service-card:not(.lab-service-card-active) .lab-service-card-info {
+    color: #152333;
+}
+
+.lab-service-card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 120%;
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+}
+
+.lab-service-card-active .lab-service-card-title {
+    color: #ffffff;
+}
+
+.lab-service-card:not(.lab-service-card-active) .lab-service-card-title {
+    color: #152333;
+}
+
+.lab-service-card-description {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0;
+    line-height: 120%;
+    margin: 0 0 10px 0;
+    flex: 1;
+}
+
+.lab-service-card-active .lab-service-card-description {
+    color: #ffffff;
+}
+
+.lab-service-card:not(.lab-service-card-active) .lab-service-card-description {
+    color: #152333;
+}
+
+.lab-service-card-category {
+    position: absolute;
+    bottom: 48px;
+    right: 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: rgba(207, 215, 224, 0.5);
+    font-size: 50px;
+    letter-spacing: 0;
+    line-height: 120%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.lab-service-card-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.lab-service-card-info-label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0;
+    line-height: 120%;
+    white-space: nowrap;
+}
+
+.lab-service-card-active .lab-service-card-info-label {
+    color: #ffffff;
+}
+
+.lab-service-card:not(.lab-service-card-active) .lab-service-card-info-label {
+    color: #152333;
+}
+
+.lab-service-card-info-value {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0;
+    line-height: 120%;
+    white-space: nowrap;
+}
+
+.lab-service-card-active .lab-service-card-info-value {
+    color: #ffffff;
+}
+
+.lab-service-card:not(.lab-service-card-active) .lab-service-card-info-value {
+    color: #152333;
+}
+
+.lab-service-card-divider {
+    width: 1px;
+    height: 34px;
+    background-color: currentColor;
+    opacity: 0.3;
+}
+
+.lab-service-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 14.4px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 120%;
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+    margin-top: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.lab-service-card-link:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+}
+
+.lab-service-card-active .lab-service-card-link {
+    color: #ffffff;
+}
+
+.lab-service-card:not(.lab-service-card-active) .lab-service-card-link {
+    color: #152333;
+}
+
+.lab-service-card-link img {
+    width: 8.27px;
+    height: 8.27px;
+}
+
+/* Адаптивность для планшета (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .lab-services-section .container {
+        width: 95%;
+        max-width: 95%;
+        padding: 0 1.5rem;
+    }
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+    .lab-services-section {
+        margin-bottom: 40px;
+    }
+
+    .lab-services-section .container {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .lab-services-header {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .lab-services-title {
+        font-size: 20px;
+    }
+
+    .lab-services-navigation {
+        position: static;
+        margin-bottom: 20px;
+    }
+
+    .lab-service-card {
+        height: auto;
+        min-height: 260px;
+    }
+
+    .lab-services-swiper .swiper-slide {
+        width: auto;
+    }
+}
+
