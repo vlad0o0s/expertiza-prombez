@@ -2,162 +2,162 @@
    Секция FAQ (Часто задаваемые вопросы)
    ============================================ */
 .faq-section {
-    max-width: 1280px;
-    margin: 80px auto;
-    padding: 0 80px;
-    box-sizing: border-box;
+  max-width: 1280px;
+  margin: 80px auto;
+  padding: 0 80px;
+  box-sizing: border-box;
 }
 
 .faq-section .container-fluid {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 20px;
-    box-sizing: border-box;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 0px;
+  box-sizing: border-box;
 }
 
 .faq-title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 35px;
-    line-height: 120%;
-    color: #152333;
-    text-align: left;
-    margin: 0 0 60px 0;
-    text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 35px;
+  line-height: 120%;
+  color: #152333;
+  text-align: left;
+  margin: 0 0 60px 0;
+  text-transform: uppercase;
 }
 
 .faq-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .faq-item {
-    background: #E9F1FC;
-    border-radius: 5px;
-    overflow: hidden;
-    transition: all 0.3s ease;
+  background: #e9f1fc;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .faq-question {
-    width: 100%;
-    background: #E9F1FC;
-    border: none;
-    padding: 25px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.3s ease;
-    gap: 20px;
+  width: 100%;
+  background: #e9f1fc;
+  border: none;
+  padding: 25px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s ease;
+  gap: 20px;
 }
 
 .faq-question-text {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 20px;
-    line-height: 120%;
-    color: #152333;
-    flex: 1;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 120%;
+  color: #152333;
+  flex: 1;
 }
 
 .faq-icon {
-    width: 40px;
-    height: 40px;
-    background: #E60012;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  background: #e60012;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
 }
 
 .faq-icon img {
-    width: 13px;
-    height: 13px;
-    filter: brightness(0) invert(1);
-    transition: transform 0.3s ease, filter 0.3s ease;
-    transform: rotate(0deg);
+  width: 13px;
+  height: 13px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease, filter 0.3s ease;
+  transform: rotate(0deg);
 }
 
 .faq-item.active .faq-question {
-    background: #152333;
+  background: #152333;
 }
 
 .faq-item.active .faq-question-text {
-    color: #FFFFFF;
+  color: #ffffff;
 }
 
 .faq-item.active .faq-icon {
-    background: #FFFFFF;
+  background: #ffffff;
 }
 
 .faq-item.active .faq-icon img {
-    filter: brightness(0);
-    transform: rotate(-90deg);
+  filter: brightness(0);
+  transform: rotate(-90deg);
 }
 
 .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    background: #152333;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-    padding: 0 30px;
+  max-height: 0;
+  overflow: hidden;
+  background: #152333;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 30px;
 }
 
 .faq-item.active .faq-answer {
-    max-height: 500px;
-    padding: 0 30px 25px 30px;
+  max-height: 500px;
+  padding: 0 30px 25px 30px;
 }
 
 .faq-answer p {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 16px;
-    line-height: 140%;
-    color: #FFFFFF;
-    margin: 0;
-    padding-top: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 140%;
+  color: #ffffff;
+  margin: 0;
+  padding-top: 20px;
 }
 
 @media (max-width: 768px) {
-    .faq-section {
-        margin-top: 25px;
-        padding: 0 10px;
-    }
+  .faq-section {
+    margin-top: 25px;
+    padding: 0 10px;
+  }
 
-    .faq-title {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 700;
-        font-style: normal;
-        font-size: 20px;
-        line-height: 120%;
-    }
+  .faq-title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 120%;
+  }
 
-    .faq-question-text {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 600;
-        font-style: normal;
-        font-size: 13px;
-        line-height: 120%;
-    }
+  .faq-question-text {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 13px;
+    line-height: 120%;
+  }
 
-    .faq-answer p {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 500;
-        font-style: normal;
-        font-size: 12px;
-        line-height: 140%;
-    }
+  .faq-answer p {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 140%;
+  }
 
-    .faq-icon img {
-        width: 11px;
-        height: 11px;
-    }
+  .faq-icon img {
+    width: 11px;
+    height: 11px;
+  }
 }

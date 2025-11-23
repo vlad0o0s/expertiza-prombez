@@ -6,7 +6,7 @@ if (file_exists($cssPath)) {
 }
 ?>
 
-<section class="company-banner animate-on-scroll">
+<section class="company-banner animate-on-scroll animated">
     <div class="container-fluid">
         <div class="company-banner-inner">
             <!-- ПК версия -->

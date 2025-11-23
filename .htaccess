@@ -22,6 +22,12 @@ RewriteRule ^about/?$ pages/about.php [L]
 # Перенаправление /articles на /pages/articles.php
 RewriteRule ^articles/?$ pages/articles.php [L]
 
+# Перенаправление /services на /pages/services.php
+RewriteRule ^services/?$ pages/services.php [L]
+
+# Перенаправление /expertiza-promyshlennoy-bezopasnosti на /pages/expertiza-promyshlennoy-bezopasnosti.php
+RewriteRule ^expertiza-promyshlennoy-bezopasnosti/?$ pages/expertiza-promyshlennoy-bezopasnosti.php [L]
+
 # Динамические URL статей - проверяем slug в БД
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -36,9 +42,11 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !^/admin [NC]
 RewriteCond %{REQUEST_URI} !^/articles [NC]
 RewriteCond %{REQUEST_URI} !^/expertiza-prombezopasnosti [NC]
+RewriteCond %{REQUEST_URI} !^/expertiza-promyshlennoy-bezopasnosti [NC]
 RewriteCond %{REQUEST_URI} !^/zapros-kommercheskogo-predlozheniya [NC]
 RewriteCond %{REQUEST_URI} !^/about [NC]
 RewriteCond %{REQUEST_URI} !^/laboratoriya-nerazrushayushchego-kontrolya [NC]
+RewriteCond %{REQUEST_URI} !^/services [NC]
 RewriteRule ^([^/]+)/?$ pages/epb.php?slug=$1 [L,QSA]
 
 # Админ-панель - явные правила для админки
