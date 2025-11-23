@@ -1,25 +1,25 @@
 <?php
 /**
- * Список ЭПБ в админ-панели
+ * Список услуг в админ-панели
  */
 
 require_once __DIR__ . '/../includes/admin-auth.php';
 requireAdminAuth();
 
 require_once __DIR__ . '/../config/database.php';
-require_once __DIR__ . '/../includes/epb-functions.php';
+require_once __DIR__ . '/../includes/services-functions.php';
 
 $pdo = getDBConnection();
 
-// Получаем список ЭПБ
+// Получаем список записей услуг
 try {
-    $epbList = getAllEpb();
+    $services = getAllServices();
 } catch (PDOException $e) {
-    $epbList = [];
+    $services = [];
 }
 
-$pageTitle = 'ЭПБ - Админ-панель';
-$currentPage = 'epb';
+$pageTitle = 'Услуги - Админ-панель';
+$currentPage = 'services';
 include __DIR__ . '/../includes/admin-header.php';
 ?>
 <style>
@@ -99,6 +99,7 @@ include __DIR__ . '/../includes/admin-header.php';
 
     .btn-edit,
     .btn-delete,
+    .btn-add-subcategory,
     .btn-preview {
         padding: 8px 16px;
         border: none;
@@ -114,8 +115,6 @@ include __DIR__ . '/../includes/admin-header.php';
         font-family: inherit;
         margin-right: 8px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        position: relative;
-        overflow: hidden;
     }
 
     .btn-preview {
@@ -132,34 +131,12 @@ include __DIR__ . '/../includes/admin-header.php';
         transform: translateY(-1px);
     }
 
-    .btn-preview:active {
-        transform: translateY(0);
-        box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
-    }
-
     .btn-preview svg {
         width: 16px;
         height: 16px;
         stroke: currentColor;
         fill: none;
         flex-shrink: 0;
-    }
-
-    .btn-edit::before,
-    .btn-delete::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: left 0.5s ease;
-    }
-
-    .btn-edit:hover::before,
-    .btn-delete:hover::before {
-        left: 100%;
     }
 
     .btn-edit {
@@ -173,14 +150,23 @@ include __DIR__ . '/../includes/admin-header.php';
         transform: translateY(-1px);
     }
 
-    .btn-edit:active {
-        transform: translateY(0);
-        box-shadow: 0 2px 4px rgba(145, 162, 184, 0.2);
+    .btn-add-subcategory {
+        background: linear-gradient(135deg, #152333 0%, #0a141c 100%);
+        color: #ffffff;
+    }
+
+    .btn-add-subcategory:hover {
+        background: linear-gradient(135deg, #0a141c 0%, #152333 100%);
+        box-shadow: 0 4px 8px rgba(21, 35, 51, 0.3);
+        transform: translateY(-1px);
     }
 
     .btn-delete {
         background: linear-gradient(135deg, #e60012 0%, #cc0010 100%);
         color: #ffffff;
+        padding: 8px;
+        min-width: 36px;
+        justify-content: center;
     }
 
     .btn-delete:hover {
@@ -189,22 +175,11 @@ include __DIR__ . '/../includes/admin-header.php';
         transform: translateY(-1px);
     }
 
-    .btn-delete:active {
-        transform: translateY(0);
-        box-shadow: 0 2px 4px rgba(230, 0, 18, 0.2);
-    }
-
     .btn-delete svg {
         width: 16px;
         height: 16px;
         stroke: currentColor;
         flex-shrink: 0;
-    }
-
-    .btn-delete {
-        padding: 8px;
-        min-width: 36px;
-        justify-content: center;
     }
 
     .status-published {
@@ -223,25 +198,44 @@ include __DIR__ . '/../includes/admin-header.php';
         color: #91A2B8;
         font-size: 14px;
     }
+
 </style>
 
 <div class="admin-container">
     <div class="admin-actions">
-        <h2>ЭПБ</h2>
-        <a href="/admin/epb/create" class="btn-add">+ Создать ЭПБ</a>
+        <h2>Услуги</h2>
+        <a href="/admin/services/create" class="btn-add">+ Создать услугу</a>
     </div>
 
-    <?php if (empty($epbList)): ?>
+    <?php if (isset($_GET['success'])): ?>
+        <div style="background: #d4edda; color: #155724; padding: 12px; border-radius: 5px; margin-bottom: 20px; font-size: 14px;">
+            Услуга успешно сохранена!
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['deleted'])): ?>
+        <div style="background: #d4edda; color: #155724; padding: 12px; border-radius: 5px; margin-bottom: 20px; font-size: 14px;">
+            Услуга успешно удалена!
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['error'])): ?>
+        <div style="background: #f8d7da; color: #721c24; padding: 12px; border-radius: 5px; margin-bottom: 20px; font-size: 14px;">
+            Произошла ошибка при выполнении операции.
+        </div>
+    <?php endif; ?>
+
+    <?php if (empty($services)): ?>
         <div class="empty-message">
-            <p>ЭПБ пока нет. <a href="/admin/epb/create" style="color: #152333; text-decoration: underline;">Создайте первую
-                    запись</a></p>
+            <p>Услуг пока нет. <a href="/admin/services/create"
+                    style="color: #152333; text-decoration: underline;">Создайте первую услугу</a></p>
         </div>
     <?php else: ?>
         <table class="admin-table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Заголовок</th>
+                    <th>Название</th>
                     <th>URL</th>
                     <th>Категория</th>
                     <th>Статус</th>
@@ -250,31 +244,32 @@ include __DIR__ . '/../includes/admin-header.php';
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($epbList as $epb): ?>
+                <?php foreach ($services as $service): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($epb['id']); ?></td>
-                        <td><?php echo htmlspecialchars($epb['title']); ?></td>
-                        <td><?php echo htmlspecialchars($epb['slug']); ?></td>
-                        <td><?php echo htmlspecialchars($epb['category'] ?? '-'); ?></td>
+                        <td><?php echo htmlspecialchars($service['id']); ?></td>
+                        <td><strong><?php echo htmlspecialchars($service['title']); ?></strong></td>
+                        <td><?php echo htmlspecialchars($service['slug']); ?></td>
+                        <td><?php echo htmlspecialchars($service['category_name'] ?? '-'); ?></td>
                         <td>
-                            <span class="<?php echo $epb['published'] ? 'status-published' : 'status-draft'; ?>">
-                                <?php echo $epb['published'] ? 'Опубликовано' : 'Черновик'; ?>
+                            <span class="<?php echo $service['published'] ? 'status-published' : 'status-draft'; ?>">
+                                <?php echo $service['published'] ? 'Опубликовано' : 'Черновик'; ?>
                             </span>
                         </td>
-                        <td><?php echo date('d.m.Y H:i', strtotime($epb['created_at'])); ?></td>
+                        <td><?php echo date('d.m.Y H:i', strtotime($service['created_at'])); ?></td>
                         <td>
-                            <div style="display: flex; gap: 8px; align-items: center;">
-                                <?php if ($epb['published']): ?>
-                                <a href="/<?php echo htmlspecialchars($epb['slug']); ?>" target="_blank" class="btn-preview" title="Предпросмотр">
+                            <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                                <?php if ($service['published']): ?>
+                                <a href="/<?php echo htmlspecialchars($service['slug']); ?>" target="_blank" class="btn-preview" title="Предпросмотр">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                         <circle cx="12" cy="12" r="3"></circle>
                                     </svg>
                                 </a>
                                 <?php endif; ?>
-                                <a href="/admin/epb/edit?id=<?php echo $epb['id']; ?>" class="btn-edit">Редактировать</a>
-                                <a href="/admin/epb/delete?id=<?php echo $epb['id']; ?>" class="btn-delete"
-                                    onclick="return confirm('Вы уверены, что хотите удалить эту запись?');" title="Удалить">
+                                <a href="/admin/services/edit?id=<?php echo $service['id']; ?>"
+                                    class="btn-edit">Редактировать</a>
+                                <a href="/admin/services/delete?id=<?php echo $service['id']; ?>" class="btn-delete"
+                                    onclick="return confirm('Вы уверены, что хотите удалить эту услугу?');" title="Удалить">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <polyline points="3 6 5 6 21 6"></polyline>
@@ -296,3 +291,4 @@ include __DIR__ . '/../includes/admin-header.php';
 </body>
 
 </html>
+

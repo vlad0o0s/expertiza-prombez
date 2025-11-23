@@ -36,7 +36,7 @@ RewriteRule ^articles/([^/]+)/?$ pages/article.php?slug=$1 [L,QSA]
 # Перенаправление /laboratoriya-nerazrushayushchego-kontrolya на /pages/laboratoriya-nerazrushayushchego-kontrolya.php
 RewriteRule ^laboratoriya-nerazrushayushchego-kontrolya/?$ pages/laboratoriya-nerazrushayushchego-kontrolya.php [L]
 
-# Динамические URL ЭПБ - проверяем slug в БД (должно быть после всех конкретных правил, но перед админкой)
+# Динамические URL услуг - проверяем slug в БД (должно быть после всех конкретных правил, но перед ЭПБ)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !^/admin [NC]
@@ -47,7 +47,8 @@ RewriteCond %{REQUEST_URI} !^/zapros-kommercheskogo-predlozheniya [NC]
 RewriteCond %{REQUEST_URI} !^/about [NC]
 RewriteCond %{REQUEST_URI} !^/laboratoriya-nerazrushayushchego-kontrolya [NC]
 RewriteCond %{REQUEST_URI} !^/services [NC]
-RewriteRule ^([^/]+)/?$ pages/epb.php?slug=$1 [L,QSA]
+RewriteCond %{REQUEST_URI} !^/contacts [NC]
+RewriteRule ^([^/]+)/?$ pages/service.php?slug=$1 [L,QSA]
 
 # Админ-панель - явные правила для админки
 RewriteRule ^admin/?$ admin/index.php [L]
@@ -63,6 +64,19 @@ RewriteRule ^admin/epb/?$ admin/epb.php [L]
 RewriteRule ^admin/epb/create/?$ admin/epb/create.php [L]
 RewriteRule ^admin/epb/edit/?$ admin/epb/edit.php [L]
 RewriteRule ^admin/epb/delete/?$ admin/epb/delete.php [L]
+RewriteRule ^admin/expertiza-articles/?$ admin/expertiza-articles.php [L]
+RewriteRule ^admin/expertiza-articles/create/?$ admin/expertiza-articles/create.php [L]
+RewriteRule ^admin/expertiza-articles/edit/?$ admin/expertiza-articles/edit.php [L]
+RewriteRule ^admin/expertiza-articles/delete/?$ admin/expertiza-articles/delete.php [L]
+RewriteRule ^admin/article-categories/?$ admin/article-categories.php [L]
+RewriteRule ^admin/article-categories/create/?$ admin/article-categories/create.php [L]
+RewriteRule ^admin/article-categories/edit/?$ admin/article-categories/edit.php [L]
+RewriteRule ^admin/article-categories/delete/?$ admin/article-categories/delete.php [L]
+RewriteRule ^admin/article-categories/get-children/?$ admin/article-categories/get-children.php [L]
+RewriteRule ^admin/services/?$ admin/services.php [L]
+RewriteRule ^admin/services/create/?$ admin/services/create.php [L]
+RewriteRule ^admin/services/edit/?$ admin/services/edit.php [L]
+RewriteRule ^admin/services/delete/?$ admin/services/delete.php [L]
 
 # Если запрашивается файл без расширения, проверяем существование .php файла
 # Исключаем админ-панель из этого правила

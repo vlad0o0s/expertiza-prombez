@@ -6,7 +6,7 @@ $menuItems = [
 		'href' => '/services',
 		'children' => [
 			['label' => 'Экспертиза промышленной безопасности', 'href' => '/expertiza-prombezopasnosti'],
-			['label' => 'ЭПБ подъемных сооружений и кранов', 'href' => '/epb-podemnih-sooruzheniy-i-kranov'],
+			['label' => 'ЭПБ подъемных сооружений и кранов', 'href' => '/epb-pod-emnyh-sooruzheniy-i-kranov'],
 			['label' => 'Экологическая экспертиза', 'href' => '#'],
 			['label' => 'Техническое обследование зданий', 'href' => '#'],
 			['label' => 'Судебная экспертиза', 'href' => '#'],

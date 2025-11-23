@@ -1,20 +1,68 @@
 <?php
 /**
- * Создание новой ЭПБ
+ * Редактирование статьи экспертизы
  */
 
 require_once __DIR__ . '/../../includes/admin-auth.php';
 requireAdminAuth();
 
 require_once __DIR__ . '/../../config/database.php';
+require_once __DIR__ . '/../../includes/expertiza-articles-functions.php';
+
+$pageTitle = 'Редактировать статью экспертизы - Админ-панель';
+$currentPage = 'expertiza-articles';
 
 $pdo = getDBConnection();
 $error = '';
+$article = null;
+
+$id = $_GET['id'] ?? 0;
+
+if (!$id) {
+    header('Location: /admin/expertiza-articles');
+    exit;
+}
+
+// Получаем статью
+$article = getExpertizaArticleById($id);
+
+if (!$article) {
+    header('Location: /admin/expertiza-articles');
+    exit;
+}
+
+// Получаем список категорий для выбора
+$allCategories = getAllArticleCategories();
+
+// Группируем категории по уровням
+$categoriesByLevel = [
+    1 => [],
+    2 => [],
+    3 => []
+];
+
+foreach ($allCategories as $cat) {
+    $categoriesByLevel[$cat['level']][] = $cat;
+}
+
+// Определяем путь текущей категории (для предзаполнения формы)
+$categoryPath = [];
+if (!empty($article['category_id'])) {
+    $categoryPath = getArticleCategoryPath($article['category_id']);
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = trim($_POST['title'] ?? '');
     $slug = trim($_POST['slug'] ?? '');
-    $category = trim($_POST['category'] ?? '');
+    // Берем категорию из последнего выбранного уровня (приоритет: 3 > 2 > 1)
+    $category_id = null;
+    if (!empty($_POST['category_level_3'])) {
+        $category_id = intval($_POST['category_level_3']);
+    } elseif (!empty($_POST['category_level_2'])) {
+        $category_id = intval($_POST['category_level_2']);
+    } elseif (!empty($_POST['category_level_1'])) {
+        $category_id = intval($_POST['category_level_1']);
+    }
     $hero_content = $_POST['hero_content'] ?? '';
     $features_content = $_POST['features_content'] ?? '';
     $hero_image = trim($_POST['hero_image'] ?? '');
@@ -22,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Обработка загрузки изображения
     if (isset($_FILES['hero_image_file']) && $_FILES['hero_image_file']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = __DIR__ . '/../../uploads/epb/';
+        $uploadDir = __DIR__ . '/../../uploads/expertiza-articles/';
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0755, true);
         }
@@ -36,142 +84,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $filepath = $uploadDir . $filename;
 
             if (move_uploaded_file($file['tmp_name'], $filepath)) {
-                $hero_image = '/uploads/epb/' . $filename;
+                $hero_image = '/uploads/expertiza-articles/' . $filename;
             }
         }
     }
 
-    // Генерируем slug из title, если не указан
-    if (empty($slug) && !empty($title)) {
-        $slug = transliterate($title);
-    }
-
-    if (empty($title)) {
-        $error = 'Заполните заголовок';
-    } elseif (empty($slug)) {
-        $error = 'Заполните URL (slug)';
-    } elseif (empty($hero_content)) {
-        $error = 'Заполните первую часть контента';
-    } elseif (empty($features_content)) {
-        $error = 'Заполните вторую часть контента';
+    if (empty($title) || empty($slug) || empty($hero_content) || empty($features_content)) {
+        $error = 'Заполните все обязательные поля';
     } else {
-        // Проверяем уникальность slug
-        try {
-            $stmt = $pdo->prepare("SELECT id FROM epb WHERE slug = ?");
-            $stmt->execute([$slug]);
-            if ($stmt->fetch()) {
-                $error = 'ЭПБ с таким URL уже существует';
-            } else {
-                try {
-                    $stmt = $pdo->prepare("INSERT INTO epb (title, slug, category, hero_content, features_content, hero_image, published, published_at) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
-                    $stmt->execute([$title, $slug, $category ?: null, $hero_content, $features_content, $hero_image ?: null, $published]);
+        // Проверяем уникальность slug (кроме текущей статьи)
+        $stmt = $pdo->prepare("SELECT id FROM expertiza_articles WHERE slug = ? AND id != ?");
+        $stmt->execute([$slug, $id]);
+        if ($stmt->fetch()) {
+            $error = 'Статья с таким URL уже существует';
+        } else {
+            try {
+                $stmt = $pdo->prepare("UPDATE expertiza_articles SET title = ?, slug = ?, category_id = ?, hero_content = ?, features_content = ?, hero_image = ?, published = ?, updated_at = NOW() WHERE id = ?");
+                $stmt->execute([$title, $slug, $category_id, $hero_content, $features_content, $hero_image ?: null, $published, $id]);
 
-                    header('Location: /admin/epb?success=1');
-                    exit;
-                } catch (PDOException $e) {
-                    $error = 'Ошибка при сохранении: ' . $e->getMessage();
-                    error_log("EPB creation error: " . $e->getMessage());
-                }
+                header('Location: /admin/expertiza-articles?success=1');
+                exit;
+            } catch (PDOException $e) {
+                $error = 'Ошибка при сохранении: ' . $e->getMessage();
             }
-        } catch (PDOException $e) {
-            $error = 'Ошибка при проверке уникальности URL: ' . $e->getMessage();
-            error_log("EPB slug check error: " . $e->getMessage());
         }
     }
+
+    // Обновляем данные статьи для формы
+    $article = array_merge($article, $_POST);
 }
 
-// Функция для транслитерации
-function transliterate($text)
-{
-    $translit = [
-        'а' => 'a',
-        'б' => 'b',
-        'в' => 'v',
-        'г' => 'g',
-        'д' => 'd',
-        'е' => 'e',
-        'ё' => 'yo',
-        'ж' => 'zh',
-        'з' => 'z',
-        'и' => 'i',
-        'й' => 'y',
-        'к' => 'k',
-        'л' => 'l',
-        'м' => 'm',
-        'н' => 'n',
-        'о' => 'o',
-        'п' => 'p',
-        'р' => 'r',
-        'с' => 's',
-        'т' => 't',
-        'у' => 'u',
-        'ф' => 'f',
-        'х' => 'h',
-        'ц' => 'ts',
-        'ч' => 'ch',
-        'ш' => 'sh',
-        'щ' => 'sch',
-        'ъ' => '',
-        'ы' => 'y',
-        'ь' => '',
-        'э' => 'e',
-        'ю' => 'yu',
-        'я' => 'ya',
-        'А' => 'A',
-        'Б' => 'B',
-        'В' => 'V',
-        'Г' => 'G',
-        'Д' => 'D',
-        'Е' => 'E',
-        'Ё' => 'Yo',
-        'Ж' => 'Zh',
-        'З' => 'Z',
-        'И' => 'I',
-        'Й' => 'Y',
-        'К' => 'K',
-        'Л' => 'L',
-        'М' => 'M',
-        'Н' => 'N',
-        'О' => 'O',
-        'П' => 'P',
-        'Р' => 'R',
-        'С' => 'S',
-        'Т' => 'T',
-        'У' => 'U',
-        'Ф' => 'F',
-        'Х' => 'H',
-        'Ц' => 'Ts',
-        'Ч' => 'Ch',
-        'Ш' => 'Sh',
-        'Щ' => 'Sch',
-        'Ъ' => '',
-        'Ы' => 'Y',
-        'Ь' => '',
-        'Э' => 'E',
-        'Ю' => 'Yu',
-        'Я' => 'Ya'
-    ];
-
-    $text = strtr($text, $translit);
-    $text = preg_replace('/[^a-z0-9-]/i', '-', $text);
-    $text = preg_replace('/-+/', '-', $text);
-    $text = trim($text, '-');
-    $text = strtolower($text);
-
-    return $text;
-}
-
-$pageTitle = 'Создать ЭПБ - Админ-панель';
-$currentPage = 'epb';
+$pageTitle = 'Редактировать статью экспертизы - Админ-панель';
+$currentPage = 'expertiza-articles';
 include __DIR__ . '/../../includes/admin-header.php';
 ?>
 <link rel="stylesheet" href="/admin/assets/admin-forms.css">
+<script src="/admin/assets/custom-select.js"></script>
 <script src="/admin/assets/tinymce/tinymce/js/tinymce/tinymce.min.js"></script>
 <style>
     .admin-container {
         max-width: 1200px;
         margin: 40px auto;
         padding: 0 30px;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+    }
+
+    .form-group label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 
     .tooltip-icon {
@@ -339,58 +305,11 @@ include __DIR__ . '/../../includes/admin-header.php';
     #hero_image_preview_img {
         transition: opacity 0.2s ease;
     }
-
-    .error-message {
-        background: #ffe6e6;
-        color: #e60012;
-        padding: 12px;
-        border-radius: 5px;
-        margin-bottom: 20px;
-        font-size: 14px;
-    }
-
-    .form-actions {
-        display: flex;
-        gap: 15px;
-        margin-top: 30px;
-    }
-
-    .btn-save,
-    .btn-cancel {
-        padding: 12px 24px;
-        border: none;
-        border-radius: 5px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        text-decoration: none;
-        display: inline-block;
-        transition: all 0.3s ease;
-        font-family: inherit;
-    }
-
-    .btn-save {
-        background: #152333;
-        color: #ffffff;
-    }
-
-    .btn-save:hover {
-        background: #0a141c;
-    }
-
-    .btn-cancel {
-        background: #91A2B8;
-        color: #ffffff;
-    }
-
-    .btn-cancel:hover {
-        background: #7a8fa8;
-    }
 </style>
 
 <div class="admin-container">
     <div class="admin-content">
-        <h2>Создать ЭПБ</h2>
+        <h2>Редактировать статью экспертизы</h2>
 
         <?php if ($error): ?>
             <div class="error-message"><?php echo htmlspecialchars($error); ?></div>
@@ -401,51 +320,78 @@ include __DIR__ . '/../../includes/admin-header.php';
                 <label for="title">
                     Заголовок *
                     <span class="tooltip-icon">?
-                        <span class="tooltip-text">Основной заголовок ЭПБ, который будет отображаться на странице.
-                            Обязательное поле.</span>
+                        <span class="tooltip-text">Основной заголовок статьи экспертизы, который будет отображаться на странице. Обязательное поле.</span>
                     </span>
                 </label>
-                <input type="text" id="title" name="title"
-                    value="<?php echo htmlspecialchars($_POST['title'] ?? ''); ?>" required>
+                <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($article['title']); ?>"
+                    required>
             </div>
 
             <div class="form-group">
                 <label for="slug">
                     URL (slug) *
                     <span class="tooltip-icon">?
-                        <span class="tooltip-text">Уникальный URL-адрес ЭПБ (например:
-                            epb-pod-emnyh-sooruzheniy-i-kranov). Будет автоматически сгенерирован из заголовка, если
-                            оставить пустым. Используйте только латинские буквы, цифры и дефисы.</span>
+                        <span class="tooltip-text">Уникальный URL-адрес статьи. Будет автоматически сгенерирован из заголовка, если оставить пустым. Используйте только латинские буквы, цифры и дефисы.</span>
                     </span>
                 </label>
-                <input type="text" id="slug" name="slug" value="<?php echo htmlspecialchars($_POST['slug'] ?? ''); ?>"
+                <input type="text" id="slug" name="slug" value="<?php echo htmlspecialchars($article['slug']); ?>"
                     required>
-                <small>Будет автоматически сгенерирован из заголовка, если оставить пустым</small>
             </div>
 
             <div class="form-group">
-                <label for="category">
+                <label>
                     Категория
                     <span class="tooltip-icon">?
-                        <span class="tooltip-text">Категория ЭПБ (например: Э3, Э1, Э2 и т.д.). Можно оставить
-                            пустым.</span>
+                        <span class="tooltip-text">Выберите категорию 1 уровня, затем при необходимости категорию 2 и 3 уровня. Категория определяет раздел, к которому относится статья.</span>
                     </span>
                 </label>
-                <input type="text" id="category" name="category"
-                    value="<?php echo htmlspecialchars($_POST['category'] ?? ''); ?>" placeholder="Например: Э3">
+                <div id="category-selectors">
+                    <div class="category-select-wrapper show" id="category-level-1-wrapper" style="display: block;">
+                        <label for="category_level_1"
+                            style="font-size: 12px; color: #91A2B8; margin-bottom: 5px; display: block;">Категория 1
+                            уровня</label>
+                        <select id="category_level_1" name="category_level_1" data-custom-select="false">
+                            <option value="">Выберите категорию 1 уровня</option>
+                            <?php
+                            $selectedLevel1 = !empty($categoryPath) ? $categoryPath[0]['id'] : null;
+                            foreach ($categoriesByLevel[1] as $cat):
+                                ?>
+                                <option value="<?php echo $cat['id']; ?>" <?php echo ($selectedLevel1 == $cat['id']) ? 'selected' : ''; ?>>
+                                    <?php echo htmlspecialchars($cat['name']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="category-select-wrapper" id="category-level-2-wrapper"
+                        style="display: none; margin-top: 15px;">
+                        <label for="category_level_2"
+                            style="font-size: 12px; color: #91A2B8; margin-bottom: 5px; display: block;">Категория 2
+                            уровня</label>
+                        <select id="category_level_2" name="category_level_2" data-custom-select="false">
+                            <option value="">Выберите категорию 2 уровня</option>
+                        </select>
+                    </div>
+                    <div class="category-select-wrapper" id="category-level-3-wrapper"
+                        style="display: none; margin-top: 15px;">
+                        <label for="category_level_3"
+                            style="font-size: 12px; color: #91A2B8; margin-bottom: 5px; display: block;">Категория 3
+                            уровня</label>
+                        <select id="category_level_3" name="category_level_3" data-custom-select="false">
+                            <option value="">Выберите категорию 3 уровня</option>
+                        </select>
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">
                 <label for="hero_image">
                     Изображение
                     <span class="tooltip-icon">?
-                        <span class="tooltip-text">Главное изображение ЭПБ, которое будет отображаться в hero-секции.
-                            Поддерживаются форматы: JPG, PNG, GIF, WebP. Перетащите файл сюда или нажмите для
-                            выбора.</span>
+                        <span class="tooltip-text">Главное изображение статьи экспертизы. Поддерживаются форматы: JPG, PNG, GIF, WebP. Перетащите файл сюда или нажмите для выбора.</span>
                     </span>
                 </label>
                 <input type="hidden" id="hero_image" name="hero_image"
-                    value="<?php echo htmlspecialchars($_POST['hero_image'] ?? ''); ?>">
+                    value="<?php echo htmlspecialchars($article['hero_image'] ?? ''); ?>">
                 <div class="drag-drop-zone" id="hero_image_dropzone">
                     <input type="file" id="hero_image_file" name="hero_image_file" accept="image/*"
                         style="display: none;" onchange="handleImageUpload(this, 'hero_image')">
@@ -473,63 +419,159 @@ include __DIR__ . '/../../includes/admin-header.php';
                 <label for="hero_content">
                     Первая часть контента (Hero) *
                     <span class="tooltip-icon">?
-                        <span class="tooltip-text">Первая часть контента, которая будет отображаться в hero-секции
-                            вместе с изображением. Кнопка "ЗАКАЗАТЬ УСЛУГУ" будет автоматически добавлена после этого
-                            контента. Обязательное поле.</span>
+                        <span class="tooltip-text">Первая часть контента статьи, которая отображается в верхней части страницы. Используйте редактор для форматирования текста. Обязательное поле.</span>
                     </span>
                 </label>
                 <textarea id="hero_content"
-                    name="hero_content"><?php echo htmlspecialchars($_POST['hero_content'] ?? ''); ?></textarea>
+                    name="hero_content"><?php echo htmlspecialchars($article['hero_content']); ?></textarea>
             </div>
 
             <div class="form-group">
                 <label for="features_content">
                     Вторая часть контента (Особенности) *
                     <span class="tooltip-icon">?
-                        <span class="tooltip-text">Вторая часть контента, которая будет отображаться в секции
-                            "Особенности ЭПБ" на полную ширину. Обязательное поле.</span>
+                        <span class="tooltip-text">Вторая часть контента статьи, которая отображается ниже первой части. Используйте редактор для форматирования текста. Обязательное поле.</span>
                     </span>
                 </label>
                 <textarea id="features_content"
-                    name="features_content"><?php echo htmlspecialchars($_POST['features_content'] ?? ''); ?></textarea>
+                    name="features_content"><?php echo htmlspecialchars($article['features_content']); ?></textarea>
             </div>
 
             <div class="form-actions">
                 <button type="submit" class="btn-save">Сохранить</button>
-                <a href="/admin/epb" class="btn-cancel">Отмена</a>
+                <a href="/admin/expertiza-articles" class="btn-cancel">Отмена</a>
             </div>
         </form>
     </div>
 </div>
 
 <script>
-    // Автогенерация slug из title
-    document.getElementById('title').addEventListener('input', function () {
-        const slugInput = document.getElementById('slug');
-        if (!slugInput.value || slugInput.dataset.manual !== 'true') {
-            const title = this.value;
-            const slug = title.toLowerCase()
-                .replace(/[а-яё]/g, function (match) {
-                    const map = {
-                        'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
-                        'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
-                        'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
-                        'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch',
-                        'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya'
-                    };
-                    return map[match] || match;
-                })
-                .replace(/[^a-z0-9]+/g, '-')
-                .replace(/^-+|-+$/g, '');
-            slugInput.value = slug;
+    // Каскадный выбор категорий
+    const categoriesData = <?php echo json_encode($allCategories); ?>;
+    const categoryPath = <?php echo json_encode($categoryPath); ?>;
+
+    // Функция для получения дочерних категорий
+    function getChildCategories(parentId) {
+        return categoriesData.filter(cat => cat.parent_id == parentId);
+    }
+
+    // Инициализация категорий при загрузке страницы
+    function initCategorySelects() {
+        if (categoryPath.length > 0) {
+            const level1Id = categoryPath[0]['id'];
+            document.getElementById('category_level_1').value = level1Id;
+
+            // Загружаем категории 2 уровня
+            const level2Categories = getChildCategories(level1Id);
+            if (level2Categories.length > 0) {
+                const level2Select = document.getElementById('category_level_2');
+                const level2Wrapper = document.getElementById('category-level-2-wrapper');
+                level2Categories.forEach(cat => {
+                    const option = document.createElement('option');
+                    option.value = cat.id;
+                    option.textContent = cat.name;
+                    level2Select.appendChild(option);
+                });
+                level2Wrapper.style.display = 'block';
+                level2Wrapper.classList.add('show');
+                setTimeout(() => {
+                    if (window.initCustomSelects) {
+                        const newSelect = document.getElementById('category_level_2');
+                        if (newSelect && !newSelect.dataset.customSelect) {
+                            window.initCustomSelects(level2Wrapper);
+                        }
+                    }
+                }, 150);
+
+                if (categoryPath.length > 1) {
+                    const level2Id = categoryPath[1]['id'];
+                    level2Select.value = level2Id;
+
+                    // Загружаем категории 3 уровня
+                    const level3Categories = getChildCategories(level2Id);
+                    if (level3Categories.length > 0) {
+                        const level3Select = document.getElementById('category_level_3');
+                        const level3Wrapper = document.getElementById('category-level-3-wrapper');
+                        level3Categories.forEach(cat => {
+                            const option = document.createElement('option');
+                            option.value = cat.id;
+                            option.textContent = cat.name;
+                            level3Select.appendChild(option);
+                        });
+                        level3Wrapper.style.display = 'block';
+                        level3Wrapper.classList.add('show');
+
+                        if (categoryPath.length > 2) {
+                            const level3Id = categoryPath[2]['id'];
+                            level3Select.value = level3Id;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Обработчик изменения категории 1 уровня
+    document.getElementById('category_level_1').addEventListener('change', function () {
+        const level2Wrapper = document.getElementById('category-level-2-wrapper');
+        const level3Wrapper = document.getElementById('category-level-3-wrapper');
+        const level2Select = document.getElementById('category_level_2');
+        const level3Select = document.getElementById('category_level_3');
+
+        // Очищаем и скрываем уровни 2 и 3
+        level2Select.innerHTML = '<option value="">Выберите категорию 2 уровня</option>';
+        level3Select.innerHTML = '<option value="">Выберите категорию 3 уровня</option>';
+        level2Wrapper.style.display = 'none';
+        level2Wrapper.classList.remove('show');
+        level3Wrapper.style.display = 'none';
+        level3Wrapper.classList.remove('show');
+
+        if (this.value) {
+            const childCategories = getChildCategories(this.value);
+            if (childCategories.length > 0) {
+                childCategories.forEach(cat => {
+                    const option = document.createElement('option');
+                    option.value = cat.id;
+                    option.textContent = cat.name;
+                    level2Select.appendChild(option);
+                });
+                level2Wrapper.style.display = 'block';
+                level2Wrapper.classList.add('show');
+            }
         }
     });
 
-    document.getElementById('slug').addEventListener('input', function () {
-        this.dataset.manual = 'true';
+    // Обработчик изменения категории 2 уровня
+    document.getElementById('category_level_2').addEventListener('change', function () {
+        const level3Wrapper = document.getElementById('category-level-3-wrapper');
+        const level3Select = document.getElementById('category_level_3');
+
+        // Очищаем и скрываем уровень 3
+        level3Select.innerHTML = '<option value="">Выберите категорию 3 уровня</option>';
+        level3Wrapper.style.display = 'none';
+        level3Wrapper.classList.remove('show');
+
+        if (this.value) {
+            const childCategories = getChildCategories(this.value);
+            if (childCategories.length > 0) {
+                childCategories.forEach(cat => {
+                    const option = document.createElement('option');
+                    option.value = cat.id;
+                    option.textContent = cat.name;
+                    level3Select.appendChild(option);
+                });
+                level3Wrapper.style.display = 'block';
+                level3Wrapper.classList.add('show');
+            }
+        }
     });
 
-    // Инициализация TinyMCE для обеих частей контента
+    // Инициализация при загрузке страницы
+    document.addEventListener('DOMContentLoaded', function () {
+        initCategorySelects();
+    });
+
+    // Инициализация TinyMCE
     tinymce.init({
         selector: '#hero_content',
         height: 400,
@@ -552,12 +594,7 @@ include __DIR__ . '/../../includes/admin-header.php';
         images_upload_url: '/admin/articles/upload-image',
         relative_urls: false,
         remove_script_host: false,
-        convert_urls: true,
-        setup: function (editor) {
-            editor.on('change', function () {
-                editor.save();
-            });
-        }
+        convert_urls: true
     });
 
     tinymce.init({
@@ -582,37 +619,27 @@ include __DIR__ . '/../../includes/admin-header.php';
         images_upload_url: '/admin/articles/upload-image',
         relative_urls: false,
         remove_script_host: false,
-        convert_urls: true,
-        setup: function (editor) {
-            editor.on('change', function () {
-                editor.save();
-            });
-        }
+        convert_urls: true
     });
 
-    // Обработка отправки формы - синхронизация TinyMCE и валидация
+    // Валидация при отправке формы
     document.querySelector('form').addEventListener('submit', function (e) {
-        // Сохраняем содержимое редакторов в textarea
         if (tinymce.get('hero_content')) {
             tinymce.get('hero_content').save();
-
             const content = tinymce.get('hero_content').getContent();
             if (!content || content.trim() === '' || content === '<p></p>' || content === '<p><br></p>') {
                 e.preventDefault();
                 alert('Пожалуйста, заполните первую часть контента');
-                tinymce.get('hero_content').focus();
                 return false;
             }
         }
 
         if (tinymce.get('features_content')) {
             tinymce.get('features_content').save();
-
             const content = tinymce.get('features_content').getContent();
             if (!content || content.trim() === '' || content === '<p></p>' || content === '<p><br></p>') {
                 e.preventDefault();
                 alert('Пожалуйста, заполните вторую часть контента');
-                tinymce.get('features_content').focus();
                 return false;
             }
         }
@@ -682,17 +709,26 @@ include __DIR__ . '/../../includes/admin-header.php';
         }
     }
 
-    // Обновляем превью при изменении значения
-    heroImageInput.addEventListener('input', updateImagePreview);
-
-    // Инициализация при загрузке
-    updateImagePreview();
-
     // Функция удаления изображения
     function deleteImage(inputId) {
         document.getElementById(inputId).value = '';
         updateImagePreview();
     }
+
+    // Обновляем превью при изменении значения
+    heroImageInput.addEventListener('input', updateImagePreview);
+
+    // Инициализация при загрузке
+    document.addEventListener('DOMContentLoaded', function () {
+        updateImagePreview();
+    });
+
+    // Обновляем превью после загрузки изображения
+    const originalHandleImageUpload = handleImageUpload;
+    handleImageUpload = function (input, targetInputId) {
+        originalHandleImageUpload(input, targetInputId);
+        setTimeout(updateImagePreview, 100);
+    };
 
     // Drag and Drop функционал
     const dropzone = document.getElementById('hero_image_dropzone');

@@ -1,25 +1,25 @@
 <?php
 /**
- * Список ЭПБ в админ-панели
+ * Список статей экспертизы в админ-панели
  */
 
 require_once __DIR__ . '/../includes/admin-auth.php';
 requireAdminAuth();
 
 require_once __DIR__ . '/../config/database.php';
-require_once __DIR__ . '/../includes/epb-functions.php';
+require_once __DIR__ . '/../includes/expertiza-articles-functions.php';
 
 $pdo = getDBConnection();
 
-// Получаем список ЭПБ
+// Получаем список статей
 try {
-    $epbList = getAllEpb();
+    $articles = getAllExpertizaArticles();
 } catch (PDOException $e) {
-    $epbList = [];
+    $articles = [];
 }
 
-$pageTitle = 'ЭПБ - Админ-панель';
-$currentPage = 'epb';
+$pageTitle = 'Статьи экспертизы - Админ-панель';
+$currentPage = 'expertiza-articles';
 include __DIR__ . '/../includes/admin-header.php';
 ?>
 <style>
@@ -227,14 +227,14 @@ include __DIR__ . '/../includes/admin-header.php';
 
 <div class="admin-container">
     <div class="admin-actions">
-        <h2>ЭПБ</h2>
-        <a href="/admin/epb/create" class="btn-add">+ Создать ЭПБ</a>
+        <h2>Статьи экспертизы</h2>
+        <a href="/admin/expertiza-articles/create" class="btn-add">+ Создать статью</a>
     </div>
 
-    <?php if (empty($epbList)): ?>
+    <?php if (empty($articles)): ?>
         <div class="empty-message">
-            <p>ЭПБ пока нет. <a href="/admin/epb/create" style="color: #152333; text-decoration: underline;">Создайте первую
-                    запись</a></p>
+            <p>Статьи пока нет. <a href="/admin/expertiza-articles/create"
+                    style="color: #152333; text-decoration: underline;">Создайте первую статью</a></p>
         </div>
     <?php else: ?>
         <table class="admin-table">
@@ -250,31 +250,32 @@ include __DIR__ . '/../includes/admin-header.php';
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($epbList as $epb): ?>
+                <?php foreach ($articles as $article): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($epb['id']); ?></td>
-                        <td><?php echo htmlspecialchars($epb['title']); ?></td>
-                        <td><?php echo htmlspecialchars($epb['slug']); ?></td>
-                        <td><?php echo htmlspecialchars($epb['category'] ?? '-'); ?></td>
+                        <td><?php echo htmlspecialchars($article['id']); ?></td>
+                        <td><?php echo htmlspecialchars($article['title']); ?></td>
+                        <td><?php echo htmlspecialchars($article['slug']); ?></td>
+                        <td><?php echo htmlspecialchars($article['category_name'] ?? '-'); ?></td>
                         <td>
-                            <span class="<?php echo $epb['published'] ? 'status-published' : 'status-draft'; ?>">
-                                <?php echo $epb['published'] ? 'Опубликовано' : 'Черновик'; ?>
+                            <span class="<?php echo $article['published'] ? 'status-published' : 'status-draft'; ?>">
+                                <?php echo $article['published'] ? 'Опубликовано' : 'Черновик'; ?>
                             </span>
                         </td>
-                        <td><?php echo date('d.m.Y H:i', strtotime($epb['created_at'])); ?></td>
+                        <td><?php echo date('d.m.Y H:i', strtotime($article['created_at'])); ?></td>
                         <td>
                             <div style="display: flex; gap: 8px; align-items: center;">
-                                <?php if ($epb['published']): ?>
-                                <a href="/<?php echo htmlspecialchars($epb['slug']); ?>" target="_blank" class="btn-preview" title="Предпросмотр">
+                                <?php if ($article['published']): ?>
+                                <a href="/<?php echo htmlspecialchars($article['slug']); ?>" target="_blank" class="btn-preview" title="Предпросмотр">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                         <circle cx="12" cy="12" r="3"></circle>
                                     </svg>
                                 </a>
                                 <?php endif; ?>
-                                <a href="/admin/epb/edit?id=<?php echo $epb['id']; ?>" class="btn-edit">Редактировать</a>
-                                <a href="/admin/epb/delete?id=<?php echo $epb['id']; ?>" class="btn-delete"
-                                    onclick="return confirm('Вы уверены, что хотите удалить эту запись?');" title="Удалить">
+                                <a href="/admin/expertiza-articles/edit?id=<?php echo $article['id']; ?>"
+                                    class="btn-edit">Редактировать</a>
+                                <a href="/admin/expertiza-articles/delete?id=<?php echo $article['id']; ?>" class="btn-delete"
+                                    onclick="return confirm('Вы уверены, что хотите удалить эту статью?');" title="Удалить">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <polyline points="3 6 5 6 21 6"></polyline>
