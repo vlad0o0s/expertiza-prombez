@@ -98,7 +98,6 @@ include __DIR__ . '/../includes/header.php';
     <!-- Особенности ЭПБ -->
     <section class="features-section">
         <div class="container">
-            <h2 class="features-title">ОСОБЕННОСТИ <?php echo mb_strtoupper(htmlspecialchars($epb['title'])); ?></h2>
             <article class="features-content">
                 <?php echo $epb['features_content']; ?>
             </article>

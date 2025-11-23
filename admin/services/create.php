@@ -1,45 +1,31 @@
 <?php
 /**
- * Создание новой ЭПБ
+ * Создание новой услуги
  */
 
 require_once __DIR__ . '/../../includes/admin-auth.php';
 requireAdminAuth();
 
 require_once __DIR__ . '/../../config/database.php';
+require_once __DIR__ . '/../../includes/services-functions.php';
 
 $pdo = getDBConnection();
 $error = '';
 
+// Получаем список категорий для выбора
+$allCategories = getServiceCategories();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = trim($_POST['title'] ?? '');
     $slug = trim($_POST['slug'] ?? '');
-    $category = trim($_POST['category'] ?? '');
-    $hero_content = $_POST['hero_content'] ?? '';
-    $features_content = $_POST['features_content'] ?? '';
+    $category_id = !empty($_POST['category_id']) ? intval($_POST['category_id']) : null;
+    $description = trim($_POST['description'] ?? '');
+    $content = trim($_POST['content'] ?? '');
     $hero_image = trim($_POST['hero_image'] ?? '');
-    $published = 1; // Всегда публикуем сразу
-
-    // Обработка загрузки изображения
-    if (isset($_FILES['hero_image_file']) && $_FILES['hero_image_file']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = __DIR__ . '/../../uploads/epb/';
-        if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0755, true);
-        }
-
-        $file = $_FILES['hero_image_file'];
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-        $extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-
-        if (in_array($file['type'], $allowedTypes) && in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
-            $filename = uniqid() . '_' . time() . '.' . $extension;
-            $filepath = $uploadDir . $filename;
-
-            if (move_uploaded_file($file['tmp_name'], $filepath)) {
-                $hero_image = '/uploads/epb/' . $filename;
-            }
-        }
-    }
+    $equipment_list = trim($_POST['equipment_list'] ?? '');
+    $price = trim($_POST['price'] ?? '');
+    $term = trim($_POST['term'] ?? '');
+    $published = isset($_POST['published']) ? 1 : 0;
 
     // Генерируем slug из title, если не указан
     if (empty($slug) && !empty($title)) {
@@ -47,35 +33,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($title)) {
-        $error = 'Заполните заголовок';
+        $error = 'Заполните название услуги';
     } elseif (empty($slug)) {
         $error = 'Заполните URL (slug)';
-    } elseif (empty($hero_content)) {
-        $error = 'Заполните первую часть контента';
-    } elseif (empty($features_content)) {
-        $error = 'Заполните вторую часть контента';
+    } elseif (empty($category_id)) {
+        $error = 'Выберите категорию';
     } else {
         // Проверяем уникальность slug
         try {
-            $stmt = $pdo->prepare("SELECT id FROM epb WHERE slug = ?");
+            $stmt = $pdo->prepare("SELECT id FROM services WHERE slug = ?");
             $stmt->execute([$slug]);
             if ($stmt->fetch()) {
-                $error = 'ЭПБ с таким URL уже существует';
+                $error = 'Услуга с таким URL уже существует';
             } else {
                 try {
-                    $stmt = $pdo->prepare("INSERT INTO epb (title, slug, category, hero_content, features_content, hero_image, published, published_at) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
-                    $stmt->execute([$title, $slug, $category ?: null, $hero_content, $features_content, $hero_image ?: null, $published]);
+                    $stmt = $pdo->prepare("INSERT INTO services (title, slug, category_id, description, content, hero_image, equipment_list, price, term, published) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    $stmt->execute([$title, $slug, $category_id, $description ?: null, $content ?: null, $hero_image ?: null, $equipment_list ?: null, $price ?: null, $term ?: null, $published]);
 
-                    header('Location: /admin/epb?success=1');
+                    header('Location: /admin/services?success=1');
                     exit;
                 } catch (PDOException $e) {
                     $error = 'Ошибка при сохранении: ' . $e->getMessage();
-                    error_log("EPB creation error: " . $e->getMessage());
+                    error_log("Service creation error: " . $e->getMessage());
                 }
             }
         } catch (PDOException $e) {
             $error = 'Ошибка при проверке уникальности URL: ' . $e->getMessage();
-            error_log("EPB slug check error: " . $e->getMessage());
+            error_log("Service slug check error: " . $e->getMessage());
         }
     }
 }
@@ -84,72 +68,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 function transliterate($text)
 {
     $translit = [
-        'а' => 'a',
-        'б' => 'b',
-        'в' => 'v',
-        'г' => 'g',
-        'д' => 'd',
-        'е' => 'e',
-        'ё' => 'yo',
-        'ж' => 'zh',
-        'з' => 'z',
-        'и' => 'i',
-        'й' => 'y',
-        'к' => 'k',
-        'л' => 'l',
-        'м' => 'm',
-        'н' => 'n',
-        'о' => 'o',
-        'п' => 'p',
-        'р' => 'r',
-        'с' => 's',
-        'т' => 't',
-        'у' => 'u',
-        'ф' => 'f',
-        'х' => 'h',
-        'ц' => 'ts',
-        'ч' => 'ch',
-        'ш' => 'sh',
-        'щ' => 'sch',
-        'ъ' => '',
-        'ы' => 'y',
-        'ь' => '',
-        'э' => 'e',
-        'ю' => 'yu',
-        'я' => 'ya',
-        'А' => 'A',
-        'Б' => 'B',
-        'В' => 'V',
-        'Г' => 'G',
-        'Д' => 'D',
-        'Е' => 'E',
-        'Ё' => 'Yo',
-        'Ж' => 'Zh',
-        'З' => 'Z',
-        'И' => 'I',
-        'Й' => 'Y',
-        'К' => 'K',
-        'Л' => 'L',
-        'М' => 'M',
-        'Н' => 'N',
-        'О' => 'O',
-        'П' => 'P',
-        'Р' => 'R',
-        'С' => 'S',
-        'Т' => 'T',
-        'У' => 'U',
-        'Ф' => 'F',
-        'Х' => 'H',
-        'Ц' => 'Ts',
-        'Ч' => 'Ch',
-        'Ш' => 'Sh',
-        'Щ' => 'Sch',
-        'Ъ' => '',
-        'Ы' => 'Y',
-        'Ь' => '',
-        'Э' => 'E',
-        'Ю' => 'Yu',
-        'Я' => 'Ya'
+        'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'yo',
+        'ж' => 'zh', 'з' => 'z', 'и' => 'i', 'й' => 'y', 'к' => 'k', 'л' => 'l', 'м' => 'm',
+        'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u',
+        'ф' => 'f', 'х' => 'h', 'ц' => 'ts', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'sch',
+        'ъ' => '', 'ы' => 'y', 'ь' => '', 'э' => 'e', 'ю' => 'yu', 'я' => 'ya',
+        'А' => 'A', 'Б' => 'B', 'В' => 'V', 'Г' => 'G', 'Д' => 'D', 'Е' => 'E', 'Ё' => 'Yo',
+        'Ж' => 'Zh', 'З' => 'Z', 'И' => 'I', 'Й' => 'Y', 'К' => 'K', 'Л' => 'L', 'М' => 'M',
+        'Н' => 'N', 'О' => 'O', 'П' => 'P', 'Р' => 'R', 'С' => 'S', 'Т' => 'T', 'У' => 'U',
+        'Ф' => 'F', 'Х' => 'H', 'Ц' => 'Ts', 'Ч' => 'Ch', 'Ш' => 'Sh', 'Щ' => 'Sch',
+        'Ъ' => '', 'Ы' => 'Y', 'Ь' => '', 'Э' => 'E', 'Ю' => 'Yu', 'Я' => 'Ya'
     ];
 
     $text = strtr($text, $translit);
@@ -161,8 +89,8 @@ function transliterate($text)
     return $text;
 }
 
-$pageTitle = 'Создать ЭПБ - Админ-панель';
-$currentPage = 'epb';
+$pageTitle = 'Создать услугу - Админ-панель';
+$currentPage = 'services';
 include __DIR__ . '/../../includes/admin-header.php';
 ?>
 <link rel="stylesheet" href="/admin/assets/admin-forms.css">
@@ -172,6 +100,18 @@ include __DIR__ . '/../../includes/admin-header.php';
         max-width: 1200px;
         margin: 40px auto;
         padding: 0 30px;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+    }
+
+    .form-group label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 
     .tooltip-icon {
@@ -286,162 +226,112 @@ include __DIR__ . '/../../includes/admin-header.php';
     .image-preview-wrapper {
         position: relative;
         display: inline-block;
-        border-radius: 5px;
-        overflow: hidden;
     }
 
     .delete-image-btn {
         position: absolute;
-        top: 8px;
-        right: 8px;
-        width: 36px;
-        height: 36px;
-        border-radius: 6px;
-        background: rgba(230, 0, 18, 0.9);
+        top: -10px;
+        right: -10px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #e60012;
         color: #ffffff;
         border: none;
         cursor: pointer;
-        display: none;
+        display: flex;
         align-items: center;
         justify-content: center;
         font-size: 20px;
-        font-weight: 400;
-        line-height: 1;
-        padding: 0;
-        transition: all 0.2s ease;
-        z-index: 10;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        font-weight: bold;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
     }
 
     .delete-image-btn:hover {
-        background: rgba(230, 0, 18, 1);
-        transform: scale(1.05);
-        box-shadow: 0 4px 12px rgba(230, 0, 18, 0.4);
-    }
-
-    .delete-image-btn:active {
-        transform: scale(0.95);
+        background: #cc0010;
+        transform: scale(1.1);
     }
 
     .delete-image-btn span {
-        display: block;
         line-height: 1;
-    }
-
-    .image-preview-wrapper:hover .delete-image-btn {
-        display: flex;
-    }
-
-    .image-preview-wrapper:hover #hero_image_preview_img {
-        opacity: 0.9;
-    }
-
-    #hero_image_preview_img {
-        transition: opacity 0.2s ease;
-    }
-
-    .error-message {
-        background: #ffe6e6;
-        color: #e60012;
-        padding: 12px;
-        border-radius: 5px;
-        margin-bottom: 20px;
-        font-size: 14px;
-    }
-
-    .form-actions {
-        display: flex;
-        gap: 15px;
-        margin-top: 30px;
-    }
-
-    .btn-save,
-    .btn-cancel {
-        padding: 12px 24px;
-        border: none;
-        border-radius: 5px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        text-decoration: none;
-        display: inline-block;
-        transition: all 0.3s ease;
-        font-family: inherit;
-    }
-
-    .btn-save {
-        background: #152333;
-        color: #ffffff;
-    }
-
-    .btn-save:hover {
-        background: #0a141c;
-    }
-
-    .btn-cancel {
-        background: #91A2B8;
-        color: #ffffff;
-    }
-
-    .btn-cancel:hover {
-        background: #7a8fa8;
     }
 </style>
 
 <div class="admin-container">
     <div class="admin-content">
-        <h2>Создать ЭПБ</h2>
+        <h2>Создать услугу</h2>
 
         <?php if ($error): ?>
             <div class="error-message"><?php echo htmlspecialchars($error); ?></div>
         <?php endif; ?>
 
-        <form method="POST" action="" enctype="multipart/form-data">
+        <form method="POST" action="">
             <div class="form-group">
-                <label for="title">
-                    Заголовок *
+                <label for="category_id">
+                    Категория *
                     <span class="tooltip-icon">?
-                        <span class="tooltip-text">Основной заголовок ЭПБ, который будет отображаться на странице.
-                            Обязательное поле.</span>
+                        <span class="tooltip-text">Выберите категорию услуги из списка. Обязательное поле.</span>
                     </span>
                 </label>
-                <input type="text" id="title" name="title"
-                    value="<?php echo htmlspecialchars($_POST['title'] ?? ''); ?>" required>
+                <select id="category_id" name="category_id" required data-custom-select="false">
+                    <option value="">Выберите категорию</option>
+                    <?php foreach ($allCategories as $cat): ?>
+                        <option value="<?php echo $cat['id']; ?>" data-slug="<?php echo htmlspecialchars($cat['slug']); ?>" <?php echo (isset($_POST['category_id']) && $_POST['category_id'] == $cat['id']) ? 'selected' : ''; ?>>
+                            <?php echo htmlspecialchars($cat['name']); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="title">
+                    Название услуги *
+                    <span class="tooltip-icon">?
+                        <span class="tooltip-text">Название услуги. Обязательное поле.</span>
+                    </span>
+                </label>
+                <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($_POST['title'] ?? ''); ?>"
+                    required>
             </div>
 
             <div class="form-group">
                 <label for="slug">
                     URL (slug) *
                     <span class="tooltip-icon">?
-                        <span class="tooltip-text">Уникальный URL-адрес ЭПБ (например:
-                            epb-pod-emnyh-sooruzheniy-i-kranov). Будет автоматически сгенерирован из заголовка, если
-                            оставить пустым. Используйте только латинские буквы, цифры и дефисы.</span>
+                        <span class="tooltip-text">Уникальный URL-адрес услуги. Будет автоматически сгенерирован из названия, если оставить пустым. Используйте только латинские буквы, цифры и дефисы.</span>
                     </span>
                 </label>
                 <input type="text" id="slug" name="slug" value="<?php echo htmlspecialchars($_POST['slug'] ?? ''); ?>"
                     required>
-                <small>Будет автоматически сгенерирован из заголовка, если оставить пустым</small>
             </div>
 
             <div class="form-group">
-                <label for="category">
-                    Категория
+                <label for="description">
+                    Описание
                     <span class="tooltip-icon">?
-                        <span class="tooltip-text">Категория ЭПБ (например: Э3, Э1, Э2 и т.д.). Можно оставить
-                            пустым.</span>
+                        <span class="tooltip-text">Краткое описание услуги. Будет отображаться в карточке услуги и в начале страницы.</span>
                     </span>
                 </label>
-                <input type="text" id="category" name="category"
-                    value="<?php echo htmlspecialchars($_POST['category'] ?? ''); ?>" placeholder="Например: Э3">
+                <textarea id="description"
+                    name="description"><?php echo htmlspecialchars($_POST['description'] ?? ''); ?></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="content">
+                    Содержание *
+                    <span class="tooltip-icon">?
+                        <span class="tooltip-text">Основной текст услуги. Используйте редактор для форматирования текста, добавления изображений, ссылок и других элементов. Обязательное поле.</span>
+                    </span>
+                </label>
+                <textarea id="content" name="content"><?php echo htmlspecialchars($_POST['content'] ?? ''); ?></textarea>
             </div>
 
             <div class="form-group">
                 <label for="hero_image">
                     Изображение
                     <span class="tooltip-icon">?
-                        <span class="tooltip-text">Главное изображение ЭПБ, которое будет отображаться в hero-секции.
-                            Поддерживаются форматы: JPG, PNG, GIF, WebP. Перетащите файл сюда или нажмите для
-                            выбора.</span>
+                        <span class="tooltip-text">Главное изображение услуги, которое будет отображаться в шапке страницы. Поддерживаются форматы: JPG, PNG, GIF, WebP. Перетащите файл сюда или нажмите для выбора.</span>
                     </span>
                 </label>
                 <input type="hidden" id="hero_image" name="hero_image"
@@ -469,34 +359,49 @@ include __DIR__ . '/../../includes/admin-header.php';
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="hero_content">
-                    Первая часть контента (Hero) *
-                    <span class="tooltip-icon">?
-                        <span class="tooltip-text">Первая часть контента, которая будет отображаться в hero-секции
-                            вместе с изображением. Кнопка "ЗАКАЗАТЬ УСЛУГУ" будет автоматически добавлена после этого
-                            контента. Обязательное поле.</span>
-                    </span>
-                </label>
-                <textarea id="hero_content"
-                    name="hero_content"><?php echo htmlspecialchars($_POST['hero_content'] ?? ''); ?></textarea>
+            <!-- Поля для лаборатории неразрушающего контроля -->
+            <div id="lab-fields" style="display: none;">
+                <div class="form-group">
+                    <label for="equipment_list">
+                        Список оборудования
+                        <span class="tooltip-icon">?
+                            <span class="tooltip-text">Список оборудования лаборатории. Каждый пункт с новой строки, можно начинать с "-".</span>
+                        </span>
+                    </label>
+                    <textarea id="equipment_list" name="equipment_list" rows="8" placeholder="- аппараты рентгеновские импульсные&#10;- аппараты ультразвуковые&#10;- денситометры"><?php echo htmlspecialchars($_POST['equipment_list'] ?? ''); ?></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">
+                        Стоимость экспертизы
+                        <span class="tooltip-icon">?
+                            <span class="tooltip-text">Например: от 17 000₽</span>
+                        </span>
+                    </label>
+                    <input type="text" id="price" name="price" value="<?php echo htmlspecialchars($_POST['price'] ?? 'от 17 000₽'); ?>" placeholder="от 17 000₽">
+                </div>
+
+                <div class="form-group">
+                    <label for="term">
+                        Сроки проведения
+                        <span class="tooltip-icon">?
+                            <span class="tooltip-text">Например: от 20 дней</span>
+                        </span>
+                    </label>
+                    <input type="text" id="term" name="term" value="<?php echo htmlspecialchars($_POST['term'] ?? 'от 20 дней'); ?>" placeholder="от 20 дней">
+                </div>
             </div>
 
             <div class="form-group">
-                <label for="features_content">
-                    Вторая часть контента (Особенности) *
-                    <span class="tooltip-icon">?
-                        <span class="tooltip-text">Вторая часть контента, которая будет отображаться в секции
-                            "Особенности ЭПБ" на полную ширину. Обязательное поле.</span>
-                    </span>
+                <label>
+                    <input type="checkbox" name="published" value="1" <?php echo (isset($_POST['published']) && $_POST['published']) || !isset($_POST['published']) ? 'checked' : ''; ?>>
+                    Опубликовано
                 </label>
-                <textarea id="features_content"
-                    name="features_content"><?php echo htmlspecialchars($_POST['features_content'] ?? ''); ?></textarea>
             </div>
 
             <div class="form-actions">
                 <button type="submit" class="btn-save">Сохранить</button>
-                <a href="/admin/epb" class="btn-cancel">Отмена</a>
+                <a href="/admin/services" class="btn-cancel">Отмена</a>
             </div>
         </form>
     </div>
@@ -529,40 +434,64 @@ include __DIR__ . '/../../includes/admin-header.php';
         this.dataset.manual = 'true';
     });
 
-    // Инициализация TinyMCE для обеих частей контента
-    tinymce.init({
-        selector: '#hero_content',
-        height: 400,
-        menubar: false,
-        base_url: '/admin/assets/tinymce/tinymce/js/tinymce',
-        suffix: '.min',
-        plugins: [
-            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-            'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
-        ],
-        toolbar: 'undo redo | blocks | ' +
-            'bold italic forecolor | alignleft aligncenter ' +
-            'alignright alignjustify | bullist numlist outdent indent | ' +
-            'removeformat | link image | code | help',
-        content_style: 'body { font-family: Montserrat, sans-serif; font-size: 14px; }',
-        image_advtab: true,
-        file_picker_types: 'image',
-        automatic_uploads: true,
-        images_upload_url: '/admin/articles/upload-image',
-        relative_urls: false,
-        remove_script_host: false,
-        convert_urls: true,
-        setup: function (editor) {
-            editor.on('change', function () {
-                editor.save();
-            });
+    // Показываем/скрываем поля для лаборатории в зависимости от выбранной категории
+    const categorySelect = document.getElementById('category_id');
+    const labFields = document.getElementById('lab-fields');
+    
+    function toggleLabFields() {
+        const selectedOption = categorySelect.options[categorySelect.selectedIndex];
+        const categorySlug = selectedOption.text.toLowerCase().includes('лаборатория неразрушающего контроля');
+        
+        // Проверяем по slug категории (нужно получить slug из опции)
+        // Для простоты проверяем по тексту, но лучше добавить data-атрибут
+        if (categorySelect.value) {
+            // Получаем slug категории из опции (можно добавить data-slug атрибут)
+            fetch('/admin/services/get-category-slug?id=' + categorySelect.value)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.slug === 'laboratoriya-nerazrushayushchego-kontrolya') {
+                        labFields.style.display = 'block';
+                    } else {
+                        labFields.style.display = 'none';
+                    }
+                })
+                .catch(() => {
+                    // Fallback: проверяем по тексту
+                    if (selectedOption.text.includes('Лаборатория неразрушающего контроля')) {
+                        labFields.style.display = 'block';
+                    } else {
+                        labFields.style.display = 'none';
+                    }
+                });
+        } else {
+            labFields.style.display = 'none';
+        }
+    }
+    
+    // Проверка по data-slug атрибуту
+    categorySelect.addEventListener('change', function() {
+        const selectedOption = this.options[this.selectedIndex];
+        const categorySlug = selectedOption.getAttribute('data-slug');
+        if (categorySlug === 'laboratoriya-nerazrushayushchego-kontrolya') {
+            labFields.style.display = 'block';
+        } else {
+            labFields.style.display = 'none';
         }
     });
+    
+    // Проверяем при загрузке страницы
+    if (categorySelect.value) {
+        const selectedOption = categorySelect.options[categorySelect.selectedIndex];
+        const categorySlug = selectedOption.getAttribute('data-slug');
+        if (categorySlug === 'laboratoriya-nerazrushayushchego-kontrolya') {
+            labFields.style.display = 'block';
+        }
+    }
 
+    // Инициализация TinyMCE
     tinymce.init({
-        selector: '#features_content',
-        height: 400,
+        selector: '#content',
+        height: 500,
         menubar: false,
         base_url: '/admin/assets/tinymce/tinymce/js/tinymce',
         suffix: '.min',
@@ -592,27 +521,13 @@ include __DIR__ . '/../../includes/admin-header.php';
 
     // Обработка отправки формы - синхронизация TinyMCE и валидация
     document.querySelector('form').addEventListener('submit', function (e) {
-        // Сохраняем содержимое редакторов в textarea
-        if (tinymce.get('hero_content')) {
-            tinymce.get('hero_content').save();
-
-            const content = tinymce.get('hero_content').getContent();
+        if (tinymce.get('content')) {
+            tinymce.get('content').save();
+            const content = tinymce.get('content').getContent();
             if (!content || content.trim() === '' || content === '<p></p>' || content === '<p><br></p>') {
                 e.preventDefault();
-                alert('Пожалуйста, заполните первую часть контента');
-                tinymce.get('hero_content').focus();
-                return false;
-            }
-        }
-
-        if (tinymce.get('features_content')) {
-            tinymce.get('features_content').save();
-
-            const content = tinymce.get('features_content').getContent();
-            if (!content || content.trim() === '' || content === '<p></p>' || content === '<p><br></p>') {
-                e.preventDefault();
-                alert('Пожалуйста, заполните вторую часть контента');
-                tinymce.get('features_content').focus();
+                alert('Пожалуйста, заполните содержание услуги');
+                tinymce.get('content').focus();
                 return false;
             }
         }
@@ -639,11 +554,9 @@ include __DIR__ . '/../../includes/admin-header.php';
                             previewImg.src = data.location;
                             preview.style.display = 'block';
                         }
-                        // Скрываем dropzone после загрузки
                         if (dropzone) {
                             dropzone.style.display = 'none';
                         }
-                        // Обновляем превью
                         updateImagePreview();
                     } else if (data.error) {
                         alert('Ошибка загрузки: ' + data.error);
@@ -682,15 +595,15 @@ include __DIR__ . '/../../includes/admin-header.php';
         }
     }
 
-    // Обновляем превью при изменении значения
-    heroImageInput.addEventListener('input', updateImagePreview);
-
-    // Инициализация при загрузке
-    updateImagePreview();
-
     // Функция удаления изображения
     function deleteImage(inputId) {
         document.getElementById(inputId).value = '';
+        updateImagePreview();
+    }
+
+    // Обновляем превью при изменении значения
+    if (heroImageInput) {
+        heroImageInput.addEventListener('input', updateImagePreview);
         updateImagePreview();
     }
 
@@ -698,15 +611,13 @@ include __DIR__ . '/../../includes/admin-header.php';
     const dropzone = document.getElementById('hero_image_dropzone');
     const fileInput = document.getElementById('hero_image_file');
 
-    if (dropzone) {
-        // Клик по зоне открывает выбор файла
+    if (dropzone && fileInput) {
         dropzone.addEventListener('click', function (e) {
             if (e.target !== fileInput) {
                 fileInput.click();
             }
         });
 
-        // Предотвращаем стандартное поведение браузера
         dropzone.addEventListener('dragover', function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -728,15 +639,12 @@ include __DIR__ . '/../../includes/admin-header.php';
             if (files.length > 0) {
                 const file = files[0];
                 if (file.type.startsWith('image/')) {
-                    // Создаем FileList для input
                     const dataTransfer = new DataTransfer();
                     dataTransfer.items.add(file);
                     fileInput.files = dataTransfer.files;
-
-                    // Запускаем обработку загрузки
                     handleImageUpload(fileInput, 'hero_image');
                 } else {
-                    alert('Пожалуйста, выберите файл изображения');
+                    alert('Пожалуйста, выберите изображение');
                 }
             }
         });

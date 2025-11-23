@@ -133,6 +133,16 @@ $currentPage = $currentPage ?? '';
                                ЭПБ
                            </a>
                        </li>
+                       <li class="admin-nav-item">
+                           <a href="/admin/expertiza-articles" class="admin-nav-link <?php echo $currentPage === 'expertiza-articles' ? 'active' : ''; ?>">
+                               Статьи экспертизы
+                           </a>
+                       </li>
+                       <li class="admin-nav-item">
+                           <a href="/admin/services" class="admin-nav-link <?php echo $currentPage === 'services' ? 'active' : ''; ?>">
+                               Услуги
+                           </a>
+                       </li>
             </ul>
         </nav>
     </header>
